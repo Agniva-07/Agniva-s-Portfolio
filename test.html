@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rope Toggle Dark Mode</title>
+
+<style>
+  body {
+    margin: 0;
+    transition: background 0.4s ease;
+    background: #f5f5f5;
+  }
+
+  body.dark {
+    background: #0d1117;
+  }
+
+  canvas {
+    display: block;
+    margin: auto;
+    cursor: grab;
+  }
+
+  canvas:active {
+    cursor: grabbing;
+  }
+</style>
+</head>
+
+<body>
+
+<canvas id="ropeCanvas" width="200" height="350"></canvas>
+
+<script>
+const canvas = document.getElementById("ropeCanvas");
+const ctx = canvas.getContext("2d");
+
+let points = [];
+const segmentLength = 15;
+const gravity = 0.5;
+const friction = 0.999;
+const iterations = 5;
+
+const totalPoints = 15;
+
+// Create rope points
+for (let i = 0; i < totalPoints; i++) {
+  points.push({
+    x: canvas.width / 2,
+    y: 20 + i * segmentLength,
+    oldx: canvas.width / 2,
+    oldy: 20 + i * segmentLength
+  });
+}
+
+// Dragging
+let dragging = false;
+
+canvas.addEventListener("mousedown", () => dragging = true);
+canvas.addEventListener("mouseup", () => dragging = false);
+canvas.addEventListener("mouseleave", () => dragging = false);
+
+canvas.addEventListener("mousemove", (e) => {
+  if (dragging) {
+    const rect = canvas.getBoundingClientRect();
+    points[points.length - 1].x = e.clientX - rect.left;
+    points[points.length - 1].y = e.clientY - rect.top;
+  }
+});
+
+// Physics update
+function update() {
+  // Apply physics
+  for (let i = 1; i < points.length; i++) {
+    let p = points[i];
+
+    let vx = (p.x - p.oldx) * friction;
+    let vy = (p.y - p.oldy) * friction;
+
+    p.oldx = p.x;
+    p.oldy = p.y;
+
+    p.x += vx;
+    p.y += vy + gravity;
+  }
+
+  // Constraints (rope)
+  for (let j = 0; j < iterations; j++) {
+    for (let i = 0; i < points.length - 1; i++) {
+      let p1 = points[i];
+      let p2 = points[i + 1];
+
+      let dx = p2.x - p1.x;
+      let dy = p2.y - p1.y;
+      let dist = Math.sqrt(dx * dx + dy * dy);
+      let diff = (dist - segmentLength) / dist;
+
+      let offsetX = dx * diff * 0.5;
+      let offsetY = dy * diff * 0.5;
+
+      if (i !== 0) {
+        p1.x += offsetX;
+        p1.y += offsetY;
+      }
+
+      p2.x -= offsetX;
+      p2.y -= offsetY;
+    }
+
+    // Anchor top point
+    points[0].x = canvas.width / 2;
+    points[0].y = 10;
+  }
+}
+
+// Draw
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Rope
+  ctx.beginPath();
+  ctx.moveTo(points[0].x, points[0].y);
+
+  for (let i = 1; i < points.length; i++) {
+    ctx.lineTo(points[i].x, points[i].y);
+  }
+
+  ctx.strokeStyle = "#888";
+  ctx.lineWidth = 2;
+  ctx.stroke();
+
+  // Top holder
+  ctx.fillStyle = "#333";
+  ctx.fillRect(canvas.width / 2 - 20, 0, 40, 10);
+
+  // Knob
+  let last = points[points.length - 1];
+  ctx.beginPath();
+  ctx.arc(last.x, last.y, 12, 0, Math.PI * 2);
+  ctx.fillStyle = "#ddd";
+  ctx.fill();
+
+  ctx.beginPath();
+  ctx.arc(last.x, last.y, 4, 0, Math.PI * 2);
+  ctx.fillStyle = "#00d1ff";
+  ctx.fill();
+}
+
+// Toggle logic
+function checkToggle() {
+  const last = points[points.length - 1];
+
+  // If pulled down enough → toggle
+  if (last.y > 250) {
+    document.body.classList.add("dark");
+  } else {
+    document.body.classList.remove("dark");
+  }
+}
+
+// Loop
+function loop() {
+  update();
+  draw();
+  checkToggle();
+  requestAnimationFrame(loop);
+}
+
+loop();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,971 @@
+/* =============================================================
+   BASE.CSS — Reset · Layout · Components · Animations
+   ============================================================= */
+
+
+/* ── 1. Reset ────────────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  /* Modern Cinematic Palette */
+  --clr-bg: #0b0f14;
+  --clr-cyan: #00ffd0;
+  --clr-blue: #00e5ff;
+  --clr-purple: #7c5cff;
+  --clr-orange: #ffaa33;
+  --clr-text-primary: #fff;
+  --clr-text-secondary: #a0a8b0;
+  --clr-accent: var(--clr-cyan);
+  --clr-accent-purple: var(--clr-purple);
+  --clr-accent-orange: var(--clr-orange);
+  --clr-bg-panel-l: #10151c;
+  --clr-bg-panel-r: #10151c;
+  --clr-bg-card: #181e26;
+  --clr-bg-card-hover: #23293a;
+  --clr-border: rgba(0,255,204,0.13);
+  --clr-border-hover: var(--clr-cyan);
+  --clr-border-active: var(--clr-blue);
+  --clr-border-muted: #23293a;
+  --glass-bg: rgba(20,24,32,0.82);
+  --glass-blur: blur(18px);
+  --glass-shadow: 0 4px 32px rgba(0,0,0,0.32);
+  --glow-card: 0 0 24px var(--clr-cyan, #00ffd0);
+  --glow-lg: 0 0 48px var(--clr-blue, #00e5ff);
+  --sp-xl: 2.5rem;
+  --sp-2xl: 4rem;
+  --sp-lg: 1.5rem;
+  --sp-md: 1rem;
+  --sp-sm: 0.5rem;
+  --r-xl: 32px;
+  --r-lg: 22px;
+  --r-md: 14px;
+  --r-sm: 8px;
+  --tr-base: 0.38s cubic-bezier(.77,0,.18,1);
+  --tr-fast: 0.22s cubic-bezier(.77,0,.18,1);
+  --tr-slow: 0.55s cubic-bezier(.77,0,.18,1);
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background: radial-gradient(ellipse 120% 80% at 60% 0%, #10151c 0%, transparent 100%),
+              radial-gradient(ellipse 80% 60% at 20% 100%, #181e26 0%, transparent 100%),
+              var(--clr-bg);
+  color: var(--clr-text-primary);
+  min-height: 100vh;
+  overflow-y: auto;
+  position: relative;
+}
+
+body::after {
+  /* Moving light blobs for depth */
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(circle at 30% 70%, rgba(124,92,255,0.10) 0, transparent 60%),
+    radial-gradient(circle at 80% 20%, rgba(0,229,255,0.10) 0, transparent 60%),
+    radial-gradient(circle at 60% 90%, rgba(255,170,51,0.08) 0, transparent 60%);
+  animation: bg-blobs-move 24s linear infinite alternate;
+  opacity: 0.7;
+}
+
+@keyframes bg-blobs-move {
+  0%   { background-position: 30% 70%, 80% 20%, 60% 90%; }
+  100% { background-position: 40% 60%, 70% 30%, 50% 80%; }
+}
+    /* Microinteractions: glow/underline sweep */
+/* Microinteractions: glow/underline sweep */
+a, .card-cta, button, .project-card, .timeline-card, .tech-chip, .skill-item {
+  transition: box-shadow var(--tr-base), transform var(--tr-base), border-color var(--tr-base), background var(--tr-base), color var(--tr-base), text-decoration-color var(--tr-base);
+}
+a, .card-cta {
+  position: relative;
+  overflow: hidden;
+}
+a::after, .card-cta::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0; width: 100%; height: 2px;
+  background: linear-gradient(90deg, var(--clr-cyan), var(--clr-blue), var(--clr-purple));
+  transform: scaleX(0);
+  transition: transform var(--tr-fast);
+}
+a:hover::after, .card-cta:hover::after {
+  transform: scaleX(1);
+}
+
+/* Skills grid and chip (user request) */
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  max-height: 45vh;
+  overflow: hidden;
+}
+.skill-chip {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(0,255,204,0.08);
+  border: 1px solid rgba(0,255,204,0.2);
+  font-size: 12px;
+  transition: all 0.3s ease;
+}
+.skill-chip:hover {
+  background: rgba(0,255,204,0.2);
+  transform: translateY(-2px);
+}
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.028;
+  background-size: 180px 180px;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+code {
+  font-family: var(--font-mono);
+}
+
+
+/* ── 2. Split Layout ─────────────────────────────────────────── */
+.split-layout {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+
+  /* Page-load fade-in */
+  opacity: 0;
+  animation: anim-layout-in var(--tr-slow) forwards 0.05s;
+}
+
+/* ── Shared panel base ── */
+.panel {
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* ── 3. LEFT PANEL ───────────────────────────────────────────── */
+.panel--left {
+  width: 40%;
+  min-width: 300px;
+  background: var(--clr-bg-panel-l);
+  border-right: 1px solid rgba(0, 255, 204, 0.07);
+
+  /* Layered depth: mid-glow + edge accent + subtle floor */
+  background-image:
+    radial-gradient(ellipse 80% 55% at 50% 0%,
+      rgba(0, 255, 204, 0.055) 0%,
+      transparent 65%),
+    radial-gradient(ellipse 50% 35% at 10% 100%,
+      rgba(0, 229, 255, 0.035) 0%,
+      transparent 60%),
+    radial-gradient(ellipse 40% 30% at 90% 55%,
+      rgba(0, 255, 136, 0.025) 0%,
+      transparent 55%);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-xl);
+  padding: var(--sp-xl);
+
+  /* 3D perspective context for card tilt */
+  perspective: 900px;
+
+  /* Slide-up on load */
+  transform: translateY(16px);
+  animation:
+    anim-layout-in var(--tr-slow) forwards 0.05s,
+    anim-panel-up  0.5s ease-out forwards 0.1s;
+}
+
+
+/* ── 4. Scan-line effect ──────────────────────────────────────── */
+.scan-line {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  /* Static fine horizontal lines */
+  background: repeating-linear-gradient(
+    to bottom,
+    transparent            0px,
+    transparent            3px,
+    rgba(0,255,204,0.012)  3px,
+    rgba(0,255,204,0.012)  4px
+  );
+  /* A single bright sweep line */
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0px,
+      transparent 3px,
+      rgba(0,255,204,0.012) 3px,
+      rgba(0,255,204,0.012) 4px
+    ),
+    linear-gradient(
+      to bottom,
+      transparent 0%,
+      rgba(0, 255, 204, 0.04) 50%,
+      transparent 100%
+    );
+  background-size: 100% 4px, 100% 200%;
+  animation: anim-scan 7s linear infinite;
+}
+
+
+/* ── 5. Identity Card ────────────────────────────────────────── */
+.identity-card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;
+
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  -webkit-backdrop-filter: var(--glass-blur);
+  /* Gradient border via pseudo-element — gives a glowing edge */
+  border: 1px solid transparent;
+  border-radius: var(--r-xl);
+  padding: var(--sp-xl);
+  box-shadow: var(--glass-shadow);
+
+  /* Gradient border trick */
+  background-clip: padding-box;
+  outline: 1px solid rgba(0, 255, 204, 0.13);
+  outline-offset: -1px;
+
+  transform-style: preserve-3d;
+  will-change: transform;
+
+  transition:
+    transform    0.18s ease,
+    box-shadow   var(--tr-base),
+    outline-color var(--tr-base);
+}
+
+.identity-card:hover {
+  outline-color: rgba(0, 255, 204, 0.42);
+  box-shadow: var(--glow-card);
+  /* transform handled by JS tilt */
+}
+
+/* Ambient top-glow inside card */
+.identity-card__ambient {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    ellipse 100% 50% at 50% -10%,
+    rgba(0, 255, 204, 0.09) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  transition: opacity var(--tr-base);
+  opacity: 0.6;
+}
+
+.identity-card:hover .identity-card__ambient {
+  opacity: 1;
+}
+
+/* Status bar */
+.status-bar {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-lg);
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--clr-status);
+  box-shadow: 0 0 8px var(--clr-status-glow);
+  animation: anim-pulse 2.2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+
+.status-label {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+  color: var(--clr-status);
+}
+
+/* Name */
+.identity-main {
+  margin-bottom: var(--sp-lg);
+}
+
+.identity-name {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 3.5vw, 2.75rem);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  line-height: 1.1;
+  color: var(--clr-text-primary);
+  margin-bottom: var(--sp-sm);
+  /* Glitch reduced to ~6% of the time — barely perceptible */
+  animation: anim-glitch 16s ease-in-out infinite;
+}
+
+/* Role typewriter */
+.identity-role {
+  font-family: var(--font-mono);
+  font-size: 0.875rem;
+  color: var(--clr-accent);
+  min-height: 1.5em;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+}
+
+.typewriter { display: inline; }
+
+.cursor-blink {
+  display: inline-block;
+  color: var(--clr-accent);
+  animation: anim-cursor 1s step-end infinite;
+  font-weight: 300;
+  line-height: 1;
+}
+
+/* Tags */
+.identity-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+
+.identity-tag {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--clr-text-secondary);
+  border: 1px solid var(--clr-border-muted);
+  border-radius: var(--r-sm);
+  padding: 3px 9px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+
+/* ── 6. Terminal Boot ─────────────────────────────────────────── */
+.terminal-boot {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 360px;
+  background: var(--clr-bg-terminal);
+  border: 1px solid rgba(0, 255, 204, 0.10);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: 0 4px 28px rgba(0, 0, 0, 0.55);
+
+  /* Delayed appearance */
+  opacity: 0;
+  animation: anim-fade-up 0.35s ease forwards 0.85s;
+}
+
+/* macOS-style title bar */
+.terminal-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.term-dot {
+  width: 11px;
+  height: 11px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.term-dot--red    { background: #ff5f57; }
+.term-dot--yellow { background: #febc2e; }
+.term-dot--green  { background: #28c840; }
+
+.term-title {
+  margin-left: auto;
+  margin-right: auto;
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--clr-text-muted);
+  letter-spacing: 0.04em;
+}
+
+/* Terminal text area */
+.terminal-body {
+  padding: var(--sp-md) var(--sp-md) var(--sp-sm);
+  min-height: 120px;
+  max-height: 164px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.terminal-line {
+  font-family: var(--font-mono);
+  font-size: 0.73rem;
+  line-height: 1.7;
+  color: var(--clr-text-terminal);
+  white-space: pre;
+  opacity: 0;
+  animation: anim-line-in 0.08s ease forwards;
+}
+
+.terminal-line--prompt::before {
+  content: '$ ';
+  color: rgba(0, 255, 204, 0.38);
+}
+
+.terminal-line--success {
+  color: #28c840;
+  letter-spacing: 0.01em;
+}
+.terminal-line--info    { color: var(--clr-text-secondary); }
+
+/* Block cursor — with subtle flicker */
+.terminal-cursor {
+  display: inline-block;
+  width: 7px;
+  height: 0.88em;
+  background: var(--clr-accent);
+  vertical-align: text-bottom;
+  animation: anim-cursor-flicker 1.1s step-end infinite;
+}
+
+
+/* ── 7. RIGHT PANEL ──────────────────────────────────────────── */
+.panel--right {
+  width: 60%;
+  background: var(--clr-bg-panel-r);
+  /* Dot-grid + depth glow clouds */
+  background-image:
+    radial-gradient(
+      circle,
+      rgba(0, 255, 204, 0.045) 1px,
+      transparent 1px
+    ),
+    radial-gradient(
+      ellipse 70% 60% at 80% 20%,
+      rgba(0, 229, 255, 0.04) 0%,
+      transparent 60%
+    ),
+    radial-gradient(
+      ellipse 50% 45% at 20% 85%,
+      rgba(0, 255, 204, 0.03) 0%,
+      transparent 55%
+    );
+  background-size: 26px 26px, 100% 100%, 100% 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--sp-2xl) var(--sp-xl);
+  overflow-y: auto;
+
+  /* Staggered fade in */
+  opacity: 0;
+  animation: anim-layout-in 0.45s ease forwards 0.35s;
+}
+
+
+/* ── 8. Mode Panel ───────────────────────────────────────────── */
+.mode-panel {
+  width: 100%;
+  max-width: 640px;
+}
+
+.mode-header {
+  margin-bottom: var(--sp-2xl);
+}
+
+.mode-heading {
+  font-family: var(--font-heading);
+  font-size: clamp(1.5rem, 2.6vw, 2.1rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  margin-bottom: var(--sp-sm);
+}
+
+.mode-heading em,
+.accent {
+  font-style: normal;
+  color: var(--clr-accent);
+}
+
+.mode-subtext {
+  font-size: 0.925rem;
+  color: var(--clr-text-secondary);
+  font-weight: 300;
+  line-height: 1.5;
+}
+
+
+/* ── 9. Mode Cards ───────────────────────────────────────────── */
+.mode-cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.mode-card {
+  position: relative;
+  background: var(--clr-bg-card);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--clr-border);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+  cursor: pointer;
+  overflow: hidden;
+  outline: none;
+
+  transition:
+    transform     var(--tr-base),
+    box-shadow    var(--tr-base),
+    border-color  var(--tr-base),
+    background    var(--tr-base);
+}
+
+.mode-card:hover,
+.mode-card:focus-visible {
+  transform: translateY(-5px);
+  border-color: var(--clr-border-hover);
+  background: var(--clr-bg-card-hover);
+  box-shadow: var(--glow-card);
+}
+
+.mode-card:focus-visible {
+  outline: 2px solid var(--clr-accent);
+  outline-offset: 3px;
+}
+
+/* Selected state */
+.mode-card.is-selected {
+  border-color: var(--clr-border-active);
+  box-shadow: var(--glow-lg), var(--glass-shadow);
+  transform: scale(1.015);
+  background: rgba(0, 255, 204, 0.04);
+}
+
+/* ── Per-card unique accent colours ── */
+
+/* Story — cyan */
+.mode-card--story {
+  --card-accent:       rgba(0, 255, 204, 1);
+  --card-accent-glow:  rgba(0, 255, 204, 0.14);
+  --card-accent-dim:   rgba(0, 255, 204, 0.06);
+  --card-cta-clr:      var(--clr-accent);
+  --card-cta-border:   rgba(0, 255, 204, 0.28);
+  --card-cta-hover-bg: rgba(0, 255, 204, 0.09);
+}
+
+/* Terminal — green */
+.mode-card--terminal {
+  --card-accent:       rgba(40, 200, 64, 1);
+  --card-accent-glow:  rgba(40, 200, 64, 0.14);
+  --card-accent-dim:   rgba(40, 200, 64, 0.06);
+  --card-cta-clr:      #28c840;
+  --card-cta-border:   rgba(40, 200, 64, 0.28);
+  --card-cta-hover-bg: rgba(40, 200, 64, 0.09);
+}
+
+/* Desktop — muted purple/dim */
+.mode-card--desktop {
+  --card-accent:       rgba(110, 86, 207, 1);
+  --card-accent-glow:  rgba(110, 86, 207, 0.10);
+  --card-accent-dim:   rgba(110, 86, 207, 0.04);
+  --card-cta-clr:      var(--clr-text-muted);
+  --card-cta-border:   rgba(255, 255, 255, 0.07);
+  --card-cta-hover-bg: rgba(255, 255, 255, 0.03);
+}
+
+.mode-card--story:hover,
+.mode-card--story:focus-visible,
+.mode-card--story.is-selected {
+  border-color: rgba(0, 255, 204, 0.45);
+  box-shadow: 0 0 30px rgba(0, 255, 204, 0.14), var(--glass-shadow);
+}
+
+.mode-card--terminal:hover,
+.mode-card--terminal:focus-visible,
+.mode-card--terminal.is-selected {
+  border-color: rgba(40, 200, 64, 0.45);
+  box-shadow: 0 0 30px rgba(40, 200, 64, 0.14), var(--glass-shadow);
+}
+
+.mode-card--desktop:hover,
+.mode-card--desktop:focus-visible,
+.mode-card--desktop.is-selected {
+  border-color: rgba(110, 86, 207, 0.35);
+  box-shadow: 0 0 28px rgba(110, 86, 207, 0.10), var(--glass-shadow);
+}
+
+/* Cursor-tracking radial glow — position driven by JS CSS vars */
+.card-glow {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle 180px at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    var(--card-accent-dim) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--tr-base);
+}
+
+.mode-card:hover .card-glow,
+.mode-card.is-selected .card-glow {
+  opacity: 1;
+}
+
+/* Animated sweep on hover */
+.card-sweep {
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 55%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 255, 204, 0.055),
+    transparent
+  );
+  pointer-events: none;
+}
+
+.mode-card:hover .card-sweep {
+  animation: anim-sweep 0.65s ease-out forwards;
+}
+
+/* Card inner content */
+.card-content {
+  position: relative;
+  z-index: 1;
+}
+
+.card-top {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-md);
+}
+
+.card-icon {
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.card-badge {
+  font-family: var(--font-mono);
+  font-size: 0.58rem;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #0d0d0d;
+  background: var(--clr-accent);
+  border-radius: 4px;
+  padding: 3px 9px;
+}
+
+.card-badge--muted {
+  color: var(--clr-text-muted);
+  background: transparent;
+  border: 1px solid var(--clr-border-muted);
+}
+
+.card-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--clr-text-primary);
+  margin-bottom: var(--sp-sm);
+}
+
+.card-desc {
+  font-size: 0.875rem;
+  color: var(--clr-text-secondary);
+  line-height: 1.65;
+  margin-bottom: var(--sp-lg);
+}
+
+.card-desc code {
+  color: var(--clr-accent);
+  background: rgba(0, 255, 204, 0.08);
+  padding: 1px 6px;
+  border-radius: var(--r-sm);
+  font-size: 0.82em;
+}
+
+/* CTA button — colour driven by per-card CSS vars */
+.card-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-sm);
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  color: var(--card-cta-clr, var(--clr-accent));
+  border: 1px solid var(--card-cta-border, rgba(0, 255, 204, 0.28));
+  border-radius: var(--r-sm);
+  padding: 9px 18px;
+  min-height: 44px;   /* accessibility — touch target */
+  transition:
+    background    var(--tr-fast),
+    border-color  var(--tr-fast),
+    box-shadow    var(--tr-fast);
+}
+
+.mode-card:hover .card-cta,
+.card-cta:hover {
+  background: var(--card-cta-hover-bg, rgba(0, 255, 204, 0.09));
+  border-color: var(--card-accent, var(--clr-accent));
+  box-shadow: 0 0 12px var(--card-accent-glow, rgba(0, 255, 204, 0.18));
+}
+
+.cta-arrow {
+  transition: transform var(--tr-fast);
+}
+
+.card-cta:hover .cta-arrow {
+  transform: translateX(4px);
+}
+
+
+/* ── 10. Mode Transition Overlay ─────────────────────────────── */
+.mode-overlay {
+  position: fixed;
+  inset: 0;
+  background: var(--clr-bg);
+  z-index: 9000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.22s ease;
+}
+
+.mode-overlay.is-active {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.mode-overlay__text {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--clr-accent);
+  letter-spacing: 0.08em;
+}
+
+.mode-overlay__cursor {
+  display: inline-block;
+  width: 9px;
+  height: 1.1em;
+  background: var(--clr-accent);
+  vertical-align: middle;
+  animation: anim-cursor 0.85s step-end infinite;
+}
+
+
+/* ── 10b. Terminal title — dynamic via JS ───────────────────── */
+#termTitle {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  color: var(--clr-text-muted);
+  letter-spacing: 0.04em;
+  margin: 0 auto;
+}
+
+
+/* ── 11. Keyframe Animations ─────────────────────────────────── */
+
+/* Page & panel fade-in */
+@keyframes anim-layout-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Left panel slide-up */
+@keyframes anim-panel-up {
+  from { transform: translateY(16px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+/* Generic fade + lift */
+@keyframes anim-fade-up {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0);   }
+}
+
+/* Single line appearing in terminal */
+@keyframes anim-line-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Blinking cursor */
+@keyframes anim-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* Terminal cursor with flicker */
+@keyframes anim-cursor-flicker {
+  0%, 45%, 55%, 100% { opacity: 1; }
+  50%                { opacity: 0; }
+  47%, 53%           { opacity: 0.3; }
+}
+
+/* Status dot heartbeat */
+@keyframes anim-pulse {
+  0%, 100% { box-shadow: 0 0  6px var(--clr-status-glow); }
+  50%       { box-shadow: 0 0 14px var(--clr-status-glow); }
+}
+
+/* Scan-line movement */
+@keyframes anim-scan {
+  0%   { background-position: 0 0, 0 -100%; }
+  100% { background-position: 0 0, 0  100%; }
+}
+
+/* Hover sweep across card */
+@keyframes anim-sweep {
+  0%   { left: -120%; }
+  100% { left:  160%; }
+}
+
+/* Subtle text glitch — reduced intensity, rare occurrence */
+@keyframes anim-glitch {
+  0%,  94%, 100% {
+    text-shadow: none;
+    transform: none;
+  }
+  94.5% {
+    text-shadow:  1px 0 rgba(0, 255, 204, 0.45),
+                 -1px 0 rgba(255, 30, 80, 0.35);
+    transform: skewX(-0.8deg);
+  }
+  95% {
+    text-shadow: -1px 0 rgba(0, 255, 204, 0.45),
+                  1px 0 rgba(255, 30, 80, 0.35);
+    transform: skewX(0.8deg);
+  }
+  95.5% {
+    text-shadow: none;
+    transform: none;
+  }
+}
+
+
+/* ── 12. Reduced Motion ──────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+  }
+
+  /* Make elements visible immediately */
+  .split-layout,
+  .panel--left,
+  .panel--right,
+  .terminal-boot {
+    opacity: 1    !important;
+    transform: none !important;
+  }
+}
+
+
+/* ── 13. Responsive — Tablet & Mobile ────────────────────────── */
+@media (max-width: 860px) {
+  body { overflow: auto; }
+
+  .split-layout {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+    overflow: auto;
+  }
+
+  .panel--left,
+  .panel--right {
+    width: 100%;
+    min-width: unset;
+  }
+
+  .panel--left {
+    border-right: none;
+    border-bottom: 1px solid rgba(0, 255, 204, 0.07);
+    padding: var(--sp-2xl) var(--sp-lg) var(--sp-xl);
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+  .panel--right {
+    padding: var(--sp-xl) var(--sp-lg) var(--sp-2xl);
+    align-items: flex-start;
+  }
+
+  .mode-panel {
+    max-width: 100%;
+  }
+
+  /* Hide Desktop Mode card on small screens */
+  .mode-card--desktop {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .panel--left,
+  .panel--right {
+    padding-left: var(--sp-md);
+    padding-right: var(--sp-md);
+  }
+
+  .mode-card {
+    padding: var(--sp-lg);
+  }
+
+  .identity-card {
+    padding: var(--sp-lg);
+  }
+}

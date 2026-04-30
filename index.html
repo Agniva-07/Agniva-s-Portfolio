@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Developer Portfolio — Explore via Story, Terminal, or Desktop mode." />
+  <title>Portfolio</title>
+
+  <!-- Google Fonts: Space Grotesk · Inter · JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap"
+    rel="stylesheet"
+  />
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="style/theme.css" />
+  <link rel="stylesheet" href="style/base.css" />
+</head>
+<body>
+
+  <!-- ================================================
+       MAIN SPLIT LAYOUT
+       ================================================ -->
+  <main class="split-layout" id="landingPage">
+
+    <!-- ============================================
+         LEFT PANEL — Identity System
+         ============================================ -->
+    <section class="panel panel--left" aria-label="Developer identity panel">
+
+      <!-- CRT scan-line overlay -->
+      <div class="scan-line" aria-hidden="true"></div>
+
+      <!-- ── Floating Identity Card ─────────────── -->
+      <article class="identity-card" id="identityCard" aria-label="Agniva — developer identity">
+        <div class="identity-card__ambient" aria-hidden="true"></div>
+
+        <!-- Online status -->
+        <div class="status-bar">
+          <span class="status-dot" aria-hidden="true"></span>
+          <span class="status-label" id="statusLabel">Available</span>
+        </div>
+
+        <!-- Name + animated role -->
+        <div class="identity-main">
+          <h1 class="identity-name" id="identityName"></h1>
+          <p class="identity-role" aria-live="polite" aria-atomic="true">
+            <span class="typewriter" id="roleTypewriter"></span><span
+              class="cursor-blink"
+              aria-hidden="true"
+            >_</span>
+          </p>
+        </div>
+
+        <!-- Expertise tags — injected from portfolio.skills.core by JS -->
+        <div class="identity-tags" id="identityTags" aria-label="Areas of expertise"></div>
+      </article>
+
+      <!-- ── Terminal Boot Sequence ─────────────── -->
+      <div
+        class="terminal-boot"
+        id="terminalBoot"
+        role="log"
+        aria-label="System initialization sequence"
+        aria-live="polite"
+      >
+        <div class="terminal-header" aria-hidden="true">
+          <span class="term-dot term-dot--red"></span>
+          <span class="term-dot term-dot--yellow"></span>
+          <span class="term-dot term-dot--green"></span>
+          <span class="term-title" id="termTitle">dev.dev — bash</span>
+        </div>
+        <div class="terminal-body" id="terminalBody"></div>
+      </div>
+
+    </section><!-- /.panel--left -->
+
+
+    <!-- ============================================
+         RIGHT PANEL — Mode Selection
+         ============================================ -->
+    <section class="panel panel--right" aria-label="Portfolio mode selection">
+
+      <div class="mode-panel">
+
+        <!-- Header -->
+        <header class="mode-header">
+          <h2 class="mode-heading">
+            Explore My Portfolio <em class="accent">Your Way</em>
+          </h2>
+          <p class="mode-subtext">Choose how you want to experience my work</p>
+        </header>
+
+        <!-- ── Mode Cards ──────────────────────── -->
+        <div class="mode-cards" role="group" aria-label="Portfolio experience modes">
+
+          <!-- STORY MODE -->
+          <article
+            class="mode-card mode-card--story"
+            id="cardStory"
+            data-mode="story"
+            tabindex="0"
+            role="button"
+            aria-label="Story Mode — Recommended"
+          >
+            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-sweep" aria-hidden="true"></div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-icon" aria-hidden="true">🚀</span>
+                <span class="card-badge">Recommended</span>
+              </div>
+              <h3 class="card-title">Story Mode</h3>
+              <p class="card-desc">
+                Clean, structured narrative of my journey and projects.
+                Perfect for a quick but deep dive.
+              </p>
+              <button
+                class="card-cta"
+                onclick="switchMode('story')"
+                aria-label="Enter Story Mode"
+              >
+                Enter Story Mode
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- TERMINAL MODE -->
+          <article
+            class="mode-card mode-card--terminal"
+            id="cardTerminal"
+            data-mode="terminal"
+            tabindex="0"
+            role="button"
+            aria-label="Terminal Mode"
+          >
+            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-sweep" aria-hidden="true"></div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-icon" aria-hidden="true">💻</span>
+              </div>
+              <h3 class="card-title">Terminal Mode</h3>
+              <p class="card-desc">
+                Explore via commands like a real developer.
+                Type <code>help</code> to see what's possible.
+              </p>
+              <button
+                class="card-cta"
+                onclick="switchMode('terminal')"
+                aria-label="Open Terminal Mode"
+              >
+                Open Terminal
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+          <!-- DESKTOP MODE -->
+          <article
+            class="mode-card mode-card--desktop"
+            id="cardDesktop"
+            data-mode="desktop"
+            tabindex="0"
+            role="button"
+            aria-label="Desktop Mode — large screens only"
+          >
+            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-sweep" aria-hidden="true"></div>
+            <div class="card-content">
+              <div class="card-top">
+                <span class="card-icon" aria-hidden="true">🖥️</span>
+                <span class="card-badge card-badge--muted">Desktop Only</span>
+              </div>
+              <h3 class="card-title">Desktop Mode</h3>
+              <p class="card-desc">
+                Immersive OS-style experience with draggable windows
+                and an icon dock.
+              </p>
+              <button
+                class="card-cta"
+                onclick="switchMode('desktop')"
+                aria-label="Launch Desktop Mode — requires a large screen"
+              >
+                Launch Desktop
+                <span class="cta-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </article>
+
+        </div><!-- /.mode-cards -->
+
+      </div><!-- /.mode-panel -->
+
+    </section><!-- /.panel--right -->
+
+  </main><!-- /.split-layout -->
+
+
+  <!-- ================================================
+       MODE TRANSITION OVERLAY
+       ================================================ -->
+  <div class="mode-overlay" id="modeOverlay" aria-hidden="true" role="status">
+    <p class="mode-overlay__text" id="modeOverlayText"></p>
+    <span class="mode-overlay__cursor" aria-hidden="true"></span>
+  </div>
+
+
+  <script src="js/main.js" type="module"></script>
+</body>
+</html>
