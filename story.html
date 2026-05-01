@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Agniva Hait — Full Stack Developer. About, journey, projects and more." />
+  <title>~/portfolio — Agniva Hait</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ═══════════════════ CUSTOM CURSOR ═══════════════════ -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"></div>
+
+
+<!-- ═══════════════════ NAVBAR ═══════════════════ -->
+<nav class="navbar" id="navbar" aria-label="Main navigation">
+  <a class="navbar__logo" href="#about"><span class="logo-tilde">~/</span>portfolio</a>
+  <ul class="navbar__links" role="list">
+    <li><a href="#about"    class="nav-link" data-section="about">About</a></li>
+    <li><a href="#journey"  class="nav-link" data-section="journey">Journey</a></li>
+    <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
+    <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
+  </ul>
+  <div class="navbar__actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light mode">
+      <span class="theme-icon">☀️</span>
+      <div class="switch-track">
+        <div class="switch-handle"></div>
+      </div>
+      <span class="theme-icon">🌙</span>
+    </button>
+    <a href="mailto:agnivahait07@gmail.com" class="navbar__cta magnetic-btn">Get in Touch <span aria-hidden="true">→</span></a>
+  </div>
+</nav>
+
+<!-- ═══════════════════ PAGE WRAPPER ═══════════════════ -->
+<div class="page-wrapper">
+
+  <!-- ═══════════ SIDEBAR ═══════════ -->
+  <aside class="sidebar" id="sidebar" aria-label="Developer profile">
+
+    <!-- Profile -->
+    <div class="sidebar__profile">
+      <div class="avatar-wrap">
+        <div class="avatar-ring" aria-hidden="true"></div>
+        <div class="avatar"><span class="avatar__initials" aria-hidden="true">AH</span></div>
+        <span class="online-dot" title="Online" aria-label="Online"></span>
+      </div>
+      <h2 class="sidebar__name">Agniva Hait</h2>
+      <p class="sidebar__role">Full Stack Developer</p>
+    </div>
+
+    <!-- Status -->
+    <div class="sidebar__status">
+      <span class="status-pill"><span class="status-pill__dot" aria-hidden="true"></span>Online</span>
+      <p class="status-tagline">Building · Learning · Solving</p>
+    </div>
+
+    <!-- Identity -->
+    <div class="sidebar__section">
+      <p class="sidebar__section-label">Identity</p>
+      <ul class="identity-list">
+        <li><span class="id-key">📍 Location</span><span class="id-val">West Bengal, India</span></li>
+        <li><span class="id-key">✉️ Email</span><span class="id-val">agnivahait07@gmail.com</span></li>
+        <li><span class="id-key">💼 Experience</span><span class="id-val">B.Tech 2nd Year</span></li>
+        <li><span class="id-key">🟢 Status</span><span class="id-val id-val--open">Open to Work</span></li>
+      </ul>
+    </div>
+
+    <!-- Skills -->
+    <div class="sidebar__section">
+      <p class="sidebar__section-label">Skills</p>
+      <ul class="skills-list">
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">JavaScript</span><span class="skill-pct">88%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:88%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">TypeScript</span><span class="skill-pct">72%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:72%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">React</span><span class="skill-pct">80%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:80%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">Node.js</span><span class="skill-pct">75%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:75%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">Next.js</span><span class="skill-pct">65%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:65%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">Tailwind CSS</span><span class="skill-pct">90%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:90%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">Python</span><span class="skill-pct">68%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:68%"></div></div></li>
+        <li class="skill-item"><div class="skill-meta"><span class="skill-name">MongoDB</span><span class="skill-pct">70%</span></div><div class="skill-bar"><div class="skill-bar__fill" style="--tw:70%"></div></div></li>
+      </ul>
+    </div>
+
+    <!-- Socials -->
+    <div class="sidebar__socials">
+      <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="social-icon" aria-label="GitHub" title="GitHub">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="https://linkedin.com/in/agnivahait" target="_blank" rel="noopener" class="social-icon" aria-label="LinkedIn" title="LinkedIn">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+      </a>
+      <a href="mailto:agnivahait07@gmail.com" class="social-icon" aria-label="Email" title="Email">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+      </a>
+    </div>
+
+    <!-- Section nav tracker -->
+    <nav class="sidebar__nav" aria-label="Page sections">
+      <a href="#about"    class="sb-nav-link" data-section="about">About</a>
+      <a href="#journey"  class="sb-nav-link" data-section="journey">Journey</a>
+      <a href="#projects" class="sb-nav-link" data-section="projects">Projects</a>
+      <a href="#contact"  class="sb-nav-link" data-section="contact">Contact</a>
+    </nav>
+
+    <p class="sidebar__version" aria-hidden="true">v1.2026</p>
+  </aside><!-- /sidebar -->
+
+
+  <!-- ═══════════ MAIN CONTENT ═══════════ -->
+  <main class="main-content" id="main-content">
+
+    <!-- ── ABOUT ────────────────────────────────────────── -->
+    <section class="section" id="about" aria-labelledby="about-h">
+
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">cd ~/portfolio</span>
+        <span class="term-comment">// ABOUT ME</span>
+      </div>
+
+      <blockquote class="section__quote" id="about-h">
+        "I'm a second-year CS student who doesn't wait to be ready —
+        <em>I build until I am.</em>"
+      </blockquote>
+
+      <!-- Cards + highlights row -->
+      <div class="about-grid">
+        <div class="feature-cards">
+          <!-- PRIMARY card — visually dominant -->
+          <article class="feature-card feature-card--primary">
+            <div class="fc-icon">⚡</div>
+            <h3 class="fc-title">I don't just code, I solve</h3>
+            <p class="fc-body">Every line aimed at a real problem. No tutorial projects — only things that matter. I reverse-engineer the "why" before touching the keyboard.</p>
+          </article>
+          <!-- Secondary cards -->
+          <article class="feature-card">
+            <div class="fc-icon">🤖</div>
+            <h3 class="fc-title">I build with AI</h3>
+            <p class="fc-body">Integrating LLMs isn't optional anymore — it's how I accelerate every project.</p>
+          </article>
+          <article class="feature-card">
+            <div class="fc-icon">📡</div>
+            <h3 class="fc-title">I learn everything</h3>
+            <p class="fc-body">From DSA to system design, from backend auth to UI micro-animations.</p>
+          </article>
+        </div>
+
+        <aside class="highlights-panel">
+          <p class="sidebar__section-label">Quick Stats</p>
+          <ul class="highlights-list">
+            <li class="hl-item"><span class="hl-val">400+</span><span class="hl-key">DSA Solved</span></li>
+            <li class="hl-item"><span class="hl-val">Real-world</span><span class="hl-key">Projects</span></li>
+            <li class="hl-item"><span class="hl-val">2nd Year</span><span class="hl-key">B.Tech CSE</span></li>
+            <li class="hl-item"><span class="hl-val hl-open">Open</span><span class="hl-key">Status</span></li>
+          </ul>
+        </aside>
+      </div>
+
+      <!-- Interests -->
+      <div class="interests-wrap">
+        <p class="sidebar__section-label">Interests</p>
+        <ul class="interests-tags" role="list">
+          <li>Geopolitics</li><li>Spirituality</li><li>Cricket</li>
+          <li>Psychology</li><li>Philosophy</li><li>Esports</li>
+          <li>AI</li><li>System Design</li>
+        </ul>
+      </div>
+
+      <!-- Achievement cards -->
+      <div class="achievements-grid">
+        <article class="achieve-card reveal-item">
+          <div class="ac-top"><span>🧩</span><span class="ac-badge ac-cyan">DSA</span></div>
+          <p class="ac-val" data-count="400" data-suffix="+">0</p>
+          <p class="ac-desc">Problems solved across LeetCode &amp; GFG</p>
+        </article>
+        <article class="achieve-card reveal-item">
+          <div class="ac-top"><span>🎓</span><span class="ac-badge ac-purple">Academic</span></div>
+          <p class="ac-val">B.Tech</p>
+          <p class="ac-desc">Computer Science &amp; Engineering, 2nd Year</p>
+        </article>
+        <article class="achieve-card reveal-item">
+          <div class="ac-top"><span>🐙</span><span class="ac-badge ac-green">GitHub</span></div>
+          <p class="ac-val" id="gh-stars" data-suffix="+">—</p>
+          <p class="ac-desc">Stars across public repositories</p>
+        </article>
+      </div>
+
+    </section><!-- /#about -->
+
+
+    <!-- ── JOURNEY ──────────────────────────────────────── -->
+    <section class="section" id="journey" aria-labelledby="journey-h">
+
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">cat ~/story.log</span>
+        <span class="term-comment">// MY JOURNEY</span>
+      </div>
+
+      <h2 class="section__title" id="journey-h">The Story So Far</h2>
+
+      <div class="timeline">
+        <div class="timeline__track" aria-hidden="true"></div>
+
+        <!-- Phase 1 -->
+        <div class="tl-item reveal-item">
+          <div class="tl-node"><div class="node-dot"></div><span class="node-date">Aug 2024</span></div>
+          <div class="tl-body">
+            <div class="tl-card">
+              <h3 class="tl-title">The Beginning</h3>
+              <p class="tl-text">Wrote my first lines of code. Started with raw HTML &amp; CSS, then stumbled into JavaScript. Everything felt magical and overwhelming at the same time.</p>
+              <dl class="tl-meta">
+                <div class="tl-row"><dt>Learned</dt><dd>HTML, CSS basics, DOM manipulation</dd></div>
+                <div class="tl-row"><dt>Changed</dt><dd>Went from zero to writing interactive pages</dd></div>
+                <div class="tl-row"><dt>Explored</dt><dd>Frontend fundamentals, browser devtools</dd></div>
+                <div class="tl-row"><dt>Drives me</dt><dd>The click of a button that actually worked</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="tl-item reveal-item">
+          <div class="tl-node"><div class="node-dot"></div><span class="node-date">Oct–Dec 2024</span></div>
+          <div class="tl-body">
+            <div class="tl-card">
+              <h3 class="tl-title">From Clones to Real Use</h3>
+              <p class="tl-text">Stopped cloning tutorials and started building things I actually needed. First real projects, first APIs, first backend crashes at 2 AM.</p>
+              <dl class="tl-meta">
+                <div class="tl-row"><dt>Learned</dt><dd>React, REST APIs, Node.js, Express basics</dd></div>
+                <div class="tl-row"><dt>Changed</dt><dd>Shifted from "following" to "building"</dd></div>
+                <div class="tl-row"><dt>Explored</dt><dd>State management, CORS, deployment</dd></div>
+                <div class="tl-row"><dt>Drives me</dt><dd>That first real project someone else used</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="tl-item reveal-item">
+          <div class="tl-node"><div class="node-dot"></div><span class="node-date">Jan–Mar 2025</span></div>
+          <div class="tl-body">
+            <div class="tl-card">
+              <h3 class="tl-title">AI‑Powered Shift</h3>
+              <p class="tl-text">Discovered the power of LLMs. Started integrating Gemini &amp; OpenAI APIs. AI became a tool, not magic.</p>
+              <dl class="tl-meta">
+                <div class="tl-row"><dt>Learned</dt><dd>LLM APIs, prompt engineering, embeddings</dd></div>
+                <div class="tl-row"><dt>Changed</dt><dd>Started building AI-first, not AI-after</dd></div>
+                <div class="tl-row"><dt>Explored</dt><dd>Gemini, OpenAI, vector search, RAG patterns</dd></div>
+                <div class="tl-row"><dt>Drives me</dt><dd>Compressing 10x work into hours</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+        <!-- Phase 4 — ACTIVE -->
+        <div class="tl-item reveal-item">
+          <div class="tl-node tl-node--active"><div class="node-dot node-dot--active"></div><span class="node-date">Apr – Now</span></div>
+          <div class="tl-body">
+            <div class="tl-card tl-card--active">
+              <span class="tl-now-badge">● NOW</span>
+              <h3 class="tl-title">Building What Matters</h3>
+              <p class="tl-text">No more building to learn. Building to ship. Every project targets a real gap, a real user, a real outcome.</p>
+              <dl class="tl-meta">
+                <div class="tl-row"><dt>Learned</dt><dd>System design, full-stack architecture, auth flows</dd></div>
+                <div class="tl-row"><dt>Changed</dt><dd>Mindset: feature → outcome → impact</dd></div>
+                <div class="tl-row"><dt>Explored</dt><dd>MongoDB, Firebase, Next.js, Docker basics</dd></div>
+                <div class="tl-row"><dt>Drives me</dt><dd>Products people actually use and talk about</dd></div>
+              </dl>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /timeline -->
+    </section><!-- /#journey -->
+
+
+    <!-- ── PROJECTS ────────────────────────────────────────── -->
+    <section class="section" id="projects" aria-labelledby="projects-h">
+
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">ls ~/projects</span>
+        <span class="term-comment">// THINGS I'VE BUILT</span>
+      </div>
+
+      <h2 class="section__title" id="projects-h">Things I've Built</h2>
+      <p class="section__subtitle">A mix of real products, experiments, and problem-solvers.</p>
+
+      <!-- Featured project -->
+      <article class="proj-featured reveal-item" aria-label="MoodyDJ project">
+        <div class="proj-featured__meta">
+          <div class="proj-header">
+            <span class="proj-status proj-status--live">● Live</span>
+            <h3 class="proj-title">MoodyDJ</h3>
+            <p class="proj-tagline">AI-powered music discovery based on your mood — built with YouTube API + Gemini.</p>
+          </div>
+          <div class="proj-tags">
+            <span class="tag">React</span>
+            <span class="tag">Node.js</span>
+            <span class="tag">Gemini AI</span>
+            <span class="tag">Firebase</span>
+            <span class="tag">YouTube API</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
+            <a href="#" class="proj-btn proj-btn--primary magnetic-btn" aria-label="Live demo">Live Demo ↗</a>
+          </div>
+        </div>
+        <div class="proj-featured__visual" aria-hidden="true">
+          <div class="proj-visual-block">
+            <div class="pvb-line"></div><div class="pvb-line"></div><div class="pvb-line pvb-line--short"></div>
+            <div class="pvb-dot-row"><span></span><span></span><span></span></div>
+          </div>
+        </div>
+      </article>
+
+      <!-- Secondary project cards -->
+      <div class="proj-grid">
+
+        <article class="proj-card reveal-item">
+          <div class="proj-header">
+            <span class="proj-status proj-status--dev">◐ In Dev</span>
+            <h3 class="proj-title">AR Hand Tracker</h3>
+          </div>
+          <p class="proj-tagline">Real-time hand-tracking drawing app in the browser using MediaPipe — pinch to draw.</p>
+          <div class="proj-tags">
+            <span class="tag">MediaPipe</span><span class="tag">WebGL</span><span class="tag">JavaScript</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card reveal-item">
+          <div class="proj-header">
+            <span class="proj-status proj-status--live">● Live</span>
+            <h3 class="proj-title">Dev Portfolio</h3>
+          </div>
+          <p class="proj-tagline">This very site — a futuristic dark-themed portfolio with zero frameworks.</p>
+          <div class="proj-tags">
+            <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Vanilla JS</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
+          </div>
+        </article>
+
+        <article class="proj-card reveal-item">
+          <div class="proj-header">
+            <span class="proj-status proj-status--dev">◐ In Dev</span>
+            <h3 class="proj-title">AI Roadmap Gen</h3>
+          </div>
+          <p class="proj-tagline">Generate personalised learning roadmaps with Gemini — auth, Firestore, live updates.</p>
+          <div class="proj-tags">
+            <span class="tag">Next.js</span><span class="tag">Gemini</span><span class="tag">Firestore</span>
+          </div>
+          <div class="proj-actions">
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
+          </div>
+        </article>
+
+      </div><!-- /proj-grid -->
+
+      <!-- GitHub CTA -->
+      <div class="proj-footer reveal-item">
+        <a href="https://github.com/univers07?tab=repositories" target="_blank" rel="noopener" class="gh-cta-btn magnetic-btn">
+          Explore more on GitHub →
+        </a>
+      </div>
+
+    </section><!-- /#projects -->
+
+
+    <!-- ── HOW I THINK ──────────────────────────────────────── -->
+    <section class="section" id="how-i-think" aria-labelledby="think-h">
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">cat ~/mindset.md</span>
+        <span class="term-comment">// HOW I THINK</span>
+      </div>
+
+      <h2 class="section__title" id="think-h">How I Think</h2>
+      <p class="section__subtitle">My approach to solving real-world problems.</p>
+
+      <div class="think-grid">
+        <article class="think-card reveal-item">
+          <h3 class="tc-title">1. Deconstruct</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Complex requirements overwhelm the initial build phase.</p>
+            <p><strong>Approach:</strong> Break the system into isolated, testable pieces.</p>
+            <p><strong>Outcome:</strong> Faster iterations and modular architecture.</p>
+          </div>
+        </article>
+        <article class="think-card reveal-item" data-index="1">
+          <h3 class="tc-title">2. Prototype</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Spending weeks on a feature users don't want.</p>
+            <p><strong>Approach:</strong> Build a minimal version with AI tools in hours.</p>
+            <p><strong>Outcome:</strong> Quick validation and reduced wasted effort.</p>
+          </div>
+        </article>
+        <article class="think-card reveal-item" data-index="2">
+          <h3 class="tc-title">3. Refine</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Code works but is unmaintainable.</p>
+            <p><strong>Approach:</strong> Apply design patterns and clean up tech debt post-validation.</p>
+            <p><strong>Outcome:</strong> Scalable and robust production software.</p>
+          </div>
+        </article>
+      </div>
+    </section><!-- /#how-i-think -->
+
+
+
+    <!-- ── CONTACT ───────────────────────────────────────────── -->
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">./send_message.sh</span>
+        <span class="term-comment">// LET'S CONNECT</span>
+      </div>
+
+      <h2 class="section__title" id="contact-h">Contact</h2>
+      <p class="section__subtitle">Got a problem to solve? Let's talk.</p>
+
+      <div class="contact-grid">
+        <!-- Left: Form -->
+        <div class="contact-form-wrap reveal-item">
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="cName">Name</label>
+              <input type="text" id="cName" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email</label>
+              <input type="email" id="cEmail" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="cMessage">Message</label>
+              <textarea id="cMessage" placeholder="How can I help?" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="contact-submit magnetic-btn">Send Message ↗</button>
+          </form>
+        </div>
+
+        <!-- Right: Info panel -->
+        <div class="contact-info reveal-item" data-index="1">
+          <div class="ci-card">
+            <h3>Connect</h3>
+            <ul class="ci-list">
+              <li><span class="ci-icon">✉️</span> <a href="mailto:agnivahait07@gmail.com">agnivahait07@gmail.com</a></li>
+              <li><span class="ci-icon">🐙</span> <a href="https://github.com/Agniva-07" target="_blank" rel="noopener">GitHub</a></li>
+              <li><span class="ci-icon">💼</span> <a href="https://linkedin.com/in/agnivahait" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><span class="ci-icon">📍</span> <span>West Bengal, India</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- /#contact -->
+
+  </main><!-- /main-content -->
+</div><!-- /page-wrapper -->
+
+<script src="script.js"></script>
+</body>
+</html>

@@ -896,3 +896,292 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
   background: rgba(0,229,255,0.25);
 }
 
+/* ── 20. CUSTOM CURSOR ─────────────────────────────────────── */
+@media (pointer: fine) {
+  .cursor-dot, .cursor-outline {
+    position: fixed;
+    top: 0; left: 0;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    z-index: 9999;
+    pointer-events: none;
+  }
+  .cursor-dot {
+    width: 6px; height: 6px;
+    background-color: var(--cyan);
+  }
+  .cursor-outline {
+    width: 30px; height: 30px;
+    border: 1px solid var(--cyan-dim);
+    transition: width 0.15s ease-out, height 0.15s ease-out, background-color 0.15s ease-out;
+  }
+  /* When hovering interactive elements */
+  body.cursor-hover .cursor-outline {
+    width: 50px; height: 50px;
+    background-color: rgba(0, 229, 255, 0.1);
+    border-color: var(--cyan);
+  }
+}
+
+/* ── 21. HOW I THINK SECTION ───────────────────────────────── */
+.think-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.think-card {
+  padding: 1.5rem;
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  transition: border-color var(--tr), box-shadow var(--tr), transform 250ms ease;
+}
+.think-card:hover {
+  border-color: var(--border-h);
+  box-shadow: 0 0 16px var(--cyan-glow);
+  transform: translateY(-4px) scale(1.008);
+}
+.tc-title {
+  font-family: var(--font-head);
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text-1);
+}
+.tc-body {
+  font-size: 13px;
+  color: var(--text-2);
+  line-height: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.tc-body strong {
+  color: var(--cyan);
+  font-weight: 600;
+}
+
+/* ── 22. HANGING TOGGLE SWITCH & LIGHT MODE ────────────────── */
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  margin-left: auto;
+}
+.theme-toggle {
+  position: relative;
+  width: 32px;
+  height: 64px;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  outline: none;
+  padding: 4px 0;
+  transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), border-color var(--tr);
+}
+.theme-icon {
+  font-size: 12px;
+  z-index: 2;
+  user-select: none;
+}
+.switch-track {
+  position: absolute;
+  top: 4px; bottom: 4px; left: 4px; right: 4px;
+  border-radius: 16px;
+}
+.switch-handle {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 22px;
+  height: 22px;
+  background: var(--cyan);
+  border-radius: 50%;
+  box-shadow: 0 0 10px var(--cyan-glow);
+  transition: top 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55), background var(--tr);
+  z-index: 1;
+}
+.theme-toggle:hover {
+  border-color: var(--cyan-dim);
+}
+.theme-toggle.pulling {
+  transform: scaleY(1.05) translateY(2px);
+}
+body.light-mode .switch-handle {
+  top: calc(100% - 22px);
+}
+
+/* Minimal Light Mode override */
+body.light-mode {
+  --bg: #f5f7fa;
+  --bg-card: rgba(0,0,0,0.03);
+  --bg-sidebar: rgba(245,247,250,0.96);
+  --bg-glass: rgba(0,0,0,0.02);
+  --text-1: #1a1a2e;
+  --text-2: #4a4e69;
+  --text-3: #8d93ab;
+  --border: rgba(0,0,0,0.1);
+  --border-h: rgba(0,0,0,0.25);
+  --cyan: #0077b6;
+  --cyan-dim: rgba(0,119,182,0.5);
+  --cyan-glow: rgba(0,119,182,0.15);
+  --green: #00b4d8;
+  --purple: #7209b7;
+}
+
+/* Micro-interaction updates */
+.nav-link::after { transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1), right 0.3s cubic-bezier(0.4, 0, 0.2, 1); }
+
+/* Remove constant ambient glow */
+.avatar-ring {
+  opacity: 0;
+}
+.sidebar__profile:hover .avatar-ring { opacity: 0.7; }
+.node-dot--active {
+  box-shadow: 0 0 10px var(--cyan-glow);
+  animation: pulse-dot 2.5s ease-in-out infinite;
+}
+
+/* Controlled Glow System & Micro-polish */
+.proj-btn, .magnetic-btn, .contact-submit {
+  transition: background 0.3s ease-out, box-shadow 0.3s ease-out, border-color 0.3s ease-out, transform 0.3s ease-out;
+}
+.feature-card:hover, .achieve-card:hover, .proj-card:hover, .think-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  box-shadow: 0 4px 20px var(--cyan-glow);
+  border-color: var(--cyan-dim);
+}
+.tl-item:hover .node-dot {
+  box-shadow: 0 0 12px var(--cyan-glow);
+}
+.tag:hover {
+  background: rgba(0, 229, 255, 0.15);
+  color: var(--text-1);
+}
+
+/* GitHub CTA Button */
+.proj-footer {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+}
+.gh-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.8rem 1.8rem;
+  font-family: var(--font-head);
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--cyan);
+  background: rgba(0, 229, 255, 0.05);
+  border: 1px solid var(--cyan-dim);
+  border-radius: 30px;
+}
+.gh-cta-btn:hover {
+  background: rgba(0, 229, 255, 0.1);
+  box-shadow: 0 4px 15px var(--cyan-glow);
+  transform: translateY(-2px);
+}
+
+/* ── 23. CONTACT SECTION ───────────────────────────────────── */
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 2rem;
+}
+.contact-form {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.form-group label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-2);
+}
+.form-group input, .form-group textarea {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  color: var(--text-1);
+  font-family: var(--font-body);
+  font-size: 14px;
+  transition: border-color 0.2s ease-out, box-shadow 0.2s ease-out, background 0.2s ease-out;
+}
+.form-group input:focus, .form-group textarea:focus {
+  outline: none;
+  border-color: var(--cyan);
+  box-shadow: 0 0 0 3px rgba(0, 229, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+}
+.contact-submit {
+  align-self: flex-start;
+  padding: 0.6rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--bg);
+  background: var(--cyan);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+.contact-submit:hover {
+  box-shadow: 0 4px 15px var(--cyan-glow);
+  transform: translateY(-2px);
+}
+.ci-card {
+  background: var(--bg-glass);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 2rem;
+}
+.ci-card h3 {
+  font-family: var(--font-head);
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-1);
+  margin-bottom: 1.25rem;
+}
+.ci-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.ci-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 13.5px;
+  color: var(--text-2);
+}
+.ci-icon {
+  font-size: 16px;
+}
+.ci-list a {
+  transition: color var(--tr);
+}
+.ci-list a:hover {
+  color: var(--cyan);
+}

@@ -12,6 +12,11 @@
 </head>
 <body>
 
+<!-- ═══════════════════ CUSTOM CURSOR ═══════════════════ -->
+<div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+<div class="cursor-outline" id="cursor-outline" aria-hidden="true"></div>
+
+
 <!-- ═══════════════════ NAVBAR ═══════════════════ -->
 <nav class="navbar" id="navbar" aria-label="Main navigation">
   <a class="navbar__logo" href="#about"><span class="logo-tilde">~/</span>portfolio</a>
@@ -21,7 +26,16 @@
     <li><a href="#projects" class="nav-link" data-section="projects">Projects</a></li>
     <li><a href="#contact"  class="nav-link" data-section="contact">Contact</a></li>
   </ul>
-  <a href="mailto:agnivahait07@gmail.com" class="navbar__cta">Get in Touch <span aria-hidden="true">→</span></a>
+  <div class="navbar__actions">
+    <button class="theme-toggle" id="themeToggle" aria-label="Toggle light mode">
+      <span class="theme-icon">☀️</span>
+      <div class="switch-track">
+        <div class="switch-handle"></div>
+      </div>
+      <span class="theme-icon">🌙</span>
+    </button>
+    <a href="mailto:agnivahait07@gmail.com" class="navbar__cta magnetic-btn">Get in Touch <span aria-hidden="true">→</span></a>
+  </div>
 </nav>
 
 <!-- ═══════════════════ PAGE WRAPPER ═══════════════════ -->
@@ -295,8 +309,8 @@
             <span class="tag">YouTube API</span>
           </div>
           <div class="proj-actions">
-            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>
-            <a href="#" class="proj-btn proj-btn--primary" aria-label="Live demo">Live Demo ↗</a>
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
+            <a href="#" class="proj-btn proj-btn--primary magnetic-btn" aria-label="Live demo">Live Demo ↗</a>
           </div>
         </div>
         <div class="proj-featured__visual" aria-hidden="true">
@@ -320,7 +334,7 @@
             <span class="tag">MediaPipe</span><span class="tag">WebGL</span><span class="tag">JavaScript</span>
           </div>
           <div class="proj-actions">
-            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
           </div>
         </article>
 
@@ -334,7 +348,7 @@
             <span class="tag">HTML</span><span class="tag">CSS</span><span class="tag">Vanilla JS</span>
           </div>
           <div class="proj-actions">
-            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
           </div>
         </article>
 
@@ -348,22 +362,108 @@
             <span class="tag">Next.js</span><span class="tag">Gemini</span><span class="tag">Firestore</span>
           </div>
           <div class="proj-actions">
-            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost magnetic-btn">GitHub ↗</a>
           </div>
         </article>
 
       </div><!-- /proj-grid -->
+
+      <!-- GitHub CTA -->
+      <div class="proj-footer reveal-item">
+        <a href="https://github.com/univers07?tab=repositories" target="_blank" rel="noopener" class="gh-cta-btn magnetic-btn">
+          Explore more on GitHub →
+        </a>
+      </div>
+
     </section><!-- /#projects -->
 
 
-    <!-- ── CONTACT (placeholder) ─────────────────────────────── -->
-    <section class="section section--placeholder" id="contact" aria-labelledby="contact-h">
-      <div class="ph-inner">
-        <span class="ph-icon">📬</span>
-        <h2 id="contact-h">Contact</h2>
-        <p>This section is coming soon.</p>
+    <!-- ── HOW I THINK ──────────────────────────────────────── -->
+    <section class="section" id="how-i-think" aria-labelledby="think-h">
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">cat ~/mindset.md</span>
+        <span class="term-comment">// HOW I THINK</span>
       </div>
-    </section>
+
+      <h2 class="section__title" id="think-h">How I Think</h2>
+      <p class="section__subtitle">My approach to solving real-world problems.</p>
+
+      <div class="think-grid">
+        <article class="think-card reveal-item">
+          <h3 class="tc-title">1. Deconstruct</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Complex requirements overwhelm the initial build phase.</p>
+            <p><strong>Approach:</strong> Break the system into isolated, testable pieces.</p>
+            <p><strong>Outcome:</strong> Faster iterations and modular architecture.</p>
+          </div>
+        </article>
+        <article class="think-card reveal-item" data-index="1">
+          <h3 class="tc-title">2. Prototype</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Spending weeks on a feature users don't want.</p>
+            <p><strong>Approach:</strong> Build a minimal version with AI tools in hours.</p>
+            <p><strong>Outcome:</strong> Quick validation and reduced wasted effort.</p>
+          </div>
+        </article>
+        <article class="think-card reveal-item" data-index="2">
+          <h3 class="tc-title">3. Refine</h3>
+          <div class="tc-body">
+            <p><strong>Problem:</strong> Code works but is unmaintainable.</p>
+            <p><strong>Approach:</strong> Apply design patterns and clean up tech debt post-validation.</p>
+            <p><strong>Outcome:</strong> Scalable and robust production software.</p>
+          </div>
+        </article>
+      </div>
+    </section><!-- /#how-i-think -->
+
+
+
+    <!-- ── CONTACT ───────────────────────────────────────────── -->
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">./send_message.sh</span>
+        <span class="term-comment">// LET'S CONNECT</span>
+      </div>
+
+      <h2 class="section__title" id="contact-h">Contact</h2>
+      <p class="section__subtitle">Got a problem to solve? Let's talk.</p>
+
+      <div class="contact-grid">
+        <!-- Left: Form -->
+        <div class="contact-form-wrap reveal-item">
+          <form id="contactForm" class="contact-form">
+            <div class="form-group">
+              <label for="cName">Name</label>
+              <input type="text" id="cName" placeholder="Your name" required />
+            </div>
+            <div class="form-group">
+              <label for="cEmail">Email</label>
+              <input type="email" id="cEmail" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="cMessage">Message</label>
+              <textarea id="cMessage" placeholder="How can I help?" rows="4" required></textarea>
+            </div>
+            <button type="submit" class="contact-submit magnetic-btn">Send Message ↗</button>
+          </form>
+        </div>
+
+        <!-- Right: Info panel -->
+        <div class="contact-info reveal-item" data-index="1">
+          <div class="ci-card">
+            <h3>Connect</h3>
+            <ul class="ci-list">
+              <li><span class="ci-icon">✉️</span> <a href="mailto:agnivahait07@gmail.com">agnivahait07@gmail.com</a></li>
+              <li><span class="ci-icon">🐙</span> <a href="https://github.com/Agniva-07" target="_blank" rel="noopener">GitHub</a></li>
+              <li><span class="ci-icon">💼</span> <a href="https://linkedin.com/in/agnivahait" target="_blank" rel="noopener">LinkedIn</a></li>
+              <li><span class="ci-icon">📍</span> <span>West Bengal, India</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section><!-- /#contact -->
 
   </main><!-- /main-content -->
 </div><!-- /page-wrapper -->

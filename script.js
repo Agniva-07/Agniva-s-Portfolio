@@ -30,7 +30,7 @@ document.querySelectorAll('a[href^="#"]').forEach(link => {
 /* ─────────────────────────────────────────────────────────────
    2. ACTIVE SECTION TRACKING (navbar + sidebar)
    ───────────────────────────────────────────────────────────── */
-const SECTION_IDS = ['about', 'journey', 'projects', 'contact'];
+const SECTION_IDS = ['about', 'journey', 'projects', 'how-i-think', 'contact'];
 const sections    = SECTION_IDS.map(id => document.getElementById(id)).filter(Boolean);
 
 // All nav links in both navbar and sidebar share the same data-section attr
@@ -194,3 +194,99 @@ async function fetchGitHubStars() {
   }
 }
 fetchGitHubStars();
+
+/* ─────────────────────────────────────────────────────────────
+   8. CUSTOM CURSOR
+   ───────────────────────────────────────────────────────────── */
+const cursorDot = document.getElementById('cursor-dot');
+const cursorOutline = document.getElementById('cursor-outline');
+let isMobile = matchMedia('(pointer: coarse)').matches;
+
+if (!isMobile && cursorDot && cursorOutline) {
+  let mouseX = 0, mouseY = 0;
+  let outlineX = 0, outlineY = 0;
+  
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+    // Immediate update for dot
+    cursorDot.style.transform = `translate(calc(${mouseX}px - 50%), calc(${mouseY}px - 50%))`;
+  });
+
+  const animateCursor = () => {
+    // Lerp for outline trailing effect
+    const easing = 0.15;
+    outlineX += (mouseX - outlineX) * easing;
+    outlineY += (mouseY - outlineY) * easing;
+    
+    cursorOutline.style.transform = `translate(calc(${outlineX}px - 50%), calc(${outlineY}px - 50%))`;
+    requestAnimationFrame(animateCursor);
+  };
+  requestAnimationFrame(animateCursor);
+
+  // Add hover state for interactive elements
+  const interactives = document.querySelectorAll('a, button, .magnetic-btn');
+  interactives.forEach(el => {
+    el.addEventListener('mouseenter', () => document.body.classList.add('cursor-hover'));
+    el.addEventListener('mouseleave', () => document.body.classList.remove('cursor-hover'));
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   9. MAGNETIC BUTTONS
+   ───────────────────────────────────────────────────────────── */
+const magneticBtns = document.querySelectorAll('.magnetic-btn');
+if (!isMobile) {
+  magneticBtns.forEach(btn => {
+    btn.addEventListener('mousemove', (e) => {
+      const rect = btn.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      
+      // Max movement of 8px
+      const limit = 8;
+      const moveX = (x / (rect.width / 2)) * limit;
+      const moveY = (y / (rect.height / 2)) * limit;
+      
+      btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    });
+    
+    btn.addEventListener('mouseleave', () => {
+      btn.style.transform = '';
+    });
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   10. LIGHT MODE TOGGLE
+   ───────────────────────────────────────────────────────────── */
+const themeToggle = document.getElementById('themeToggle');
+if (themeToggle) {
+  themeToggle.addEventListener('click', () => {
+    // Visual pull effect
+    themeToggle.classList.add('pulling');
+    setTimeout(() => themeToggle.classList.remove('pulling'), 200);
+    
+    document.body.classList.toggle('light-mode');
+  });
+}
+
+/* ─────────────────────────────────────────────────────────────
+   11. CONTACT FORM HANDLING
+   ───────────────────────────────────────────────────────────── */
+const contactForm = document.getElementById('contactForm');
+if (contactForm) {
+  contactForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = document.getElementById('cName').value.trim();
+    const email = document.getElementById('cEmail').value.trim();
+    const message = document.getElementById('cMessage').value.trim();
+    
+    if (!name || !email || !message) return;
+    
+    const subject = encodeURIComponent('Portfolio Contact');
+    const body = encodeURIComponent(`Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`);
+    
+    window.location.href = `mailto:agnivahait07@gmail.com?subject=${subject}&body=${body}`;
+  });
+}
