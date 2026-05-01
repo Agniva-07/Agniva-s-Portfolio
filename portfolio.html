@@ -114,38 +114,33 @@
         "I'm a second-year CS student who doesn't wait to be ready —
         <em>I build until I am.</em>"
       </blockquote>
+      <p class="section__quote-sub">Passionate about building real-world systems that solve meaningful problems. I focus on clarity, scalability, and impact.</p>
 
-      <!-- Cards + highlights row -->
-      <div class="about-grid">
+      <!-- Cards + globe row -->
+      <div class="about__grid">
         <div class="feature-cards">
           <!-- PRIMARY card — visually dominant -->
           <article class="feature-card feature-card--primary">
             <div class="fc-icon">⚡</div>
             <h3 class="fc-title">I don't just code, I solve</h3>
-            <p class="fc-body">Every line aimed at a real problem. No tutorial projects — only things that matter. I reverse-engineer the "why" before touching the keyboard.</p>
+            <p class="fc-body">I break down complex problems, design efficient solutions, and build systems that actually matter.</p>
           </article>
           <!-- Secondary cards -->
           <article class="feature-card">
             <div class="fc-icon">🤖</div>
             <h3 class="fc-title">I build with AI</h3>
-            <p class="fc-body">Integrating LLMs isn't optional anymore — it's how I accelerate every project.</p>
+            <p class="fc-body">I integrate AI tools and APIs to build smarter, faster, and more adaptive applications.</p>
           </article>
           <article class="feature-card">
             <div class="fc-icon">📡</div>
             <h3 class="fc-title">I learn everything</h3>
-            <p class="fc-body">From DSA to system design, from backend auth to UI micro-animations.</p>
+            <p class="fc-body">From DSA to system design to backend and UI — I constantly explore and improve.</p>
           </article>
         </div>
 
-        <aside class="highlights-panel">
-          <p class="sidebar__section-label">Quick Stats</p>
-          <ul class="highlights-list">
-            <li class="hl-item"><span class="hl-val">400+</span><span class="hl-key">DSA Solved</span></li>
-            <li class="hl-item"><span class="hl-val">Real-world</span><span class="hl-key">Projects</span></li>
-            <li class="hl-item"><span class="hl-val">2nd Year</span><span class="hl-key">B.Tech CSE</span></li>
-            <li class="hl-item"><span class="hl-val hl-open">Open</span><span class="hl-key">Status</span></li>
-          </ul>
-        </aside>
+        <div class="about__visual">
+          <div id="skills-globe"></div>
+        </div>
       </div>
 
       <!-- Interests -->
@@ -191,6 +186,7 @@
 
       <h2 class="section__title" id="journey-h">The Story So Far</h2>
 
+      <div class="journey__layout">
       <div class="timeline">
         <div class="timeline__track" aria-hidden="true"></div>
 
@@ -201,12 +197,9 @@
             <div class="tl-card">
               <h3 class="tl-title">The Beginning</h3>
               <p class="tl-text">Wrote my first lines of code. Started with raw HTML &amp; CSS, then stumbled into JavaScript. Everything felt magical and overwhelming at the same time.</p>
-              <dl class="tl-meta">
-                <div class="tl-row"><dt>Learned</dt><dd>HTML, CSS basics, DOM manipulation</dd></div>
-                <div class="tl-row"><dt>Changed</dt><dd>Went from zero to writing interactive pages</dd></div>
-                <div class="tl-row"><dt>Explored</dt><dd>Frontend fundamentals, browser devtools</dd></div>
-                <div class="tl-row"><dt>Drives me</dt><dd>The click of a button that actually worked</dd></div>
-              </dl>
+              <div class="tl-tags">
+                <span>HTML</span><span>CSS</span><span>JavaScript</span><span>DOM</span>
+              </div>
             </div>
           </div>
         </div>
@@ -218,12 +211,9 @@
             <div class="tl-card">
               <h3 class="tl-title">From Clones to Real Use</h3>
               <p class="tl-text">Stopped cloning tutorials and started building things I actually needed. First real projects, first APIs, first backend crashes at 2 AM.</p>
-              <dl class="tl-meta">
-                <div class="tl-row"><dt>Learned</dt><dd>React, REST APIs, Node.js, Express basics</dd></div>
-                <div class="tl-row"><dt>Changed</dt><dd>Shifted from "following" to "building"</dd></div>
-                <div class="tl-row"><dt>Explored</dt><dd>State management, CORS, deployment</dd></div>
-                <div class="tl-row"><dt>Drives me</dt><dd>That first real project someone else used</dd></div>
-              </dl>
+              <div class="tl-tags">
+                <span>React</span><span>Node.js</span><span>REST APIs</span><span>Express</span>
+              </div>
             </div>
           </div>
         </div>
@@ -235,12 +225,9 @@
             <div class="tl-card">
               <h3 class="tl-title">AI‑Powered Shift</h3>
               <p class="tl-text">Discovered the power of LLMs. Started integrating Gemini &amp; OpenAI APIs. AI became a tool, not magic.</p>
-              <dl class="tl-meta">
-                <div class="tl-row"><dt>Learned</dt><dd>LLM APIs, prompt engineering, embeddings</dd></div>
-                <div class="tl-row"><dt>Changed</dt><dd>Started building AI-first, not AI-after</dd></div>
-                <div class="tl-row"><dt>Explored</dt><dd>Gemini, OpenAI, vector search, RAG patterns</dd></div>
-                <div class="tl-row"><dt>Drives me</dt><dd>Compressing 10x work into hours</dd></div>
-              </dl>
+              <div class="tl-tags">
+                <span>Gemini</span><span>OpenAI</span><span>Embeddings</span><span>RAG</span>
+              </div>
             </div>
           </div>
         </div>
@@ -253,17 +240,59 @@
               <span class="tl-now-badge">● NOW</span>
               <h3 class="tl-title">Building What Matters</h3>
               <p class="tl-text">No more building to learn. Building to ship. Every project targets a real gap, a real user, a real outcome.</p>
-              <dl class="tl-meta">
-                <div class="tl-row"><dt>Learned</dt><dd>System design, full-stack architecture, auth flows</dd></div>
-                <div class="tl-row"><dt>Changed</dt><dd>Mindset: feature → outcome → impact</dd></div>
-                <div class="tl-row"><dt>Explored</dt><dd>MongoDB, Firebase, Next.js, Docker basics</dd></div>
-                <div class="tl-row"><dt>Drives me</dt><dd>Products people actually use and talk about</dd></div>
-              </dl>
+              <div class="tl-tags">
+                <span>Next.js</span><span>MongoDB</span><span>Firebase</span><span>Docker</span><span>Auth</span>
+              </div>
             </div>
           </div>
         </div>
 
       </div><!-- /timeline -->
+
+      <!-- Skills Panel (sticky right) -->
+      <div class="skills__panel">
+        <div class="skill-card" id="skc-frontend">
+          <div class="skc-icon">⬡</div>
+          <h4 class="skc-title">Frontend</h4>
+          <ul class="skc-list">
+            <li>React.js</li>
+            <li>Next.js</li>
+            <li>TypeScript</li>
+            <li>Tailwind CSS</li>
+          </ul>
+        </div>
+        <div class="skill-card" id="skc-backend">
+          <div class="skc-icon">⬡</div>
+          <h4 class="skc-title">Backend</h4>
+          <ul class="skc-list">
+            <li>Node.js</li>
+            <li>Express.js</li>
+            <li>RESTful APIs</li>
+            <li>Authentication</li>
+          </ul>
+        </div>
+        <div class="skill-card" id="skc-database">
+          <div class="skc-icon">⬡</div>
+          <h4 class="skc-title">Database</h4>
+          <ul class="skc-list">
+            <li>MongoDB</li>
+            <li>MySQL</li>
+            <li>Firebase</li>
+            <li>Schema Design</li>
+          </ul>
+        </div>
+        <div class="skill-card" id="skc-devops">
+          <div class="skc-icon">⬡</div>
+          <h4 class="skc-title">DevOps &amp; AI</h4>
+          <ul class="skc-list">
+            <li>Git &amp; GitHub</li>
+            <li>Docker basics</li>
+            <li>Gemini API</li>
+            <li>CI/CD</li>
+          </ul>
+        </div>
+      </div>
+      </div><!-- /journey__layout -->
     </section><!-- /#journey -->
 
 
@@ -356,12 +385,54 @@
     </section><!-- /#projects -->
 
 
-    <!-- ── CONTACT (placeholder) ─────────────────────────────── -->
-    <section class="section section--placeholder" id="contact" aria-labelledby="contact-h">
-      <div class="ph-inner">
-        <span class="ph-icon">📬</span>
-        <h2 id="contact-h">Contact</h2>
-        <p>This section is coming soon.</p>
+    <!-- ── CONTACT & NEWSLETTER ─────────────────────────────── -->
+    <section class="section" id="contact" aria-labelledby="contact-h">
+      <div class="term-header">
+        <span class="term-prompt">❯</span>
+        <span class="term-cmd">./connect.sh</span>
+        <span class="term-comment">// CONTACT</span>
+      </div>
+
+      <div class="contact-grid">
+        <!-- Contact -->
+        <div class="contact-panel reveal-item">
+          <h2 class="section__title" id="contact-h">Let's Connect</h2>
+          <p class="section__subtitle" style="margin-top: 0;">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
+          <div class="contact-info">
+            <a href="mailto:agnivahait07@gmail.com" class="contact-card">
+              <span class="cc-icon">✉️</span>
+              <div class="cc-text">
+                <span class="cc-label">Email</span>
+                <span class="cc-val">agnivahait07@gmail.com</span>
+              </div>
+            </a>
+            <a href="https://github.com/Agniva-07" target="_blank" rel="noopener" class="contact-card">
+              <span class="cc-icon">🐙</span>
+              <div class="cc-text">
+                <span class="cc-label">GitHub</span>
+                <span class="cc-val">Agniva-07</span>
+              </div>
+            </a>
+            <a href="https://linkedin.com/in/agnivahait" target="_blank" rel="noopener" class="contact-card">
+              <span class="cc-icon">💼</span>
+              <div class="cc-text">
+                <span class="cc-label">LinkedIn</span>
+                <span class="cc-val">agnivahait</span>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Newsletter -->
+        <div class="newsletter-panel reveal-item">
+          <div class="nl-icon">📫</div>
+          <h3 class="nl-title">Stay Updated</h3>
+          <p class="nl-desc">Get notified about my latest projects, articles, and tech insights. No spam, I promise.</p>
+          <form class="nl-form" onsubmit="event.preventDefault()">
+            <input type="email" placeholder="Your email address" class="nl-input" required />
+            <button type="submit" class="nl-btn">Subscribe <span aria-hidden="true">→</span></button>
+          </form>
+        </div>
       </div>
     </section>
 
@@ -369,5 +440,145 @@
 </div><!-- /page-wrapper -->
 
 <script src="script.js"></script>
+<script>
+/* ── Skills Globe (DOM-based rotating sphere) ── */
+(function(){
+  const skills = [
+    { name: 'React',      icon: 'react/react-original.svg' },
+    { name: 'Node.js',    icon: 'nodejs/nodejs-original.svg' },
+    { name: 'TypeScript', icon: 'typescript/typescript-original.svg' },
+    { name: 'MongoDB',    icon: 'mongodb/mongodb-original.svg' },
+    { name: 'Next.js',    icon: 'nextjs/nextjs-original.svg' },
+    { name: 'Python',     icon: 'python/python-original.svg' },
+    { name: 'Docker',     icon: 'docker/docker-original.svg' },
+    { name: 'Tailwind',   icon: 'tailwindcss/tailwindcss-original.svg' },
+    { name: 'Git',        icon: 'git/git-original.svg' },
+    { name: 'MySQL',      icon: 'mysql/mysql-original.svg' },
+    { name: 'Firebase',   icon: 'firebase/firebase-plain.svg' },
+    { name: 'Express',    icon: 'express/express-original.svg' }
+  ];
+
+  const wrapper = document.getElementById('skills-globe');
+  if (!wrapper) return;
+  wrapper.innerHTML = '';
+
+  // Center tech
+  const centerItem = document.createElement('div');
+  centerItem.className = 'globe-center';
+  centerItem.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React" />`;
+  wrapper.appendChild(centerItem);
+
+  const N = skills.length;
+  const items = skills.map((sk, i) => {
+    // Fibonacci lattice distribution
+    const phi = Math.acos(1 - 2 * (i + 0.5) / N);
+    const theta = Math.PI * (1 + Math.sqrt(5)) * i;
+    
+    const el = document.createElement('div');
+    el.className = 'globe-item';
+    el.innerHTML = `<img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/${sk.icon}" alt="${sk.name}" /><span class="globe-name">${sk.name}</span>`;
+    wrapper.appendChild(el);
+    
+    return { el, phi, theta };
+  });
+
+  let W, H, R, cx, cy;
+  let rotX = 0.2, rotY = 0;
+  let dragActive = false, lastMX = 0, lastMY = 0;
+  let velX = 0, velY = 0.003; 
+
+  function resize() {
+    W = wrapper.offsetWidth;
+    H = wrapper.offsetHeight || W;
+    R  = Math.min(W, H) * 0.45;
+    cx = W / 2;
+    cy = H / 2;
+  }
+
+  function project(phi, theta) {
+    const x0 = Math.sin(phi) * Math.cos(theta);
+    const y0 = Math.sin(phi) * Math.sin(theta);
+    const z0 = Math.cos(phi);
+    
+    const y1 = y0 * Math.cos(rotX) - z0 * Math.sin(rotX);
+    const z1 = y0 * Math.sin(rotX) + z0 * Math.cos(rotX);
+    
+    const x2 = x0 * Math.cos(rotY) + z1 * Math.sin(rotY);
+    const z2 = -x0 * Math.sin(rotY) + z1 * Math.cos(rotY);
+    
+    const perspective = 1.6;
+    const scale = perspective / (perspective - z2 * 0.7);
+    return {
+      x: cx + x2 * R * scale,
+      y: cy - y1 * R * scale,
+      z: z2,
+      scale
+    };
+  }
+
+  function loop() {
+    if (!dragActive) {
+      rotY += velY;
+      rotX += velX;
+      rotX = Math.max(-0.6, Math.min(0.6, rotX)); // limit vertical rotation
+      velX *= 0.96; // friction
+    }
+
+    items.forEach(item => {
+      const p = project(item.phi, item.theta);
+      const el = item.el;
+      
+      // We offset by 50% of the element width/height approx via CSS margin, 
+      // but translate3d places it exactly at the projected point.
+      el.style.transform = `translate3d(${p.x}px, ${p.y}px, 0) scale(${p.scale * 0.85})`;
+      el.style.zIndex = Math.round((p.z + 1) * 100);
+      
+      const alpha = p.z > 0 ? 1 : 0.2 + (p.z + 1) * 0.3;
+      el.style.opacity = alpha;
+      
+      const blur = p.z > 0 ? 0 : Math.min(2, Math.abs(p.z) * 1.5);
+      el.style.filter = `blur(${blur}px)`;
+    });
+
+    requestAnimationFrame(loop);
+  }
+
+  // Pointer interaction
+  wrapper.addEventListener('pointerdown', e => {
+    dragActive = true;
+    lastMX = e.clientX; 
+    lastMY = e.clientY;
+    velX = 0; 
+    velY = 0;
+    wrapper.style.cursor = 'grabbing';
+  });
+  
+  window.addEventListener('pointermove', e => {
+    if (dragActive) {
+      const dx = e.clientX - lastMX;
+      const dy = e.clientY - lastMY;
+      velY = dx * 0.005;
+      velX = dy * 0.005;
+      rotY += velY;
+      rotX += velX;
+      lastMX = e.clientX; 
+      lastMY = e.clientY;
+    }
+  });
+  
+  window.addEventListener('pointerup', () => {
+    if (dragActive) {
+      dragActive = false;
+      wrapper.style.cursor = 'grab';
+      if (Math.abs(velY) < 0.001) velY = 0.003;
+    }
+  });
+
+  // Init
+  resize();
+  new ResizeObserver(resize).observe(wrapper);
+  loop();
+})();
+</script>
 </body>
 </html>
