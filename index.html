@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Developer Portfolio — Explore via Story, Terminal, or Desktop mode." />
+  <meta name="description" content="Developer Portfolio - Explore via Story, Terminal, or Desktop mode." />
   <title>Portfolio</title>
 
-  <!-- Google Fonts: Space Grotesk · Inter · JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -14,106 +13,137 @@
     rel="stylesheet"
   />
 
-  <!-- Styles -->
   <link rel="stylesheet" href="style/theme.css" />
   <link rel="stylesheet" href="style/base.css" />
-
-  <!-- Nexus Canvas Styles -->
-  <style>
-#nexusCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-
-  z-index: 0;
-  pointer-events: none;
-
-  opacity: 0.8;
-}
-    /* Ensure content sits above canvas */
-    .split-layout {
-      position: relative;
-      z-index: 1;
-    }
-    
-    .mode-overlay {
-      position: fixed;
-      z-index: 9000;
-    }
-  </style>
 </head>
 <body>
 
-  <!-- Nexus Particle Network Background -->
+  <!-- ═══════════════════════════════════════════════════════
+       NEXUS PARTICLE BACKGROUND — fixed, behind everything
+  ═══════════════════════════════════════════════════════ -->
   <canvas id="nexusCanvas" aria-hidden="true"></canvas>
 
-  <!-- ================================================
+  <!-- ═══════════════════════════════════════════════════════
        MAIN SPLIT LAYOUT
-       ================================================ -->
+  ═══════════════════════════════════════════════════════ -->
   <main class="split-layout" id="landingPage">
 
-    <!-- ============================================
-         LEFT PANEL — Identity System
-         ============================================ -->
+    <!-- ── LEFT PANEL ──────────────────────────────────── -->
     <section class="panel panel--left" aria-label="Developer identity panel">
 
-      <!-- CRT scan-line overlay -->
       <div class="scan-line" aria-hidden="true"></div>
 
-      <!-- ── Quantum Identity Badge ─────────────── -->
-      <div class="quantum-badge-container" id="identityBadgeContainer">
-        <div class="energy-aura" aria-hidden="true"></div>
-        <div class="quantum-particles" aria-hidden="true">
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
-          <div class="particle"></div>
+      <!-- 3D CUBE SYSTEM — Clean hierarchy:
+           shell (positioning)
+             → scene (perspective provider — ONLY perspective here)
+               → parallax (translate offset)
+                 → cube (JS-controlled rotation — ONLY rotation here)
+                   → 6 faces (translateZ depth) -->
+      <div class="profile-cube-shell" id="profileCubeShell">
+        <div class="profile-cube-ambient" aria-hidden="true"></div>
+        <div class="profile-cube-aura" aria-hidden="true"></div>
+        <div class="profile-cube-shadow profile-cube-shadow--far" aria-hidden="true"></div>
+        <div class="profile-cube-shadow profile-cube-shadow--near" aria-hidden="true"></div>
+
+        <div class="profile-cube-scene" id="profileCubeScene">
+          <div class="profile-cube-parallax" id="profileCubeParallax">
+            <article class="profile-cube" id="profileCube" aria-label="Agniva true 3D portfolio cube">
+
+              <!-- Face 1: PROFILE (front) -->
+              <section class="cube-face cube-face--front" data-face="profile">
+                <div class="cube-face__glow" aria-hidden="true"></div>
+                <div class="cube-profile-frame">
+                  <div class="cube-profile-avatar" id="cubeProfileAvatar">
+                    <img id="cubeProfileImage" alt="Agniva profile portrait" hidden />
+                    <span class="cube-profile-fallback" id="cubeProfileFallback">A</span>
+                  </div>
+                </div>
+                <div class="cube-profile-copy">
+                  <p class="cube-face-label">Profile</p>
+                  <h1 class="cube-profile-name" id="cubeProfileName">Agniva</h1>
+                  <p class="cube-profile-role" id="cubeProfileRole">AI Integration Enthusiast</p>
+                  <p class="cube-profile-about" id="cubeProfileAbout">I build interactive and useful systems, not just apps.</p>
+                </div>
+              </section>
+
+              <!-- Face 2: PROJECTS (right) -->
+              <section class="cube-face cube-face--right" data-face="projects">
+                <div class="cube-face__glow" aria-hidden="true"></div>
+                <p class="cube-face-label">Projects</p>
+                <div class="cube-projects-list" id="cubeProjectsList"></div>
+              </section>
+
+              <!-- Face 3: SKILLS (left) -->
+              <section class="cube-face cube-face--left" data-face="skills">
+                <div class="cube-face__glow" aria-hidden="true"></div>
+                <p class="cube-face-label">Skills</p>
+                <div class="cube-skills-list" id="cubeSkillsList"></div>
+              </section>
+
+              <!-- Face 4: STATS (back) -->
+              <section class="cube-face cube-face--back" data-face="stats">
+                <div class="cube-face__glow" aria-hidden="true"></div>
+                <p class="cube-face-label">Stats</p>
+                <div class="cube-stats-grid" id="cubeStatsGrid"></div>
+              </section>
+
+              <!-- Face 5: TOP — animated tech pattern, no text -->
+              <section class="cube-face cube-face--top" data-face="system" aria-hidden="true">
+                <div class="cube-top-visual">
+                  <span class="top-ring top-ring--outer"></span>
+                  <span class="top-ring top-ring--mid"></span>
+                  <span class="top-ring top-ring--inner"></span>
+                  <span class="top-orbit top-orbit--a"></span>
+                  <span class="top-orbit top-orbit--b"></span>
+                  <div class="top-grid"></div>
+                </div>
+              </section>
+
+              <!-- Face 6: BOTTOM — animated geometry, no text -->
+              <section class="cube-face cube-face--bottom" data-face="core" aria-hidden="true">
+                <div class="cube-bottom-visual">
+                  <span class="bottom-core bottom-core--outer"></span>
+                  <span class="bottom-core bottom-core--mid"></span>
+                  <span class="bottom-core bottom-core--inner"></span>
+                  <span class="bottom-beam bottom-beam--a"></span>
+                  <span class="bottom-beam bottom-beam--b"></span>
+                  <div class="bottom-circuit bottom-circuit--left"></div>
+                  <div class="bottom-circuit bottom-circuit--right"></div>
+                </div>
+              </section>
+            </article>
+          </div>
         </div>
-        
-        <article class="quantum-badge" id="identityBadge" aria-label="Agniva — AI Developer identity">
-          <!-- Front side of badge -->
-          <div class="badge-face badge-face--front" id="badgeFront">
-            <!-- Avatar/Initials -->
-            <div class="badge-avatar">
-              <span class="avatar-text">A</span>
-            </div>
-            
-            <!-- Name and Role -->
-            <div class="badge-identity">
-              <h1 class="badge-name" id="badgeName">Agniva</h1>
-              <p class="badge-role">AI Developer</p>
-            </div>
-            
-            <!-- Status -->
-            <div class="badge-status">
-              <span class="status-dot" aria-hidden="true"></span>
-              <span class="status-text" id="badgeStatus">Open to opportunities</span>
-            </div>
-          </div>
-          
-          <!-- Back side of badge -->
-          <div class="badge-face badge-face--back" id="badgeBack">
-            <div class="badge-stats">
-              <div class="stat-item">
-                <span class="stat-label">Projects</span>
-                <span class="stat-value">3+</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Skills</span>
-                <span class="stat-value">AI / Web / Systems</span>
-              </div>
-              <div class="stat-item">
-                <span class="stat-label">Mode</span>
-                <span class="stat-value">Adaptive</span>
-              </div>
+
+        <!-- Social links mini-cube -->
+        <div class="connect-cube-wrap" id="connectCubeWrap">
+          <div class="connect-cube-shadow" aria-hidden="true"></div>
+          <div class="connect-cube-scene">
+            <div class="connect-cube" id="connectCube" aria-label="Social links cube">
+              <a class="connect-face connect-face--front" id="connectGithubA" href="#" target="_blank" rel="noopener" aria-label="GitHub">
+                <span class="connect-face__text">GH</span>
+              </a>
+              <a class="connect-face connect-face--right" id="connectLinkedinA" href="#" target="_blank" rel="noopener" aria-label="LinkedIn">
+                <span class="connect-face__text">IN</span>
+              </a>
+              <a class="connect-face connect-face--left" id="connectTwitterA" href="#" target="_blank" rel="noopener" aria-label="Twitter X">
+                <span class="connect-face__text">X</span>
+              </a>
+              <a class="connect-face connect-face--back" id="connectGithubB" href="#" target="_blank" rel="noopener" aria-label="GitHub mirror">
+                <span class="connect-face__text">GH</span>
+              </a>
+              <a class="connect-face connect-face--top" id="connectLinkedinB" href="#" target="_blank" rel="noopener" aria-label="LinkedIn mirror">
+                <span class="connect-face__text">IN</span>
+              </a>
+              <a class="connect-face connect-face--bottom" id="connectTwitterB" href="#" target="_blank" rel="noopener" aria-label="Twitter X mirror">
+                <span class="connect-face__text">X</span>
+              </a>
             </div>
           </div>
-        </article>
+        </div>
       </div>
 
-      <!-- ── Terminal Boot Sequence ─────────────── -->
+      <!-- Terminal Boot -->
       <div
         class="terminal-boot"
         id="terminalBoot"
@@ -125,22 +155,19 @@
           <span class="term-dot term-dot--red"></span>
           <span class="term-dot term-dot--yellow"></span>
           <span class="term-dot term-dot--green"></span>
-          <span class="term-title" id="termTitle">dev.dev — bash</span>
+          <span class="term-title" id="termTitle">dev.dev - bash</span>
         </div>
         <div class="terminal-body" id="terminalBody"></div>
       </div>
 
-    </section><!-- /.panel--left -->
+    </section>
 
 
-    <!-- ============================================
-         RIGHT PANEL — Mode Selection
-         ============================================ -->
+    <!-- ── RIGHT PANEL ─────────────────────────────────── -->
     <section class="panel panel--right" aria-label="Portfolio mode selection">
 
       <div class="mode-panel">
 
-        <!-- Header -->
         <header class="mode-header">
           <h2 class="mode-heading">
             Explore My Portfolio <em class="accent">Your Way</em>
@@ -148,19 +175,17 @@
           <p class="mode-subtext">Choose how you want to experience my work</p>
         </header>
 
-        <!-- ── Mode Cards ──────────────────────── -->
         <div class="mode-cards" role="group" aria-label="Portfolio experience modes">
 
-          <!-- STORY MODE -->
           <article
             class="mode-card mode-card--story"
             id="cardStory"
             data-mode="story"
             tabindex="0"
             role="button"
-            aria-label="Story Mode — Recommended"
+            aria-label="Story Mode - Recommended"
           >
-            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
               <div class="card-top">
@@ -183,7 +208,6 @@
             </div>
           </article>
 
-          <!-- TERMINAL MODE -->
           <article
             class="mode-card mode-card--terminal"
             id="cardTerminal"
@@ -192,7 +216,7 @@
             role="button"
             aria-label="Terminal Mode"
           >
-            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
               <div class="card-top">
@@ -214,16 +238,15 @@
             </div>
           </article>
 
-          <!-- DESKTOP MODE -->
           <article
             class="mode-card mode-card--desktop"
             id="cardDesktop"
             data-mode="desktop"
             tabindex="0"
             role="button"
-            aria-label="Desktop Mode — large screens only"
+            aria-label="Desktop Mode - large screens only"
           >
-            <div class="card-glow"  aria-hidden="true"></div>
+            <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
               <div class="card-top">
@@ -238,7 +261,7 @@
               <button
                 class="card-cta"
                 onclick="switchMode('desktop')"
-                aria-label="Launch Desktop Mode — requires a large screen"
+                aria-label="Launch Desktop Mode - requires a large screen"
               >
                 Launch Desktop
                 <span class="cta-arrow" aria-hidden="true">→</span>
@@ -246,18 +269,16 @@
             </div>
           </article>
 
-        </div><!-- /.mode-cards -->
+        </div>
 
-      </div><!-- /.mode-panel -->
+      </div>
 
-    </section><!-- /.panel--right -->
+    </section>
 
-  </main><!-- /.split-layout -->
+  </main>
 
 
-  <!-- ================================================
-       MODE TRANSITION OVERLAY
-       ================================================ -->
+  <!-- Mode transition overlay -->
   <div class="mode-overlay" id="modeOverlay" aria-hidden="true" role="status">
     <p class="mode-overlay__text" id="modeOverlayText"></p>
     <span class="mode-overlay__cursor" aria-hidden="true"></span>
@@ -265,7 +286,6 @@
 
 
   <script src="js/main.js" type="module"></script>
-  <script src="js/quantum-interactions.js"></script>
   <script src="js/nexus-background.js"></script>
 </body>
 </html>

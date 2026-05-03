@@ -295,19 +295,8 @@ function initMicroInteractions() {
     });
   });
 
-  // Add parallax effect between panels
-  const leftPanel = document.querySelector('.panel--left');
-  const rightPanel = document.querySelector('.panel--right');
-  
-  if (leftPanel && rightPanel) {
-    document.addEventListener('mousemove', (e) => {
-      const moveX = (e.clientX - window.innerWidth / 2) * 0.01;
-      const moveY = (e.clientY - window.innerHeight / 2) * 0.01;
-      
-      leftPanel.style.transform = `translateX(${-moveX}px) translateY(${-moveY}px)`;
-      rightPanel.style.transform = `translateX(${moveX}px) translateY(${moveY}px)`;
-    });
-  }
+  // Panel parallax removed — it applied inline transforms to .panel--left/.panel--right
+  // which created new stacking contexts that flattened the 3D cube hierarchy.
 }
 
 /* =============================================================
