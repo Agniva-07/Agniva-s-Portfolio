@@ -33,30 +33,56 @@
       <!-- CRT scan-line overlay -->
       <div class="scan-line" aria-hidden="true"></div>
 
-      <!-- ── Floating Identity Card ─────────────── -->
-      <article class="identity-card" id="identityCard" aria-label="Agniva — developer identity">
-        <div class="identity-card__ambient" aria-hidden="true"></div>
-
-        <!-- Online status -->
-        <div class="status-bar">
-          <span class="status-dot" aria-hidden="true"></span>
-          <span class="status-label" id="statusLabel">Available</span>
+      <!-- ── Quantum Identity Badge ─────────────── -->
+      <div class="quantum-badge-container" id="identityBadgeContainer">
+        <div class="energy-aura" aria-hidden="true"></div>
+        <div class="quantum-particles" aria-hidden="true">
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
+          <div class="particle"></div>
         </div>
-
-        <!-- Name + animated role -->
-        <div class="identity-main">
-          <h1 class="identity-name" id="identityName"></h1>
-          <p class="identity-role" aria-live="polite" aria-atomic="true">
-            <span class="typewriter" id="roleTypewriter"></span><span
-              class="cursor-blink"
-              aria-hidden="true"
-            >_</span>
-          </p>
-        </div>
-
-        <!-- Expertise tags — injected from portfolio.skills.core by JS -->
-        <div class="identity-tags" id="identityTags" aria-label="Areas of expertise"></div>
-      </article>
+        
+        <article class="quantum-badge" id="identityBadge" aria-label="Agniva — AI Developer identity">
+          <!-- Front side of badge -->
+          <div class="badge-face badge-face--front" id="badgeFront">
+            <!-- Avatar/Initials -->
+            <div class="badge-avatar">
+              <span class="avatar-text">A</span>
+            </div>
+            
+            <!-- Name and Role -->
+            <div class="badge-identity">
+              <h1 class="badge-name" id="badgeName">Agniva</h1>
+              <p class="badge-role">AI Developer</p>
+            </div>
+            
+            <!-- Status -->
+            <div class="badge-status">
+              <span class="status-dot" aria-hidden="true"></span>
+              <span class="status-text" id="badgeStatus">Open to opportunities</span>
+            </div>
+          </div>
+          
+          <!-- Back side of badge -->
+          <div class="badge-face badge-face--back" id="badgeBack">
+            <div class="badge-stats">
+              <div class="stat-item">
+                <span class="stat-label">Projects</span>
+                <span class="stat-value">3+</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Skills</span>
+                <span class="stat-value">AI / Web / Systems</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-label">Mode</span>
+                <span class="stat-value">Adaptive</span>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
 
       <!-- ── Terminal Boot Sequence ─────────────── -->
       <div
@@ -210,5 +236,6 @@
 
 
   <script src="js/main.js" type="module"></script>
+  <script src="js/quantum-interactions.js" type="module"></script>
 </body>
 </html>

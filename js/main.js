@@ -41,19 +41,26 @@ function populateIdentity() {
     metaDesc.setAttribute('content', _str(_get(meta, 'description'), siteTitle));
   }
 
-  /* Name */
-  const nameEl = document.getElementById('identityName');
-  if (nameEl) nameEl.textContent = _str(_get(profile, 'name'), 'Developer');
+  /* Badge name */
+  const nameEl = document.getElementById('badgeName');
+  if (nameEl) nameEl.textContent = _str(_get(profile, 'name'), 'Agniva');
 
-  /* Status */
-  const statusLabelEl = document.getElementById('statusLabel');
-  if (statusLabelEl) statusLabelEl.textContent = _str(_get(profile, 'status'), 'Available');
+  /* Badge status */
+  const statusEl = document.getElementById('badgeStatus');
+  if (statusEl) statusEl.textContent = _str(_get(profile, 'status'), 'Open to opportunities');
 
-  /* aria-label on identity card */
-  const card = document.getElementById('identityCard');
-  if (card) {
+  /* Avatar initial */
+  const avatarEl = document.querySelector('.avatar-text');
+  if (avatarEl) {
+    const name = _str(_get(profile, 'name'), 'A');
+    avatarEl.textContent = name.charAt(0).toUpperCase();
+  }
+
+  /* aria-label on badge */
+  const badge = document.getElementById('identityBadge');
+  if (badge) {
     const name = _str(_get(profile, 'name'), 'Developer');
-    card.setAttribute('aria-label', `${name} — developer identity`);
+    badge.setAttribute('aria-label', `${name} — AI Developer identity`);
   }
 
   /* Terminal title bar */
@@ -62,24 +69,11 @@ function populateIdentity() {
     const handle = _str(_get(profile, 'name'), 'dev').toLowerCase();
     termTitle.textContent = `${handle}.dev — bash`;
   }
-
-  /* Skill tags — built from skills.core items (first 3) */
-  const tagsEl  = document.getElementById('identityTags');
-  const coreSkills = _arr(_get(portfolio, 'skills', 'core', 'items'));
-  if (tagsEl && coreSkills.length) {
-    tagsEl.innerHTML = '';
-    coreSkills.slice(0, 4).forEach(skill => {
-      const span = document.createElement('span');
-      span.className    = 'identity-tag';
-      span.textContent  = skill;
-      tagsEl.appendChild(span);
-    });
-  }
 }
 
 
 /* =============================================================
-   TYPEWRITER — cycles through portfolio.profile.roles
+   TYPEWRITER — cycles through portfolio.profile.roles (for badge role)
    ============================================================= */
 let _roleIndex   = 0;
 let _currentText = '';
@@ -117,10 +111,10 @@ function _eraseString(roleEl, onDone) {
 }
 
 function startTypewriter() {
-  const roleEl = document.getElementById('roleTypewriter');
+  const roleEl = document.querySelector('.badge-role');
   if (!roleEl) return;
 
-  const roles = _arr(_get(portfolio, 'profile', 'roles'), ['Developer']);
+  const roles = _arr(_get(portfolio, 'profile', 'roles'), ['AI Developer']);
 
   function next() {
     _typeString(roles[_roleIndex], roleEl, () => {
@@ -222,28 +216,11 @@ function _initCardLighting() {
 
 
 /* =============================================================
-   3D TILT on identity card
+   3D TILT on quantum badge (moved to quantum-interactions.js)
    ============================================================= */
 function _initCardTilt() {
-  const card = document.getElementById('identityCard');
-  if (!card) return;
-
-  const MAX_TILT = 8; // degrees
-
-  card.addEventListener('mousemove', e => {
-    const rect   = card.getBoundingClientRect();
-    const cx     = rect.left + rect.width  / 2;
-    const cy     = rect.top  + rect.height / 2;
-    const rotY   =  ((e.clientX - cx) / (rect.width  / 2)) * MAX_TILT;
-    const rotX   = -((e.clientY - cy) / (rect.height / 2)) * MAX_TILT;
-
-    card.style.transform =
-      `translateY(-5px) rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-  });
-
-  card.addEventListener('mouseleave', () => {
-    card.style.transform = '';
-  });
+  // Tilt functionality is now handled by quantum-interactions.js
+  // Keeping this as a placeholder for compatibility
 }
 
 

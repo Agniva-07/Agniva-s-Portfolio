@@ -12,27 +12,28 @@
   --clr-bg-card-hover: rgba(255, 255, 255, 0.06);
   --clr-bg-terminal:   rgba(0, 0, 0, 0.72);
 
-  /* Accent – neon cyan / green */
-  --clr-accent:        #00ffcc;
-  --clr-accent-dim:    rgba(0, 255, 204, 0.55);
-  --clr-accent-glow:   rgba(0, 255, 204, 0.10);
-  --clr-accent-blue:   #00e5ff;
+  /* Accent – violet-blue-cyan theme */
+  --clr-accent:        #7C3AED;
+  --clr-accent-dim:    rgba(124, 58, 237, 0.55);
+  --clr-accent-glow:   rgba(124, 58, 237, 0.10);
+  --clr-accent-blue:   #3B82F6;
+  --clr-accent-cyan:   #22D3EE;
 
-  /* Status green */
-  --clr-status:        #00ff88;
-  --clr-status-glow:   rgba(0, 255, 136, 0.70);
+  /* Status violet */
+  --clr-status:        #7C3AED;
+  --clr-status-glow:   rgba(124, 58, 237, 0.70);
 
   /* Borders */
-  --clr-border:        rgba(0, 255, 204, 0.13);
-  --clr-border-hover:  rgba(0, 255, 204, 0.45);
-  --clr-border-active: rgba(0, 255, 204, 0.85);
+  --clr-border:        rgba(124, 58, 237, 0.13);
+  --clr-border-hover:  rgba(124, 58, 237, 0.45);
+  --clr-border-active: rgba(124, 58, 237, 0.85);
   --clr-border-muted:  rgba(255, 255, 255, 0.09);
 
   /* Text */
   --clr-text-primary:   #f0f0f0;
   --clr-text-secondary: #7a7a8c;
   --clr-text-muted:     #44445a;
-  --clr-text-terminal:  #00ffcc;
+  --clr-text-terminal:  #22D3EE;
 
   /* ── Typography ─────────────────────────────────────────── */
   --font-heading: 'Space Grotesk', sans-serif;
@@ -66,9 +67,9 @@
   --glass-shadow: 0 8px 36px rgba(0, 0, 0, 0.45);
 
   /* ── Glow shadows ───────────────────────────────────────── */
-  --glow-sm:    0 0 14px rgba(0, 255, 204, 0.18);
-  --glow-md:    0 0 28px rgba(0, 255, 204, 0.22);
-  --glow-lg:    0 0 48px rgba(0, 255, 204, 0.30);
+  --glow-sm:    0 0 14px rgba(124, 58, 237, 0.18);
+  --glow-md:    0 0 28px rgba(124, 58, 237, 0.22);
+  --glow-lg:    0 0 48px rgba(124, 58, 237, 0.30);
   --glow-card:  0 8px 36px rgba(0, 0, 0, 0.55),
-                0 0 24px rgba(0, 255, 204, 0.12);
+                0 0 24px rgba(124, 58, 237, 0.12);
 }
