@@ -291,7 +291,13 @@ function switchMode(mode) {
 
   /* Navigate after overlay completes */
   setTimeout(() => {
-    window.location.href = `./${mode}.html`;
+    const routes = {
+  story: 'portfolio.html',
+  terminal: '../ui/dashboard.html',
+  desktop: 'desktop.html'
+};
+
+window.location.href = `./${routes[mode]}`;
   }, 900);
 }
 
