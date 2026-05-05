@@ -199,7 +199,7 @@ code {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: var(--sp-xl);
+  gap: var(--sp-lg);
   padding: var(--sp-xl);
 
   /* Perspective is on .profile-cube-scene ONLY — not here */
@@ -259,7 +259,7 @@ code {
   position: relative;
   z-index: 1;
   width: min(100%, 380px);
-  height: clamp(430px, 58vh, 520px);
+  height: clamp(380px, 48vh, 480px);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -981,10 +981,10 @@ code {
   100% { transform: rotateX(-16deg) rotateY(360deg); }
 }
 
-
 /* ── 6. Terminal Boot ─────────────────────────────────────────── */
 .terminal-boot {
   position: relative;
+  margin-top: 50px;
   z-index: 1;
   width: 100%;
   max-width: 360px;
