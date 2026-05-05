@@ -518,21 +518,22 @@ function _initCubeSystem() {
     const delta = timestamp - state.lastFrame;
     state.lastFrame = timestamp;
 
-    if (!reducedMotion && !state.dragging) {
-      state.autoY += delta * (state.hovered ? 0.004 : 0.013);
-      if (Math.abs(state.autoY) > 360) state.autoY %= 360;
+    if (!reducedMotion && !state.dragging && !state.hovered) {
+  // Only auto-spin when user isn't touching the cube at all
+      state.autoY += delta * 0.013;
+      state.autoY = state.autoY % 360; // always normalize, not just when > 360 — prevents float drift
       if (!state.hovered) {
         state.targetX = -16;
         state.targetY = state.autoY;
       }
     }
 
-    state.currentX += (state.targetX - state.currentX) * 0.1;
-    state.currentY += (state.targetY - state.currentY) * 0.1;
-    state.parallaxX += (state.targetParallaxX - state.parallaxX) * 0.08;
-    state.parallaxY += (state.targetParallaxY - state.parallaxY) * 0.08;
-    state.lightX += (state.targetLightX - state.lightX) * 0.08;
-    state.lightY += (state.targetLightY - state.lightY) * 0.08;
+state.currentX += (state.targetX - state.currentX) * 0.18;   // was 0.1 — snappier X tracking
+state.currentY += (state.targetY - state.currentY) * 0.18;   // was 0.1 — snappier Y tracking
+state.parallaxX += (state.targetParallaxX - state.parallaxX) * 0.14; // was 0.08
+state.parallaxY += (state.targetParallaxY - state.parallaxY) * 0.14; // was 0.08
+state.lightX += (state.targetLightX - state.lightX) * 0.12;  // was 0.08
+state.lightY += (state.targetLightY - state.lightY) * 0.12;  // was 0.08
 
     cube.style.transform = `rotateX(${state.currentX.toFixed(2)}deg) rotateY(${state.currentY.toFixed(2)}deg)`;
     syncVisuals();
@@ -541,16 +542,11 @@ function _initCubeSystem() {
 
   const handleEnter = event => {
     state.hovered = true;
-    updateTargets(event);
   };
 
   const handleLeave = () => {
     if (state.dragging) return;
     state.hovered = false;
-    state.targetParallaxX = 0;
-    state.targetParallaxY = 0;
-    state.targetLightX = 50;
-    state.targetLightY = 34;
   };
 
   const handleDown = event => {
@@ -568,14 +564,12 @@ function _initCubeSystem() {
     if (state.dragging) {
       const deltaX = event.clientX - state.lastPointerX;
       state.lastPointerX = event.clientX;
-      state.autoY += deltaX * 0.46;
+      state.autoY += deltaX * 0.18; // was 0.46 — now 1px mouse = 0.18deg rotation, much more controlled
       state.targetY = state.autoY;
       updateTargets(event);
       if (Math.abs(deltaX) > 1.5) state.dragMoved = true;
       return;
     }
-
-    if (state.hovered) updateTargets(event);
   };
 
   const handleUp = event => {

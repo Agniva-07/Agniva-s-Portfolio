@@ -29,17 +29,17 @@
   resize();
   window.addEventListener('resize', resize);
 
-  const CONFIG = {
-    particleCount: 80,
-    connectionDist: 140,
-    connectionDistSq: 140 * 140,
-    particleSpeed: 0.4,
-    repulsionRadius: 180,
-    repulsionForce: 0.6,
-    friction: 0.94,
-    particleRadius: 1.8,
-    lineOpacityScale: 0.3,
-  };
+const CONFIG = {
+  particleCount: 100,       // was 80 — more particles = denser web
+  connectionDist: 160,      // was 140 — longer connections = more visible web
+  connectionDistSq: 160 * 160,
+  particleSpeed: 0.4,
+  repulsionRadius: 180,
+  repulsionForce: 0.6,
+  friction: 0.94,
+  particleRadius: 2.2,      // was 1.8 — slightly bigger dots
+  lineOpacityScale: 0.7,    // was 0.3 — much more visible connection lines
+};
 
   const mouse = { x: -9999, y: -9999 };
 
@@ -137,16 +137,17 @@
       const p = particles[i];
       
       // Particle glow (outer halo)
-      ctx.fillStyle = 'rgba(34, 211, 238, 0.15)';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, CONFIG.particleRadius * 2.5, 0, Math.PI * 2);
-      ctx.fill();
-      
-      // Particle core (bright center)
-      ctx.fillStyle = 'rgba(34, 211, 238, 0.85)';
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, CONFIG.particleRadius, 0, Math.PI * 2);
-      ctx.fill();
+     // Particle glow (outer halo)
+ctx.fillStyle = 'rgba(34, 211, 238, 0.35)';  // was 0.15 — much more visible halo
+ctx.beginPath();
+ctx.arc(p.x, p.y, CONFIG.particleRadius * 3, 0, Math.PI * 2);  // slightly bigger halo
+ctx.fill();
+
+// Particle core (bright center)
+ctx.fillStyle = 'rgba(34, 211, 238, 1)';  // was 0.85 — full brightness core
+ctx.beginPath();
+ctx.arc(p.x, p.y, CONFIG.particleRadius, 0, Math.PI * 2);
+ctx.fill();
     }
 
     requestAnimationFrame(animate);
