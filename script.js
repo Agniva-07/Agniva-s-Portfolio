@@ -50,18 +50,24 @@ function renderProfile() {
   if (nameEl) nameEl.textContent = _s(p.fullName, 'Developer');
   if (roleEl) roleEl.textContent = _s(p.roles?.[0], 'Developer');
 
-  // Avatar initials
-  const initialsEl = document.getElementById('sidebar-initials');
-  if (initialsEl) {
-    const full = _s(p.fullName, 'AH');
-    initialsEl.textContent = full.split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
+  // Avatar — use image from portfolio.profile.avatar, fallback to initials
+  const avatarWrap = document.querySelector('.sidebar__profile .avatar');
+  if (avatarWrap) {
+    const avatarSrc = _s(p.avatar, '');
+    if (avatarSrc) {
+      avatarWrap.innerHTML = `<img src="${avatarSrc}" alt="${esc(_s(p.fullName, 'Avatar'))}" style="width:100%;height:100%;border-radius:50%;object-fit:cover;" />`;
+    } else {
+      const full = _s(p.fullName, 'AH');
+      const initials = full.split(/\s+/).map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      avatarWrap.innerHTML = `<span class="avatar__initials">${initials}</span>`;
+    }
   }
 
   // Status tagline
   const taglineEl = document.getElementById('sidebar-tagline');
   if (taglineEl) taglineEl.textContent = _s(p.tagline, 'Building · Learning · Solving');
 
-  // Identity list
+  // Identity list — all values from portfolio.js
   const idList = document.getElementById('identity-list');
   if (idList) {
     const items = [
@@ -293,6 +299,7 @@ function renderProjects() {
 function renderContact() {
   const contact = portfolio?.contact || {};
 
+  // Contact cards
   const contactInfo = document.getElementById('contact-info');
   if (contactInfo) {
     let html = '';
@@ -320,6 +327,152 @@ function renderContact() {
   }
 }
 
+/* ═════════════════════════════════════════════════════════════
+   QUICK BAR — Premium utility card above skills globe
+   Driven by portfolio.js (Task 3 & 5)
+   ═════════════════════════════════════════════════════════════ */
+function renderQuickBar() {
+  const p = portfolio?.profile || {};
+  const contact = portfolio?.contact || {};
+  const dsa = portfolio?.terminal?.dsa || {};
+  const allSkills = _a(portfolio?.skills).flatMap(g => _a(g.items));
+  const uniqueSkills = [...new Set(allSkills)];
+  const projCount = _a(portfolio?.projects).length;
+
+  const container = document.getElementById('quick-bar');
+  if (!container) return;
+
+  /* PATCH: FIX 2 — dashed CV button with amber pulse dot */
+  const resumeLink = _s(contact.resume, '');
+  const resumeBtn = resumeLink
+    ? `<a href="${resumeLink}" target="_blank" rel="noopener" class="qb-btn qb-btn--primary"><span class="qb-cv-dot"></span>Download CV ↓</a>`
+    : `<span class="qb-btn qb-btn--disabled"><span class="qb-cv-dot"></span>CV Coming Soon</span>`;
+
+  // Right side: Quick-Bar (CV, Status, Roles)
+  container.innerHTML = `
+    <div class="qb-top-row">
+      <div class="qb-left">
+        ${resumeBtn}
+        <span class="qb-badge qb-badge--green"><span class="qb-dot"></span>${esc(_s(p.status, 'Open to Opportunities'))}</span>
+      </div>
+    </div>
+    <div class="qb-roles">
+      <span class="qb-roles-title">Focus:</span>
+      ${_a(p.roles).slice(0, 2).map(r => `<span class="qb-tag">${esc(r)}</span>`).join('')}
+    </div>
+  `;
+
+  // Left side: Stats Grid
+  const statsContainer = document.getElementById('about-stats-grid');
+  if (statsContainer) {
+    statsContainer.innerHTML = `
+      <div class="stat-card">
+        <span class="stat-val">${esc(_s(dsa.count, '400+'))}</span>
+        <span class="stat-lbl">DSA Solved</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">${projCount}</span>
+        <span class="stat-lbl">Projects</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val">${uniqueSkills.length}+</span>
+        <span class="stat-lbl">Tech Skills</span>
+      </div>
+    `;
+  }
+}
+
+/* ═════════════════════════════════════════════════════════════
+   CONTACT FORM — EmailJS Integration (Task 6 & 7)
+   ═════════════════════════════════════════════════════════════ */
+function initContactForm() {
+  const form = document.getElementById('contact-form');
+  if (!form) return;
+
+  const btn = form.querySelector('.cf-btn');
+  const statusEl = form.querySelector('.cf-status');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const name = form.querySelector('#cf-name')?.value.trim();
+    const email = form.querySelector('#cf-email')?.value.trim();
+    const message = form.querySelector('#cf-message')?.value.trim();
+
+    // Validation
+    if (!name || !email || !message) {
+      showStatus(statusEl, 'Please fill all fields.', 'error');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      showStatus(statusEl, 'Please enter a valid email.', 'error');
+      return;
+    }
+    if (message.length < 10) {
+      showStatus(statusEl, 'Message must be at least 10 characters.', 'error');
+      return;
+    }
+
+    // Loading state
+    btn.disabled = true;
+    btn.innerHTML = '<span class="cf-spinner"></span> Sending...';
+    showStatus(statusEl, '', '');
+
+    try {
+      // ─────────────────────────────────────────────────────────
+      // EmailJS Setup — Replace these with your actual keys:
+      //   1. Sign up at https://www.emailjs.com/
+      //   2. Create a service (Gmail recommended)
+      //   3. Create an email template with variables:
+      //      {{from_name}}, {{from_email}}, {{message}}
+      //   4. Replace the IDs below:
+      // ─────────────────────────────────────────────────────────
+      const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';   // ← Replace
+      const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';   // ← Replace
+      const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // ← Replace
+
+      // Load EmailJS SDK if not already loaded
+      if (!window.emailjs) {
+        await loadScript('https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js');
+        window.emailjs.init(EMAILJS_PUBLIC_KEY);
+      }
+
+      await window.emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+        from_name: name,
+        from_email: email,
+        message: message,
+        to_email: portfolio?.contact?.email || 'haitagniva@gmail.com',
+      });
+
+      showStatus(statusEl, '✓ Message sent successfully!', 'success');
+      form.reset();
+    } catch (err) {
+      console.error('EmailJS error:', err);
+      showStatus(statusEl, 'Failed to send. Try emailing directly.', 'error');
+    } finally {
+      btn.disabled = false;
+      btn.innerHTML = 'Send Message <span aria-hidden="true">→</span>';
+    }
+  });
+}
+
+function showStatus(el, text, type) {
+  if (!el) return;
+  el.textContent = text;
+  el.className = 'cf-status' + (type ? ` cf-status--${type}` : '');
+}
+
+function loadScript(src) {
+  return new Promise((resolve, reject) => {
+    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return; }
+    const s = document.createElement('script');
+    s.src = src;
+    s.onload = resolve;
+    s.onerror = reject;
+    document.head.appendChild(s);
+  });
+}
+
 
 /* ═════════════════════════════════════════════════════════════
    INITIALIZATION — render all dynamic content, then bind observers
@@ -333,6 +486,10 @@ renderSocials();
 renderStory();
 renderProjects();
 renderContact();
+renderQuickBar();
+
+// Step 1b: Init interactive features
+initContactForm();
 
 // Step 2: Bind all existing features on the now-populated DOM
 
