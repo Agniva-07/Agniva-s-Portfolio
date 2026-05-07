@@ -1,0 +1,584 @@
+/* =============================================================
+   SYSTEM.CSS — Universal Design System
+   
+   The ONE shared visual language across ALL portfolio pages.
+   Import this FIRST on every page.
+   
+   Contains:
+   - Universal design tokens
+   - Shared background system
+   - Custom scrollbar
+   - Universal button system
+   - Typography hierarchy
+   - Animation system
+   - Microinteractions
+   - Noise texture overlay
+   ============================================================= */
+
+/* ── 1. UNIVERSAL DESIGN TOKENS ────────────────────────────── */
+:root {
+  /* ── Background System ── */
+  --sys-bg:              #060a14;
+  --sys-bg-deep:         #050810;
+  --sys-bg-panel:        rgba(8, 14, 28, 0.82);
+  --sys-bg-card:         rgba(12, 20, 38, 0.55);
+  --sys-bg-card-hover:   rgba(18, 28, 50, 0.72);
+  --sys-bg-glass:        rgba(14, 22, 40, 0.6);
+  --sys-bg-glass-hover:  rgba(20, 30, 52, 0.72);
+  --sys-bg-elevated:     rgba(16, 24, 44, 0.85);
+
+  /* ── Accent Colors (limited palette) ── */
+  --sys-cyan:            #22d3ee;
+  --sys-cyan-dim:        rgba(34, 211, 238, 0.55);
+  --sys-cyan-glow:       rgba(34, 211, 238, 0.12);
+  --sys-cyan-surface:    rgba(34, 211, 238, 0.06);
+
+  --sys-purple:          #8b5cf6;
+  --sys-purple-dim:      rgba(139, 92, 246, 0.55);
+  --sys-purple-glow:     rgba(139, 92, 246, 0.12);
+  --sys-purple-surface:  rgba(139, 92, 246, 0.06);
+
+  --sys-green:           #22c55e;
+  --sys-green-dim:       rgba(34, 197, 94, 0.55);
+  --sys-green-surface:   rgba(34, 197, 94, 0.08);
+
+  /* ── Borders ── */
+  --sys-border:          rgba(34, 211, 238, 0.08);
+  --sys-border-hover:    rgba(34, 211, 238, 0.28);
+  --sys-border-active:   rgba(34, 211, 238, 0.55);
+  --sys-border-muted:    rgba(255, 255, 255, 0.06);
+
+  /* ── Text ── */
+  --sys-text-1:          #eef2ff;
+  --sys-text-2:          #8892a8;
+  --sys-text-3:          #4a5268;
+  --sys-text-cyan:       var(--sys-cyan);
+
+  /* ── Typography ── */
+  --sys-font-heading:    'Space Grotesk', system-ui, sans-serif;
+  --sys-font-body:       'Inter', system-ui, sans-serif;
+  --sys-font-mono:       'JetBrains Mono', monospace;
+
+  /* ── Spacing Scale (16/24/32/48) ── */
+  --sys-sp-xs:   8px;
+  --sys-sp-sm:   12px;
+  --sys-sp-md:   16px;
+  --sys-sp-lg:   24px;
+  --sys-sp-xl:   32px;
+  --sys-sp-2xl:  48px;
+
+  /* ── Border Radius ── */
+  --sys-r-sm:    10px;
+  --sys-r-md:    16px;
+  --sys-r-lg:    22px;
+  --sys-r-xl:    28px;
+  --sys-r-pill:  999px;
+
+  /* ── Transitions ── */
+  --sys-ease:    cubic-bezier(0.4, 0, 0.2, 1);
+  --sys-tr-fast: 180ms var(--sys-ease);
+  --sys-tr-base: 280ms var(--sys-ease);
+  --sys-tr-slow: 450ms var(--sys-ease);
+
+  /* ── Glass ── */
+  --sys-glass-bg:     rgba(12, 20, 38, 0.6);
+  --sys-glass-blur:   blur(20px);
+  --sys-glass-border: 1px solid var(--sys-border);
+  --sys-glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+
+  /* ── Glow Shadows ── */
+  --sys-glow-sm:   0 0 12px rgba(34, 211, 238, 0.08);
+  --sys-glow-md:   0 0 24px rgba(34, 211, 238, 0.12);
+  --sys-glow-lg:   0 0 40px rgba(34, 211, 238, 0.16);
+  --sys-glow-card: 0 8px 32px rgba(0, 0, 0, 0.4),
+                   0 0 20px rgba(34, 211, 238, 0.06);
+}
+
+
+/* ── 2. UNIVERSAL BACKGROUND SYSTEM ────────────────────────── */
+
+/* Deep dark futuristic background + cinematic glows */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background:
+    /* Top-left cyan radial */
+    radial-gradient(ellipse 60% 50% at 15% 10%,
+      rgba(34, 211, 238, 0.06) 0%, transparent 55%),
+    /* Bottom-right purple radial */
+    radial-gradient(ellipse 55% 45% at 85% 85%,
+      rgba(139, 92, 246, 0.07) 0%, transparent 55%),
+    /* Center subtle blue */
+    radial-gradient(ellipse 70% 60% at 50% 50%,
+      rgba(59, 130, 246, 0.04) 0%, transparent 65%),
+    /* Top-right purple accent */
+    radial-gradient(ellipse 40% 35% at 80% 15%,
+      rgba(139, 92, 246, 0.04) 0%, transparent 50%),
+    /* Base color */
+    var(--sys-bg);
+}
+
+/* Subtle noise texture overlay */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  opacity: 0.018;
+  background-size: 200px 200px;
+  mix-blend-mode: overlay;
+}
+
+
+/* ── 3. CUSTOM SCROLLBAR ──────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(6, 10, 20, 0.5);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(34, 211, 238, 0.18);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(34, 211, 238, 0.35);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(34, 211, 238, 0.18) rgba(6, 10, 20, 0.5);
+}
+
+
+/* ── 4. UNIVERSAL BUTTON SYSTEM ───────────────────────────── */
+
+/* Primary Button */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--sys-r-sm);
+  font-family: var(--sys-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sys-bg-deep);
+  background: linear-gradient(135deg, var(--sys-cyan), rgba(34, 211, 238, 0.85));
+  border: 1px solid var(--sys-cyan);
+  cursor: pointer;
+  transition: all var(--sys-tr-fast);
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-primary:hover {
+  box-shadow: 0 0 20px rgba(34, 211, 238, 0.25),
+              0 4px 16px rgba(0, 0, 0, 0.3);
+  transform: translateY(-2px);
+}
+
+/* Secondary Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--sys-r-sm);
+  font-family: var(--sys-font-mono);
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: var(--sys-cyan);
+  background: var(--sys-cyan-surface);
+  border: 1px solid rgba(34, 211, 238, 0.25);
+  cursor: pointer;
+  transition: all var(--sys-tr-fast);
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  background: rgba(34, 211, 238, 0.12);
+  border-color: var(--sys-cyan-dim);
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Outline Button */
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border-radius: var(--sys-r-sm);
+  font-family: var(--sys-font-mono);
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--sys-text-2);
+  background: transparent;
+  border: 1px solid var(--sys-border-hover);
+  cursor: pointer;
+  transition: all var(--sys-tr-fast);
+  text-decoration: none;
+}
+
+.btn-outline:hover {
+  color: var(--sys-cyan);
+  border-color: var(--sys-cyan-dim);
+  box-shadow: var(--sys-glow-sm);
+  transform: translateY(-2px);
+}
+
+/* Ghost Button */
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  border-radius: var(--sys-r-sm);
+  font-family: var(--sys-font-mono);
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: var(--sys-text-3);
+  background: transparent;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all var(--sys-tr-fast);
+  text-decoration: none;
+}
+
+.btn-ghost:hover {
+  color: var(--sys-text-2);
+  background: rgba(255, 255, 255, 0.04);
+  border-color: var(--sys-border);
+}
+
+
+/* ── 5. UNIVERSAL ANIMATION SYSTEM ─────────────────────────── */
+
+/* Fade in from below */
+@keyframes sys-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Fade in from above */
+@keyframes sys-fade-down {
+  from { opacity: 0; transform: translateY(-12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Simple fade in */
+@keyframes sys-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Scale + fade */
+@keyframes sys-scale-in {
+  from { opacity: 0; transform: scale(0.96); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Subtle pulse glow */
+@keyframes sys-pulse-glow {
+  0%, 100% { box-shadow: 0 0 8px rgba(34, 211, 238, 0.08); }
+  50%      { box-shadow: 0 0 18px rgba(34, 211, 238, 0.16); }
+}
+
+/* Blinking caret */
+@keyframes sys-blink {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0; }
+}
+
+/* Subtle float */
+@keyframes sys-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-4px); }
+}
+
+/* Border shimmer — used on hover */
+@keyframes sys-shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+/* Scroll reveal base class */
+.sys-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.55s var(--sys-ease),
+              transform 0.55s var(--sys-ease);
+}
+
+.sys-reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+/* ── 6. UNIVERSAL CARD SYSTEM ──────────────────────────────── */
+
+/* Glass card base */
+.sys-card {
+  background: var(--sys-glass-bg);
+  border: 1px solid var(--sys-border);
+  border-radius: var(--sys-r-lg);
+  backdrop-filter: var(--sys-glass-blur);
+  -webkit-backdrop-filter: var(--sys-glass-blur);
+  padding: var(--sys-sp-lg);
+  position: relative;
+  overflow: hidden;
+  transition: all var(--sys-tr-base);
+}
+
+/* Glass highlight */
+.sys-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.035) 0%, transparent 40%);
+}
+
+.sys-card:hover {
+  background: var(--sys-glass-bg);
+  border-color: var(--sys-border-hover);
+  box-shadow: var(--sys-glow-card);
+  transform: translateY(-4px);
+}
+
+
+/* ── 7. MICROINTERACTIONS ──────────────────────────────────── */
+
+/* Glow follow mouse on cards (set --glow-x / --glow-y via JS) */
+.sys-card-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    circle 200px at var(--glow-x, 50%) var(--glow-y, 50%),
+    rgba(34, 211, 238, 0.04) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity var(--sys-tr-base);
+}
+
+.sys-card:hover .sys-card-glow {
+  opacity: 1;
+}
+
+/* Animated shine border on hover */
+.sys-shine-border::after {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(34, 211, 238, 0.3) 25%,
+    rgba(139, 92, 246, 0.3) 50%,
+    rgba(34, 211, 238, 0.3) 75%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+}
+
+.sys-shine-border:hover::after {
+  opacity: 1;
+  animation: sys-shimmer 2s linear infinite;
+}
+
+
+/* ── 8. TYPOGRAPHY HIERARCHY ──────────────────────────────── */
+
+/* Hero heading */
+.sys-heading-hero {
+  font-family: var(--sys-font-heading);
+  font-size: clamp(1.8rem, 3vw, 2.4rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+  color: var(--sys-text-1);
+}
+
+/* Section title */
+.sys-heading-section {
+  font-family: var(--sys-font-heading);
+  font-size: clamp(1.25rem, 2.4vw, 1.75rem);
+  font-weight: 700;
+  color: var(--sys-text-1);
+  letter-spacing: -0.01em;
+}
+
+/* Body text */
+.sys-text-body {
+  font-family: var(--sys-font-body);
+  font-size: 0.875rem;
+  line-height: 1.65;
+  color: var(--sys-text-2);
+}
+
+/* Metadata / labels */
+.sys-text-meta {
+  font-family: var(--sys-font-mono);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--sys-text-3);
+}
+
+/* Mono label */
+.sys-text-mono {
+  font-family: var(--sys-font-mono);
+  font-size: 0.75rem;
+  color: var(--sys-cyan);
+  letter-spacing: 0.04em;
+}
+
+/* Accent gradient text */
+.sys-gradient-text {
+  background: linear-gradient(135deg, var(--sys-text-1) 30%, var(--sys-cyan) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+
+/* ── 9. STATUS BADGES ─────────────────────────────────────── */
+
+.sys-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 3px 10px;
+  border-radius: var(--sys-r-pill);
+  font-family: var(--sys-font-mono);
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sys-badge--green {
+  color: var(--sys-green);
+  background: var(--sys-green-surface);
+  border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.sys-badge--cyan {
+  color: var(--sys-cyan);
+  background: var(--sys-cyan-surface);
+  border: 1px solid rgba(34, 211, 238, 0.2);
+}
+
+.sys-badge--purple {
+  color: var(--sys-purple);
+  background: var(--sys-purple-surface);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.sys-badge--amber {
+  color: #fbbf24;
+  background: rgba(251, 191, 36, 0.08);
+  border: 1px solid rgba(251, 191, 36, 0.2);
+}
+
+
+/* ── 10. TECH TAG CHIPS ───────────────────────────────────── */
+
+.sys-tag {
+  padding: 3px 10px;
+  border-radius: var(--sys-r-pill);
+  font-family: var(--sys-font-mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--sys-cyan);
+  background: var(--sys-cyan-surface);
+  border: 1px solid rgba(34, 211, 238, 0.15);
+  transition: all var(--sys-tr-fast);
+}
+
+.sys-tag:hover {
+  background: rgba(34, 211, 238, 0.12);
+  border-color: var(--sys-cyan-dim);
+  transform: translateY(-1px);
+}
+
+
+/* ── 11. SECTION HEADER (terminal-style) ──────────────────── */
+
+.sys-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: var(--sys-sp-md);
+}
+
+.sys-section-icon {
+  color: var(--sys-cyan);
+  font-size: 0.75rem;
+  text-shadow: 0 0 8px var(--sys-cyan-glow);
+}
+
+.sys-section-label {
+  font-family: var(--sys-font-mono);
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sys-cyan);
+}
+
+.sys-section-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, var(--sys-border-hover), transparent);
+}
+
+
+/* ── 12. REDUCED MOTION ───────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .sys-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

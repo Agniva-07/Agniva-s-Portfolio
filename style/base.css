@@ -8,45 +8,43 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  /* Modern Cinematic Palette - Violet-Blue-Cyan */
-  --clr-bg: #0a0e1a;
-  --clr-violet: #7C3AED;
-  --clr-blue: #3B82F6;
-  --clr-cyan: #22D3EE;
-  --clr-purple: #8B5CF6;
-  --clr-orange: #f59e0b;
-  --clr-text-primary: #fff;
-  --clr-text-secondary: #a0a8b0;
+  /* Unified System Palette */
+  --clr-bg: #060a14;
+  --clr-violet: #8b5cf6;
+  --clr-blue: #60a5fa;
+  --clr-cyan: #22d3ee;
+  --clr-purple: #8b5cf6;
+  --clr-text-primary: #eef2ff;
+  --clr-text-secondary: #8892a8;
   --clr-accent: var(--clr-violet);
   --clr-accent-blue: var(--clr-blue);
   --clr-accent-cyan: var(--clr-cyan);
   --clr-accent-purple: var(--clr-purple);
-  --clr-accent-orange: var(--clr-orange);
-  --clr-bg-panel-l: #0f172a;
-  --clr-bg-panel-r: #0e1724;
-  --clr-bg-card: #1e293b;
-  --clr-bg-card-hover: #334155;
-  --clr-border: rgba(124,58,237,0.13);
+  --clr-bg-panel-l: rgba(8, 14, 28, 0.55);
+  --clr-bg-panel-r: rgba(8, 14, 28, 0.55);
+  --clr-bg-card: rgba(12, 20, 38, 0.55);
+  --clr-bg-card-hover: rgba(18, 28, 50, 0.72);
+  --clr-border: rgba(139, 92, 246, 0.10);
   --clr-border-hover: var(--clr-violet);
-  --clr-border-active: var(--clr-blue);
-  --clr-border-muted: #334155;
-  --glass-bg: rgba(30,41,59,0.82);
-  --glass-blur: blur(18px);
-  --glass-shadow: 0 4px 32px rgba(0,0,0,0.32);
-  --glow-card: 0 0 24px var(--clr-violet, #7C3AED);
-  --glow-lg: 0 0 48px var(--clr-blue, #3B82F6);
-  --sp-xl: 2.5rem;
-  --sp-2xl: 4rem;
+  --clr-border-active: var(--clr-cyan);
+  --clr-border-muted: rgba(255, 255, 255, 0.06);
+  --glass-bg: rgba(14, 22, 40, 0.6);
+  --glass-blur: blur(20px);
+  --glass-shadow: 0 8px 32px rgba(0,0,0,0.4);
+  --glow-card: 0 0 24px rgba(139, 92, 246, 0.12);
+  --glow-lg: 0 0 48px rgba(96, 165, 250, 0.1);
+  --sp-xl: 2rem;
+  --sp-2xl: 3rem;
   --sp-lg: 1.5rem;
   --sp-md: 1rem;
   --sp-sm: 0.5rem;
-  --r-xl: 32px;
+  --r-xl: 28px;
   --r-lg: 22px;
-  --r-md: 14px;
-  --r-sm: 8px;
-  --tr-base: 0.38s cubic-bezier(.77,0,.18,1);
-  --tr-fast: 0.22s cubic-bezier(.77,0,.18,1);
-  --tr-slow: 0.55s cubic-bezier(.77,0,.18,1);
+  --r-md: 16px;
+  --r-sm: 10px;
+  --tr-base: 0.28s cubic-bezier(0.4,0,0.2,1);
+  --tr-fast: 0.18s cubic-bezier(0.4,0,0.2,1);
+  --tr-slow: 0.45s cubic-bezier(0.4,0,0.2,1);
 }
 
 html {
@@ -56,7 +54,7 @@ html {
 
 body {
   font-family: var(--font-body);
-  background: #050505;
+  background: #060a14;
   color: var(--clr-text-primary);
   min-height: 100vh;
   overflow-y: auto;
@@ -64,16 +62,16 @@ body {
 }
 
 body::after {
-  /* Subtle radial glow spots - violet and blue */
+  /* Cinematic radial glow spots - aligned with system */
   content: '';
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 25% 25%, rgba(124, 58, 237, 0.08) 0%, transparent 50%),
-    radial-gradient(circle at 75% 75%, rgba(59, 130, 246, 0.06) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.04) 0%, transparent 60%);
+    radial-gradient(circle at 25% 25%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+    radial-gradient(circle at 75% 75%, rgba(96, 165, 250, 0.05) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(34, 211, 238, 0.03) 0%, transparent 60%);
   opacity: 1;
 }
 
@@ -182,19 +180,19 @@ code {
 .panel--left {
   width: 40%;
   min-width: 300px;
-  background: rgba(15, 23, 42, 0.55);  /* more transparent — nexus bleeds through */
-  border-right: 1px solid rgba(0, 255, 204, 0.07);
+  background: rgba(8, 14, 28, 0.55);
+  border-right: 1px solid rgba(34, 211, 238, 0.06);
 
-  /* Layered depth: mid-glow + edge accent + subtle floor */
+  /* Layered depth: aligned cyan/purple glows */
   background-image:
     radial-gradient(ellipse 80% 55% at 50% 0%,
-      rgba(0, 255, 204, 0.055) 0%,
+      rgba(34, 211, 238, 0.04) 0%,
       transparent 65%),
     radial-gradient(ellipse 50% 35% at 10% 100%,
-      rgba(0, 229, 255, 0.035) 0%,
+      rgba(139, 92, 246, 0.03) 0%,
       transparent 60%),
     radial-gradient(ellipse 40% 30% at 90% 55%,
-      rgba(0, 255, 136, 0.025) 0%,
+      rgba(34, 211, 238, 0.02) 0%,
       transparent 55%);
 
   display: flex;
@@ -204,9 +202,6 @@ code {
   gap: var(--sp-lg);
   padding: var(--sp-xl);
 
-  /* Perspective is on .profile-cube-scene ONLY — not here */
-
-  /* Fade in only — NO transform animation on panel (would flatten 3D children) */
   opacity: 0;
   animation: anim-layout-in var(--tr-slow) forwards 0.05s;
 }
@@ -1112,22 +1107,22 @@ code {
 /* ── 7. RIGHT PANEL ──────────────────────────────────────────── */
  .panel--right {
   width: 60%;
-  background: rgba(14, 23, 36, 0.55); /* was solid var(--clr-bg-panel-r) — now semi-transparent */
+  background: rgba(8, 14, 28, 0.55);
   /* Dot-grid + depth glow clouds */
   background-image:
     radial-gradient(
       circle,
-      rgba(0, 255, 204, 0.045) 1px,
+      rgba(34, 211, 238, 0.03) 1px,
       transparent 1px
     ),
     radial-gradient(
       ellipse 70% 60% at 80% 20%,
-      rgba(0, 229, 255, 0.04) 0%,
+      rgba(139, 92, 246, 0.04) 0%,
       transparent 60%
     ),
     radial-gradient(
       ellipse 50% 45% at 20% 85%,
-      rgba(0, 255, 204, 0.03) 0%,
+      rgba(34, 211, 238, 0.03) 0%,
       transparent 55%
     );
   background-size: 26px 26px, 100% 100%, 100% 100%;

@@ -239,8 +239,12 @@ function renderProjects() {
   if (featuredContainer && featured) {
     const statusCls = featured.status === 'completed' ? 'proj-status--live' : 'proj-status--dev';
     const statusLabel = featured.status === 'completed' ? '● Live' : '◐ In Dev';
-    const ghLink = featured.links?.github ? `<a href="${featured.links.github}" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>` : '';
-    const liveLink = featured.links?.live ? `<a href="${featured.links.live}" target="_blank" rel="noopener" class="proj-btn proj-btn--primary" aria-label="Live demo">Live Demo ↗</a>` : '';
+    const ghLink = featured.links?.github 
+      ? `<a href="${featured.links.github}" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>` 
+      : `<span class="proj-btn proj-btn--ghost" style="opacity:0.4;cursor:default;">GitHub</span>`;
+    const liveLink = featured.links?.live 
+      ? `<a href="${featured.links.live}" target="_blank" rel="noopener" class="proj-btn proj-btn--primary" aria-label="Live demo">Live Demo ↗</a>` 
+      : `<span class="proj-btn proj-btn--ghost" style="opacity:0.4;cursor:default;">Coming Soon</span>`;
 
     featuredContainer.innerHTML = `
       <div class="proj-featured__meta">
@@ -266,8 +270,12 @@ function renderProjects() {
     projGrid.innerHTML = secondary.map(p => {
       const statusCls = p.status === 'completed' ? 'proj-status--live' : 'proj-status--dev';
       const statusLabel = p.status === 'completed' ? '● Live' : '◐ In Dev';
-      const ghLink = p.links?.github ? `<a href="${p.links.github}" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>` : '';
-      const liveLink = p.links?.live ? `<a href="${p.links.live}" target="_blank" rel="noopener" class="proj-btn proj-btn--primary">Live Demo ↗</a>` : '';
+      const ghLink = p.links?.github 
+        ? `<a href="${p.links.github}" target="_blank" rel="noopener" class="proj-btn proj-btn--ghost">GitHub ↗</a>` 
+        : `<span class="proj-btn proj-btn--ghost" style="opacity:0.4;cursor:default;">GitHub</span>`;
+      const liveLink = p.links?.live 
+        ? `<a href="${p.links.live}" target="_blank" rel="noopener" class="proj-btn proj-btn--primary">Live Demo ↗</a>` 
+        : `<span class="proj-btn proj-btn--ghost" style="opacity:0.4;cursor:default;">Coming Soon</span>`;
 
       return `<article class="proj-card reveal-item">
         <div class="proj-header">
