@@ -96,46 +96,46 @@
 
 /* ── Light Theme Overrides ── */
 [data-theme="light"] {
-  --sys-bg:              #f8fafc;
-  --sys-bg-deep:         #f1f5f9;
-  --sys-bg-panel:        rgba(255, 255, 255, 0.92);
-  --sys-bg-card:         rgba(255, 255, 255, 0.7);
-  --sys-bg-card-hover:   rgba(255, 255, 255, 0.95);
+  --sys-bg:              #fdfdfe;
+  --sys-bg-deep:         #f8fafc;
+  --sys-bg-panel:        rgba(255, 255, 255, 0.9);
+  --sys-bg-card:         rgba(255, 255, 255, 0.55);
+  --sys-bg-card-hover:   rgba(255, 255, 255, 0.85);
   --sys-bg-glass:        rgba(255, 255, 255, 0.65);
-  --sys-bg-glass-hover:  rgba(255, 255, 255, 0.9);
-  --sys-bg-elevated:     rgba(255, 255, 255, 1);
+  --sys-bg-glass-hover:  rgba(255, 255, 255, 0.85);
+  --sys-bg-elevated:     rgba(255, 255, 255, 0.98);
 
   --sys-cyan:            #0284c7;
   --sys-cyan-dim:        rgba(2, 132, 199, 0.2);
-  --sys-cyan-glow:       rgba(2, 132, 199, 0.08);
-  --sys-cyan-surface:    rgba(2, 132, 199, 0.04);
+  --sys-cyan-glow:       rgba(2, 132, 199, 0.05);
+  --sys-cyan-surface:    rgba(2, 132, 199, 0.03);
 
   --sys-purple:          #7c3aed;
   --sys-purple-dim:      rgba(124, 58, 237, 0.2);
-  --sys-purple-glow:     rgba(124, 58, 237, 0.08);
-  --sys-purple-surface:  rgba(124, 58, 237, 0.04);
+  --sys-purple-glow:     rgba(124, 58, 237, 0.05);
+  --sys-purple-surface:  rgba(124, 58, 237, 0.03);
 
   --sys-green:           #16a34a;
   --sys-green-dim:       rgba(22, 163, 74, 0.2);
   --sys-green-surface:   rgba(22, 163, 74, 0.05);
 
   --sys-border:          rgba(15, 23, 42, 0.08);
-  --sys-border-hover:    rgba(2, 132, 199, 0.25);
-  --sys-border-active:   rgba(2, 132, 199, 0.4);
-  --sys-border-muted:    rgba(15, 23, 42, 0.04);
+  --sys-border-hover:    rgba(2, 132, 199, 0.2);
+  --sys-border-active:   rgba(2, 132, 199, 0.35);
+  --sys-border-muted:    rgba(15, 23, 42, 0.05);
 
   --sys-text-1:          #0f172a;
-  --sys-text-2:          #475569;
-  --sys-text-3:          #94a3b8;
+  --sys-text-2:          #334155;
+  --sys-text-3:          #64748b;
   
-  --sys-glass-bg:        rgba(255, 255, 255, 0.75);
-  --sys-glass-shadow:    0 8px 32px rgba(15, 23, 42, 0.08);
+  --sys-glass-bg:        rgba(255, 255, 255, 0.7);
+  --sys-glass-shadow:    0 8px 32px rgba(15, 23, 42, 0.06);
 
-  --sys-glow-sm:         0 4px 12px rgba(15, 23, 42, 0.06);
-  --sys-glow-md:         0 8px 24px rgba(15, 23, 42, 0.08);
-  --sys-glow-lg:         0 12px 40px rgba(15, 23, 42, 0.1);
-  --sys-glow-card:       0 8px 32px rgba(15, 23, 42, 0.06),
-                         0 0 20px rgba(2, 132, 199, 0.04);
+  --sys-glow-sm:         0 4px 12px rgba(15, 23, 42, 0.05);
+  --sys-glow-md:         0 8px 24px rgba(15, 23, 42, 0.07);
+  --sys-glow-lg:         0 12px 40px rgba(15, 23, 42, 0.09);
+  --sys-glow-card:       0 8px 32px rgba(15, 23, 42, 0.05),
+                         0 0 20px rgba(2, 132, 199, 0.03);
 }
 
 
@@ -167,8 +167,9 @@ body::before {
 
 [data-theme="light"] body::before {
   background: 
-    /* Soft white gradient for light mode */
-    linear-gradient(135deg, #ffffff 0%, #f0f4f8 50%, #e2e8f0 100%);
+    radial-gradient(ellipse 70% 60% at 15% 10%, rgba(2, 132, 199, 0.06) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 85%, rgba(124, 58, 237, 0.06) 0%, transparent 60%),
+    linear-gradient(135deg, #fdfdfe 0%, #f1f5f9 100%);
 }
 
 /* Subtle noise texture overlay */

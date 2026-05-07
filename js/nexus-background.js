@@ -106,6 +106,10 @@ const CONFIG = {
     }
 
     // Draw connections with gradient colors
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const connectionColor = isLight ? [2, 132, 199] : [124, 58, 237]; // Cyan in light, Violet in dark
+    const secondaryColor = isLight ? [124, 58, 237] : [34, 211, 238]; // Violet in light, Cyan in dark
+
     for (let i = 0; i < particles.length; i++) {
       const a = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
@@ -118,12 +122,13 @@ const CONFIG = {
           const distNorm = Math.sqrt(distSq);
           const opacity = (1 - distSq / CONFIG.connectionDistSq) * CONFIG.lineOpacityScale;
           
-          // Gradient color: violet to cyan based on distance
-          const violetInfluence = distNorm / 140;
-          const cyanInfluence = 1 - violetInfluence;
+          const influence = distNorm / 140;
+          const r = Math.round(connectionColor[0] * influence + secondaryColor[0] * (1 - influence));
+          const g = Math.round(connectionColor[1] * influence + secondaryColor[1] * (1 - influence));
+          const b_ = Math.round(connectionColor[2] * influence + secondaryColor[2] * (1 - influence));
           
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(${124 + (cyanInfluence * 50)}, ${58 + (cyanInfluence * 100)}, ${237 - (cyanInfluence * 50)}, ${opacity})`;
+          ctx.strokeStyle = `rgba(${r}, ${g}, ${b_}, ${opacity * (isLight ? 0.4 : 1)})`;
           ctx.lineWidth = 0.9;
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
@@ -135,19 +140,17 @@ const CONFIG = {
     // Draw particles with glow effect
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
+      const dotColor = isLight ? 'rgba(2, 132, 199,' : 'rgba(34, 211, 238,';
       
-      // Particle glow (outer halo)
-     // Particle glow (outer halo)
-ctx.fillStyle = 'rgba(34, 211, 238, 0.35)';  // was 0.15 — much more visible halo
-ctx.beginPath();
-ctx.arc(p.x, p.y, CONFIG.particleRadius * 3, 0, Math.PI * 2);  // slightly bigger halo
-ctx.fill();
+      ctx.fillStyle = dotColor + (isLight ? '0.15)' : '0.35)');
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, CONFIG.particleRadius * 3, 0, Math.PI * 2);
+      ctx.fill();
 
-// Particle core (bright center)
-ctx.fillStyle = 'rgba(34, 211, 238, 1)';  // was 0.85 — full brightness core
-ctx.beginPath();
-ctx.arc(p.x, p.y, CONFIG.particleRadius, 0, Math.PI * 2);
-ctx.fill();
+      ctx.fillStyle = dotColor + '1)';
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, CONFIG.particleRadius, 0, Math.PI * 2);
+      ctx.fill();
     }
 
     requestAnimationFrame(animate);
