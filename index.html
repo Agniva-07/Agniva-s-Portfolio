@@ -1,26 +1,29 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Agniva Hait — Full Stack Developer Portfolio. Explore via Story, Terminal, or Desktop mode." />
+  <meta name="description"
+    content="Agniva Hait — Full Stack Developer Portfolio. Explore via Story, Terminal, or Desktop mode." />
   <title>Agniva · Portfolio</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
     href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500&family=JetBrains+Mono:wght@300;400;500&display=swap"
-    rel="stylesheet"
-  />
+    rel="stylesheet" />
 
   <link rel="stylesheet" href="style/system.css" />
   <link rel="stylesheet" href="style/theme.css" />
   <link rel="stylesheet" href="style/base.css" />
 </head>
+
 <body>
 
   <!-- Theme Toggle Rope -->
-  <canvas id="ropeToggleCanvas" width="60" height="250" style="position:fixed; top:0; right:80px; z-index:9999; cursor:grab;" aria-label="Theme Toggle Rope"></canvas>
+  <canvas id="ropeToggleCanvas" width="60" height="250"
+    style="position:fixed; top:0; right:80px; z-index:9999; cursor:grab;" aria-label="Theme Toggle Rope"></canvas>
 
   <!-- ═══════════════════════════════════════════════════════
        NEXUS PARTICLE BACKGROUND — fixed, behind everything
@@ -66,7 +69,8 @@
                   <p class="cube-face-label">Profile</p>
                   <h1 class="cube-profile-name" id="cubeProfileName">Agniva</h1>
                   <p class="cube-profile-role" id="cubeProfileRole">AI Integration Enthusiast</p>
-                  <p class="cube-profile-about" id="cubeProfileAbout">I build interactive and useful systems, not just apps.</p>
+                  <p class="cube-profile-about" id="cubeProfileAbout">I build interactive and useful systems, not just
+                    apps.</p>
                 </div>
               </section>
 
@@ -123,13 +127,8 @@
       </div>
 
       <!-- Terminal Boot -->
-      <div
-        class="terminal-boot"
-        id="terminalBoot"
-        role="log"
-        aria-label="System initialization sequence"
-        aria-live="polite"
-      >
+      <div class="terminal-boot" id="terminalBoot" role="log" aria-label="System initialization sequence"
+        aria-live="polite">
         <div class="terminal-header" aria-hidden="true">
           <span class="term-dot term-dot--red"></span>
           <span class="term-dot term-dot--yellow"></span>
@@ -156,14 +155,8 @@
 
         <div class="mode-cards" role="group" aria-label="Portfolio experience modes">
 
-          <article
-            class="mode-card mode-card--story"
-            id="cardStory"
-            data-mode="story"
-            tabindex="0"
-            role="button"
-            aria-label="Story Mode - Recommended"
-          >
+          <article class="mode-card mode-card--story" id="cardStory" data-mode="story" tabindex="0" role="button"
+            aria-label="Story Mode - Recommended">
             <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
@@ -176,25 +169,15 @@
                 Clean, structured narrative of my journey and projects.
                 Perfect for a quick but deep dive.
               </p>
-              <button
-                class="card-cta"
-                onclick="switchMode('story')"
-                aria-label="Enter Story Mode"
-              >
+              <button class="card-cta" onclick="switchMode('story')" aria-label="Enter Story Mode">
                 Enter Story Mode
                 <span class="cta-arrow" aria-hidden="true">→</span>
               </button>
             </div>
           </article>
 
-          <article
-            class="mode-card mode-card--terminal"
-            id="cardTerminal"
-            data-mode="terminal"
-            tabindex="0"
-            role="button"
-            aria-label="Terminal Mode"
-          >
+          <article class="mode-card mode-card--terminal" id="cardTerminal" data-mode="terminal" tabindex="0"
+            role="button" aria-label="Terminal Mode">
             <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
@@ -205,26 +188,16 @@
               <p class="card-desc">
                 Explore via commands like a real developer.
               </p>
-              <button
-                class="card-cta"
-                id="terminalbtn"
-                onclick="switchMode('terminal')"
-                aria-label="Open Terminal Mode"
-              >
+              <button class="card-cta" id="terminalbtn" onclick="switchMode('terminal')"
+                aria-label="Open Terminal Mode">
                 Open Terminal
                 <span class="cta-arrow" aria-hidden="true">→</span>
               </button>
             </div>
           </article>
 
-          <article
-            class="mode-card mode-card--desktop"
-            id="cardDesktop"
-            data-mode="desktop"
-            tabindex="0"
-            role="button"
-            aria-label="Desktop Mode - large screens only"
-          >
+          <article class="mode-card mode-card--desktop" id="cardDesktop" data-mode="desktop" tabindex="0" role="button"
+            aria-label="Desktop Mode - large screens only">
             <div class="card-glow" aria-hidden="true"></div>
             <div class="card-sweep" aria-hidden="true"></div>
             <div class="card-content">
@@ -237,11 +210,8 @@
                 Immersive OS-style experience with draggable windows
                 and an icon dock.
               </p>
-              <button
-                class="card-cta"
-                onclick="switchMode('desktop')"
-                aria-label="Launch Desktop Mode - requires a large screen"
-              >
+              <button class="card-cta" onclick="switchMode('desktop')"
+                aria-label="Launch Desktop Mode - requires a large screen">
                 Launch Desktop
                 <span class="cta-arrow" aria-hidden="true">→</span>
               </button>
@@ -311,7 +281,7 @@
         if (Math.hypot(pos.x - last.x, pos.y - last.y) < 25) dragging = true;
       }
       canvas.addEventListener("mousedown", onDown);
-      canvas.addEventListener("touchstart", onDown, {passive: true});
+      canvas.addEventListener("touchstart", onDown, { passive: true });
       window.addEventListener("mouseup", () => dragging = false);
       window.addEventListener("touchend", () => dragging = false);
       window.addEventListener("mousemove", (e) => {
@@ -327,7 +297,7 @@
           points[points.length - 1].x = pos.x;
           points[points.length - 1].y = pos.y;
         }
-      }, {passive: true});
+      }, { passive: true });
       function loop() {
         for (let i = 1; i < points.length; i++) {
           let p = points[i];
@@ -350,17 +320,57 @@
         }
         ctx.clearRect(0, 0, canvas.width, canvas.height);
         const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+        // DRAW ROPE
+        ctx.strokeStyle = isLight ? "#94a3b8" : "#4a5268";
+        ctx.lineWidth = 2;
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
-        ctx.strokeStyle = isLight ? "#94a3b8" : "#4a5268";
-        ctx.lineWidth = 2;
         ctx.stroke();
+
         let last = points[points.length - 1];
-        ctx.beginPath(); ctx.arc(last.x, last.y, 14, 0, Math.PI * 2);
-        ctx.fillStyle = isLight ? "#e2e8f0" : "#1e293b"; ctx.fill();
-        ctx.beginPath(); ctx.arc(last.x, last.y, 5, 0, Math.PI * 2);
-        ctx.fillStyle = isLight ? "#0284c7" : "#22d3ee"; ctx.fill();
+
+        // DRAW BULB HOUSING
+        ctx.save();
+        ctx.translate(last.x, last.y);
+        
+        // Metallic Base
+        ctx.fillStyle = isLight ? "#64748b" : "#334155";
+        ctx.fillRect(-6, -14, 12, 8);
+        
+        // Glass Bulb
+        ctx.beginPath();
+        ctx.arc(0, 0, 16, 0, Math.PI * 2);
+        const bulbGrad = ctx.createRadialGradient(-4, -4, 2, 0, 0, 16);
+        if (isLight) {
+          bulbGrad.addColorStop(0, "rgba(255, 255, 255, 0.95)");
+          bulbGrad.addColorStop(1, "rgba(226, 232, 240, 0.5)");
+        } else {
+          bulbGrad.addColorStop(0, "rgba(255, 255, 255, 0.25)");
+          bulbGrad.addColorStop(1, "rgba(15, 23, 42, 0.7)");
+        }
+        ctx.fillStyle = bulbGrad;
+        ctx.fill();
+        ctx.strokeStyle = isLight ? "rgba(148, 163, 184, 0.6)" : "rgba(255, 255, 255, 0.15)";
+        ctx.lineWidth = 1;
+        ctx.stroke();
+        
+        // Filament Glow (Dynamic)
+        ctx.beginPath();
+        ctx.arc(0, 2, 5, 0, Math.PI * 2);
+        ctx.shadowBlur = dragging ? 25 : 12;
+        ctx.shadowColor = isLight ? "#fbbf24" : "#22d3ee";
+        ctx.fillStyle = isLight ? "#f59e0b" : "#22d3ee";
+        ctx.fill();
+        
+        // Reflection highlight
+        ctx.beginPath();
+        ctx.arc(-5, -5, 3, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(255, 255, 255, 0.4)";
+        ctx.fill();
+        
+        ctx.restore();
+
         if (last.y > 180 && !hasToggled) { setRopeTheme(); hasToggled = true; }
         else if (last.y < 150) { hasToggled = false; }
         requestAnimationFrame(loop);
@@ -369,4 +379,5 @@
     })();
   </script>
 </body>
+
 </html>
