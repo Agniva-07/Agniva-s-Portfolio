@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --bg-void: #060a14;
-  --bg-deep: #050810;
+  --bg-void: #02040a;
+  --bg-deep: rgba(5, 8, 16, 0.55);
   --bg-glass: rgba(14, 22, 40, 0.6);
   --bg-glass-h: rgba(20, 30, 52, 0.72);
   --cyan: #22d3ee;
@@ -77,6 +77,8 @@ body {
   width: 45%; height: 100vh; display: flex; flex-direction: column;
   background: var(--bg-deep); position: relative; z-index: 2;
   border-left: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ── Glass Card base ── */

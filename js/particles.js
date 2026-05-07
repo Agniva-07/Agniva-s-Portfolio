@@ -23,7 +23,8 @@
     canvas = document.createElement('canvas');
     canvas.id = 'particleCanvas';
     canvas.setAttribute('aria-hidden', 'true');
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;';
+    const opacity = window.location.pathname.includes('portfolio.html') ? '0.55' : '0.85';
+    canvas.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:${opacity};`;
     document.body.prepend(canvas);
   } else {
     // Ensure canvas has correct styles
@@ -34,7 +35,8 @@
     canvas.style.height = '100%';
     canvas.style.zIndex = '0';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.55';
+    // Slightly higher opacity on landing page to support the intensity
+    canvas.style.opacity = window.location.pathname.includes('portfolio.html') ? '0.55' : '0.85';
   }
 
   const ctx = canvas.getContext('2d');
@@ -52,21 +54,27 @@
   resize();
   window.addEventListener('resize', resize);
 
+  // Determine if we are on the portfolio (Story Mode) page
+  const isPortfolio = window.location.pathname.includes('portfolio.html');
+
   // Adaptive particle count based on screen area
   const screenArea = window.innerWidth * window.innerHeight;
-  // Reduced particle count slightly to eliminate lag
-  const baseCount = Math.min(80, Math.max(40, Math.floor(screenArea / 18000)));
+  
+  // Higher intensity for Landing/Terminal, lower for Portfolio
+  const baseCount = isPortfolio
+    ? Math.min(80, Math.max(40, Math.floor(screenArea / 18000)))
+    : Math.min(100, Math.max(50, Math.floor(screenArea / 14000)));
 
   const CONFIG = {
     particleCount: baseCount,
-    connectionDist: 130,
-    connectionDistSq: 130 * 130,
-    particleSpeed: 0.25,
-    repulsionRadius: 140,
-    repulsionForce: 0.4,
+    connectionDist: isPortfolio ? 130 : 150,
+    connectionDistSq: isPortfolio ? (130 * 130) : (150 * 150),
+    particleSpeed: isPortfolio ? 0.25 : 0.3,
+    repulsionRadius: isPortfolio ? 140 : 150,
+    repulsionForce: isPortfolio ? 0.4 : 0.5,
     friction: 0.95,
-    particleRadius: 1.5,
-    lineOpacityScale: 0.35,
+    particleRadius: isPortfolio ? 1.5 : 1.8,
+    lineOpacityScale: isPortfolio ? 0.35 : 0.55,
   };
 
   const mouse = { x: -9999, y: -9999 };
