@@ -669,8 +669,159 @@ async function fetchGitHubStars() {
     } else {
       el.textContent = '—';
     }
-  } catch {
+} catch {
     el.textContent = '—';
   }
 }
 fetchGitHubStars();
+
+/* ─────────────────────────────────────────────────────────────
+   8. ROPE THEME TOGGLE (HANGING SWITCH)
+   ───────────────────────────────────────────────────────────── */
+(function initRopeToggle() {
+  const canvas = document.getElementById("ropeToggleCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  let points = [];
+  const segmentLength = 12;
+  const gravity = 0.6;
+  const friction = 0.92;
+  const iterations = 5;
+  const totalPoints = 12; // Length of the string
+
+  for (let i = 0; i < totalPoints; i++) {
+    points.push({
+      x: canvas.width / 2,
+      y: 0 + i * segmentLength,
+      oldx: canvas.width / 2,
+      oldy: 0 + i * segmentLength
+    });
+  }
+
+  let dragging = false;
+  let hasToggled = false;
+
+  // Theme Init
+  const savedTheme = localStorage.getItem('theme');
+  const prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+  if (savedTheme === 'light' || (!savedTheme && prefersLight)) {
+    document.documentElement.setAttribute('data-theme', 'light');
+  }
+
+  function setRopeTheme() {
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    if (isLight) {
+      document.documentElement.removeAttribute('data-theme');
+      localStorage.setItem('theme', 'dark');
+      // Particles update immediately
+      if (window.dispatchEvent) window.dispatchEvent(new Event('themeChanged'));
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+      if (window.dispatchEvent) window.dispatchEvent(new Event('themeChanged'));
+    }
+  }
+
+  // Mouse / Touch Events
+  function getMousePos(e) {
+    const rect = canvas.getBoundingClientRect();
+    const clientX = e.touches ? e.touches[0].clientX : e.clientX;
+    const clientY = e.touches ? e.touches[0].clientY : e.clientY;
+    return { x: clientX - rect.left, y: clientY - rect.top };
+  }
+
+  function onDown(e) {
+    const pos = getMousePos(e);
+    const last = points[points.length - 1];
+    const dist = Math.hypot(pos.x - last.x, pos.y - last.y);
+    if (dist < 25) dragging = true; // Grab the knob
+  }
+
+  function onUp() { dragging = false; }
+  
+  function onMove(e) {
+    if (dragging) {
+      const pos = getMousePos(e);
+      points[points.length - 1].x = pos.x;
+      points[points.length - 1].y = pos.y;
+    }
+  }
+
+  canvas.addEventListener("mousedown", onDown);
+  canvas.addEventListener("touchstart", onDown, {passive: true});
+  window.addEventListener("mouseup", onUp);
+  window.addEventListener("touchend", onUp);
+  window.addEventListener("mousemove", onMove);
+  window.addEventListener("touchmove", onMove, {passive: true});
+
+  function update() {
+    for (let i = 1; i < points.length; i++) {
+      let p = points[i];
+      let vx = (p.x - p.oldx) * friction;
+      let vy = (p.y - p.oldy) * friction;
+      p.oldx = p.x;
+      p.oldy = p.y;
+      p.x += vx;
+      p.y += vy + gravity;
+    }
+
+    for (let j = 0; j < iterations; j++) {
+      for (let i = 0; i < points.length - 1; i++) {
+        let p1 = points[i], p2 = points[i + 1];
+        let dx = p2.x - p1.x, dy = p2.y - p1.y;
+        let dist = Math.sqrt(dx * dx + dy * dy);
+        let diff = (dist - segmentLength) / dist;
+        let offsetX = dx * diff * 0.5, offsetY = dy * diff * 0.5;
+
+        if (i !== 0) { p1.x += offsetX; p1.y += offsetY; }
+        p2.x -= offsetX; p2.y -= offsetY;
+      }
+      points[0].x = canvas.width / 2;
+      points[0].y = -10; // Anchor point above canvas
+    }
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+
+    // Rope
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let i = 1; i < points.length; i++) ctx.lineTo(points[i].x, points[i].y);
+    ctx.strokeStyle = isLight ? "#94a3b8" : "#4a5268";
+    ctx.lineWidth = 2;
+    ctx.stroke();
+
+    // Knob Shell
+    let last = points[points.length - 1];
+    ctx.beginPath();
+    ctx.arc(last.x, last.y, 14, 0, Math.PI * 2);
+    ctx.fillStyle = isLight ? "#e2e8f0" : "#1e293b";
+    ctx.fill();
+
+    // Knob Core
+    ctx.beginPath();
+    ctx.arc(last.x, last.y, 5, 0, Math.PI * 2);
+    ctx.fillStyle = isLight ? "#0284c7" : "#22d3ee";
+    ctx.fill();
+  }
+
+  function loop() {
+    update();
+    draw();
+    
+    // Toggle Logic
+    const last = points[points.length - 1];
+    if (last.y > 180 && !hasToggled) {
+      setRopeTheme();
+      hasToggled = true;
+    } else if (last.y < 150) {
+      hasToggled = false; // Reset toggle lock when rope springs back up
+    }
+    
+    requestAnimationFrame(loop);
+  }
+  loop();
+})();
