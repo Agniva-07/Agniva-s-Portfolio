@@ -41,6 +41,28 @@
   --tr: 280ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
+/* ── Light Theme Overrides ── */
+[data-theme="light"] {
+  --bg:          #f8fafc;
+  --bg-card:     rgba(255, 255, 255, 0.7);
+  --bg-sidebar:  rgba(241, 245, 249, 0.95);
+  --bg-glass:    rgba(255, 255, 255, 0.85);
+
+  --cyan:        #0284c7; 
+  --cyan-dim:    rgba(2, 132, 199, 0.55);
+  --cyan-glow:   rgba(2, 132, 199, 0.08);
+  --green:       #16a34a;
+  --purple:      #7c3aed;
+  --purple-dim:  rgba(124, 58, 237, 0.5);
+
+  --border:      rgba(15, 23, 42, 0.1);
+  --border-h:    rgba(2, 132, 199, 0.35);
+
+  --text-1:      #0f172a;
+  --text-2:      #475569;
+  --text-3:      #94a3b8;
+}
+
 /* ── 2. Reset ──────────────────────────────────────────────── */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
@@ -1269,8 +1291,8 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
   align-items: center;
   gap: 12px;
   padding: 10px 14px;
-  background: rgba(14, 22, 40, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: var(--sys-bg-glass);
+  border: 1px solid var(--sys-border);
   border-radius: 14px;
   transition: all var(--tr);
   position: relative;
@@ -1288,9 +1310,9 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
 
 .contact-card:hover {
   transform: translateX(4px);
-  border-color: rgba(34, 211, 238, 0.3);
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2), 0 0 16px var(--cyan-glow);
-  background: rgba(14, 22, 40, 0.7);
+  border-color: var(--sys-border-hover);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.1), 0 0 16px var(--sys-cyan-glow);
+  background: var(--sys-bg-glass-hover);
 }
 
 .contact-card:hover::before {
@@ -1304,8 +1326,8 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
 
 /* ── Contact Form Panel ── */
 .contact-form-panel {
-  background: rgba(14, 22, 40, 0.3);
-  border: 1px solid rgba(255, 255, 255, 0.04);
+  background: var(--sys-bg-glass);
+  border: 1px solid var(--sys-border);
   border-radius: 16px;
   padding: 20px 24px;
   display: flex;
@@ -1323,9 +1345,9 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
   width: 100%;
   padding: 10px 14px;
   border-radius: 10px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: var(--text-1);
+  background: var(--sys-bg-elevated);
+  border: 1px solid var(--sys-border);
+  color: var(--sys-text-1);
   font-size: 14px;
   font-family: var(--font-body);
   transition: all var(--tr);
@@ -1333,7 +1355,7 @@ blockquote, dl, dt, dd { margin: 0; padding: 0; }
 }
 
 .cf-input::placeholder {
-  color: rgba(255, 255, 255, 0.25);
+  color: var(--sys-text-3);
 }
 
 .cf-input:focus {

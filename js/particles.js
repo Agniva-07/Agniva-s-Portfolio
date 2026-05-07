@@ -92,16 +92,28 @@
   const particles = [];
   
   // Pre-calculate color variations to avoid string allocations in the render loop
-  const colorCache = [];
+  const darkColorCache = [];
+  const lightColorCache = [];
   for(let i=0; i<=10; i++) {
     const yRatio = i / 10;
-    const r = Math.round(34 + yRatio * 105);
-    const g = Math.round(211 - yRatio * 119);
-    const bl = Math.round(238 + yRatio * 8);
-    colorCache.push({
-      glow: `rgba(${r}, ${g}, ${bl}, 0.15)`,
-      core: `rgba(${r}, ${g}, ${bl}, 0.8)`,
-      r, g, bl
+    // Dark mode colors (Cyan to Purple)
+    const rD = Math.round(34 + yRatio * 105);
+    const gD = Math.round(211 - yRatio * 119);
+    const blD = Math.round(238 + yRatio * 8);
+    darkColorCache.push({
+      glow: `rgba(${rD}, ${gD}, ${blD}, 0.15)`,
+      core: `rgba(${rD}, ${gD}, ${blD}, 0.8)`,
+      r: rD, g: gD, bl: blD
+    });
+
+    // Light mode colors (Deep Blue to Royal Violet)
+    const rL = Math.round(2 + yRatio * 122);
+    const gL = Math.round(132 - yRatio * 74);
+    const blL = Math.round(199 + yRatio * 38);
+    lightColorCache.push({
+      glow: `rgba(${rL}, ${gL}, ${blL}, 0.15)`,
+      core: `rgba(${rL}, ${gL}, ${blL}, 0.8)`,
+      r: rL, g: gL, bl: blL
     });
   }
 
@@ -155,6 +167,8 @@
 
     // Set line settings once
     ctx.lineWidth = 0.8;
+    const isLight = document.documentElement.getAttribute('data-theme') === 'light';
+    const activeColorCache = isLight ? lightColorCache : darkColorCache;
 
     for (let i = 0; i < particles.length; i++) {
       const a = particles[i];
@@ -168,7 +182,7 @@
           const opacity = (1 - distSq / CONFIG.connectionDistSq) * CONFIG.lineOpacityScale;
           const yAvg = (a.y + b.y) / (2 * h);
           const cacheIdx = Math.max(0, Math.min(10, Math.floor(yAvg * 10)));
-          const c = colorCache[cacheIdx];
+          const c = activeColorCache[cacheIdx];
           
           ctx.beginPath();
           ctx.strokeStyle = `rgba(${c.r}, ${c.g}, ${c.bl}, ${opacity.toFixed(2)})`;
@@ -183,7 +197,7 @@
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
       const cacheIdx = Math.max(0, Math.min(10, Math.floor((p.y / h) * 10)));
-      const c = colorCache[cacheIdx];
+      const c = activeColorCache[cacheIdx];
 
       // Bright core only (removed outer glow for perf)
       ctx.fillStyle = c.core;
