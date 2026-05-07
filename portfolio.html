@@ -96,14 +96,14 @@
         <span class="term-comment">// ABOUT ME</span>
       </div>
 
-      <blockquote class="section__quote" id="about-h">
-        "<span id="about-quote"></span>"
-      </blockquote>
-      <p class="section__quote-sub" id="about-summary"></p>
-
       <!-- Cards + globe row -->
       <div class="about__grid">
         <div class="feature-cards">
+          <blockquote class="section__quote" id="about-h">
+            "<span id="about-quote"></span>"
+          </blockquote>
+          <p class="section__quote-sub" id="about-summary"></p>
+
           <!-- PRIMARY card — visually dominant (no JSON source, kept as design element) -->
           <article class="feature-card feature-card--primary">
             <div class="fc-icon">⚡</div>
@@ -121,9 +121,19 @@
             <h3 class="fc-title">I learn everything</h3>
             <p class="fc-body">From DSA to system design to backend and UI — I constantly explore and improve.</p>
           </article>
+
+          <!-- NEW: Stats cards extracted from quick-bar -->
+          <div class="about-stats-grid" id="about-stats-grid">
+            <!-- Populated by script.js -->
+          </div>
         </div>
 
         <div class="about__visual">
+          <!-- PATCH: FIX 2 — quick-bar card above globe -->
+          <!-- TODO: replace href="#" with resume.pdf link and change text to "Download CV ↓" -->
+          <div class="quick-bar reveal-item" id="quick-bar">
+            <!-- Populated by script.js → renderQuickBar() -->
+          </div>
           <div id="skills-globe"></div>
         </div>
       </div>
@@ -193,7 +203,7 @@
     </section><!-- /#projects -->
 
 
-    <!-- ── CONTACT & NEWSLETTER ─────────────────────────────── -->
+    <!-- ── CONTACT ─────────────────────────────────────────── -->
     <section class="section" id="contact" aria-labelledby="contact-h">
       <div class="term-header">
         <span class="term-prompt">❯</span>
@@ -201,24 +211,41 @@
         <span class="term-comment">// CONTACT</span>
       </div>
 
+      <!-- PATCH: FIX 1 — contact section 50/50 split layout -->
       <div class="contact-grid">
-        <!-- Contact -->
+        <!-- Left half: contact cards + editorial block -->
         <div class="contact-panel reveal-item">
           <h2 class="section__title" id="contact-h">Let's Connect</h2>
           <p class="section__subtitle" style="margin-top: 0;">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.</p>
           <div class="contact-info" id="contact-info">
             <!-- Populated by script.js → renderContact() -->
           </div>
+
+          <!-- PATCH: FIX 1 — editorial pull-quote block -->
+          <div class="contact-editorial">
+            <hr class="editorial-rule" />
+            <p class="editorial-quote">Available for freelance, collabs &amp; full-time roles.</p>
+            <div class="editorial-stats">
+              <span>// 400+ DSA problems</span>
+              <span>// 3 deployed projects</span>
+              <span>// 2+ yrs building</span>
+            </div>
+          </div>
         </div>
 
-        <!-- Newsletter -->
-        <div class="newsletter-panel reveal-item">
-          <div class="nl-icon">📫</div>
-          <h3 class="nl-title">Stay Updated</h3>
-          <p class="nl-desc">Get notified about my latest projects, articles, and tech insights. No spam, I promise.</p>
-          <form class="nl-form" onsubmit="event.preventDefault()">
-            <input type="email" placeholder="Your email address" class="nl-input" required />
-            <button type="submit" class="nl-btn">Subscribe <span aria-hidden="true">→</span></button>
+        <!-- Right half: contact form -->
+        <div class="contact-form-panel reveal-item">
+          <div class="cf-header">
+            <span class="cf-icon">🚀</span>
+            <h3 class="cf-title">Send a Message</h3>
+            <p class="cf-desc">Have a project, idea, or opportunity? Let's talk.</p>
+          </div>
+          <form class="cf-form" id="contact-form" novalidate>
+            <input type="text" id="cf-name" class="cf-input" placeholder="Your Name" required autocomplete="name" />
+            <input type="email" id="cf-email" class="cf-input" placeholder="Your Email" required autocomplete="email" />
+            <textarea id="cf-message" class="cf-input cf-textarea" placeholder="Your Message" required rows="4"></textarea>
+            <button type="submit" class="cf-btn">Send Message <span aria-hidden="true">→</span></button>
+            <div class="cf-status"></div>
           </form>
         </div>
       </div>
@@ -267,6 +294,17 @@ import { portfolio } from './data/portfolio.js';
   const wrapper = document.getElementById('skills-globe');
   if (!wrapper) return;
   wrapper.innerHTML = '';
+
+  // Wireframe Lat/Long rings
+  const rings = document.createElement('div');
+  rings.className = 'globe-wireframe';
+  rings.innerHTML = `
+    <div class="ring ring-eq"></div>
+    <div class="ring ring-mer1"></div>
+    <div class="ring ring-mer2"></div>
+    <div class="ring ring-mer3"></div>
+  `;
+  wrapper.appendChild(rings);
 
   // Center tech
   const centerItem = document.createElement('div');

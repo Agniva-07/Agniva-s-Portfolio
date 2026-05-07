@@ -4,8 +4,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;500;600;700;800&display=swap');
 
 :root {
-  --bg-void: #060a14;
-  --bg-deep: #050810;
+  --bg-void: #02040a;
+  --bg-deep: rgba(5, 8, 16, 0.55);
   --bg-glass: rgba(14, 22, 40, 0.6);
   --bg-glass-h: rgba(20, 30, 52, 0.72);
   --cyan: #22d3ee;
@@ -75,7 +75,10 @@ body {
 /* ── RIGHT PANEL ── */
 #terminal-panel {
   width: 45%; height: 100vh; display: flex; flex-direction: column;
-  background: rgba(0,0,0,0.45); position: relative;
+  background: var(--bg-deep); position: relative; z-index: 2;
+  border-left: 1px solid var(--border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
 /* ── Glass Card base ── */
@@ -120,10 +123,18 @@ body {
 .profile-card { text-align: center; padding: 28px 20px 22px; }
 
 .avatar-wrap { position: relative; display: inline-block; margin-bottom: 14px; }
+/* PATCH: FIX 3 — avatar ring animation isolated from img */
 .avatar-ring {
   width: 90px; height: 90px; border-radius: 50%; padding: 3px;
   background: conic-gradient(from 0deg, var(--cyan), var(--purple), var(--blue), var(--cyan));
+  position: relative;
+}
+/* Animated hue ring on pseudo-element, NOT on img parent */
+.avatar-ring::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: inherit;
   animation: ring-spin 6s linear infinite;
+  z-index: 0;
 }
 @keyframes ring-spin { to { filter: hue-rotate(360deg); } }
 
@@ -133,7 +144,9 @@ body {
   font-size: 2.2rem; font-family: var(--font-mono); font-weight: 800;
   color: var(--cyan); text-shadow: 0 0 24px var(--cyan-glow);
   overflow: hidden;
+  position: relative; z-index: 1;
 }
+/* PATCH: FIX 3 — img must have NO filter, NO animation, NO mix-blend-mode */
 .avatar-img { width: 100%; height: 100%; border-radius: 50%; object-fit: cover; }
 .avatar-letter { line-height: 1; }
 .avatar-status {

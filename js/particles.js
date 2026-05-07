@@ -23,7 +23,8 @@
     canvas = document.createElement('canvas');
     canvas.id = 'particleCanvas';
     canvas.setAttribute('aria-hidden', 'true');
-    canvas.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:0.55;';
+    const opacity = window.location.pathname.includes('portfolio.html') ? '0.55' : '0.85';
+    canvas.style.cssText = `position:fixed;top:0;left:0;width:100%;height:100%;z-index:0;pointer-events:none;opacity:${opacity};`;
     document.body.prepend(canvas);
   } else {
     // Ensure canvas has correct styles
@@ -34,7 +35,8 @@
     canvas.style.height = '100%';
     canvas.style.zIndex = '0';
     canvas.style.pointerEvents = 'none';
-    canvas.style.opacity = '0.55';
+    // Slightly higher opacity on landing page to support the intensity
+    canvas.style.opacity = window.location.pathname.includes('portfolio.html') ? '0.55' : '0.85';
   }
 
   const ctx = canvas.getContext('2d');
@@ -52,20 +54,27 @@
   resize();
   window.addEventListener('resize', resize);
 
+  // Determine if we are on the portfolio (Story Mode) page
+  const isPortfolio = window.location.pathname.includes('portfolio.html');
+
   // Adaptive particle count based on screen area
   const screenArea = window.innerWidth * window.innerHeight;
-  const baseCount = Math.min(120, Math.max(50, Math.floor(screenArea / 15000)));
+  
+  // Higher intensity for Landing/Terminal, lower for Portfolio
+  const baseCount = isPortfolio
+    ? Math.min(80, Math.max(40, Math.floor(screenArea / 18000)))
+    : Math.min(100, Math.max(50, Math.floor(screenArea / 14000)));
 
   const CONFIG = {
     particleCount: baseCount,
-    connectionDist: 150,
-    connectionDistSq: 150 * 150,
-    particleSpeed: 0.35,
-    repulsionRadius: 160,
-    repulsionForce: 0.5,
+    connectionDist: isPortfolio ? 130 : 150,
+    connectionDistSq: isPortfolio ? (130 * 130) : (150 * 150),
+    particleSpeed: isPortfolio ? 0.25 : 0.3,
+    repulsionRadius: isPortfolio ? 140 : 150,
+    repulsionForce: isPortfolio ? 0.4 : 0.5,
     friction: 0.95,
-    particleRadius: 1.8,
-    lineOpacityScale: 0.5,
+    particleRadius: isPortfolio ? 1.5 : 1.8,
+    lineOpacityScale: isPortfolio ? 0.35 : 0.55,
   };
 
   const mouse = { x: -9999, y: -9999 };
@@ -80,8 +89,21 @@
     mouse.y = -9999;
   });
 
-  // Particle pool
   const particles = [];
+  
+  // Pre-calculate color variations to avoid string allocations in the render loop
+  const colorCache = [];
+  for(let i=0; i<=10; i++) {
+    const yRatio = i / 10;
+    const r = Math.round(34 + yRatio * 105);
+    const g = Math.round(211 - yRatio * 119);
+    const bl = Math.round(238 + yRatio * 8);
+    colorCache.push({
+      glow: `rgba(${r}, ${g}, ${bl}, 0.15)`,
+      core: `rgba(${r}, ${g}, ${bl}, 0.8)`,
+      r, g, bl
+    });
+  }
 
   function createParticle() {
     return {
@@ -127,12 +149,13 @@
   function animate() {
     ctx.clearRect(0, 0, w, h);
 
-    // Update all particles
     for (let i = 0; i < particles.length; i++) {
       updateParticle(particles[i]);
     }
 
-    // Draw connections — cyan to purple gradient based on position
+    // Set line settings once
+    ctx.lineWidth = 0.8;
+
     for (let i = 0; i < particles.length; i++) {
       const a = particles[i];
       for (let j = i + 1; j < particles.length; j++) {
@@ -143,16 +166,12 @@
 
         if (distSq < CONFIG.connectionDistSq) {
           const opacity = (1 - distSq / CONFIG.connectionDistSq) * CONFIG.lineOpacityScale;
-          
-          // Color blend: cyan near top, purple near bottom
           const yAvg = (a.y + b.y) / (2 * h);
-          const r = Math.round(34 + yAvg * 105);   // 34 → 139
-          const g = Math.round(211 - yAvg * 119);   // 211 → 92
-          const bl = Math.round(238 + yAvg * 8);     // 238 → 246
-
+          const cacheIdx = Math.max(0, Math.min(10, Math.floor(yAvg * 10)));
+          const c = colorCache[cacheIdx];
+          
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(${r}, ${g}, ${bl}, ${opacity.toFixed(3)})`;
-          ctx.lineWidth = 0.8;
+          ctx.strokeStyle = `rgba(${c.r}, ${c.g}, ${c.bl}, ${opacity.toFixed(2)})`;
           ctx.moveTo(a.x, a.y);
           ctx.lineTo(b.x, b.y);
           ctx.stroke();
@@ -163,21 +182,11 @@
     // Draw particles
     for (let i = 0; i < particles.length; i++) {
       const p = particles[i];
-      
-      // Position-based color shift
-      const yRatio = p.y / h;
-      const r = Math.round(34 + yRatio * 105);
-      const g = Math.round(211 - yRatio * 119);
-      const bl = Math.round(238 + yRatio * 8);
+      const cacheIdx = Math.max(0, Math.min(10, Math.floor((p.y / h) * 10)));
+      const c = colorCache[cacheIdx];
 
-      // Outer glow halo
-      ctx.fillStyle = `rgba(${r}, ${g}, ${bl}, 0.2)`;
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, CONFIG.particleRadius * 3, 0, Math.PI * 2);
-      ctx.fill();
-
-      // Bright core
-      ctx.fillStyle = `rgba(${r}, ${g}, ${bl}, 0.9)`;
+      // Bright core only (removed outer glow for perf)
+      ctx.fillStyle = c.core;
       ctx.beginPath();
       ctx.arc(p.x, p.y, CONFIG.particleRadius, 0, Math.PI * 2);
       ctx.fill();
