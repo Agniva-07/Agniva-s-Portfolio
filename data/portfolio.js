@@ -14,16 +14,22 @@ export const portfolio = {
   profile: {
     name: "Agniva",
     fullName: "Agniva Hait",
+
     roles: [
       "Full Stack Developer",
-      "System Builder",
-      "AI Integration Enthusiast",
-      "Problem Solver",
+      "Systems-Focused Engineer",
+      "AI Integration Developer",
+      "Interactive Experience Builder",
     ],
-    tagline: "I build interactive and useful systems, not just apps.",
+
+    tagline:
+      "I engineer scalable digital systems with strong UI, intelligent workflows, and real-world usability.",
+
     location: "Kolkata, India",
-    status: "Open to opportunities",
-    avatar: "",
+
+    status: "Actively Building & Open to Opportunities",
+
+    avatar: "/assets/agniva.png",
   },
 
   // ============================================================
@@ -33,15 +39,27 @@ export const portfolio = {
     degree: "Bachelor of Technology (B.Tech)",
     field: "Computer Science and Engineering",
     year: "2nd Year",
+
     college: "Kalyani Government Engineering College",
 
     boards: [
-      { exam: "ISC", score: "95%", board: "CISCE" },
-      { exam: "ICSE", score: "98%", board: "CISCE" },
+      {
+        exam: "ISC",
+        score: "95%",
+        board: "CISCE",
+      },
+      {
+        exam: "ICSE",
+        score: "98%",
+        board: "CISCE",
+      },
     ],
 
     competitive: [
-      { exam: "JEE Mains", score: "97 Percentile" },
+      {
+        exam: "JEE Mains",
+        score: "97 Percentile",
+      },
     ],
   },
 
@@ -49,32 +67,66 @@ export const portfolio = {
   // 🧠 ABOUT
   // ============================================================
   about: {
-    short: "I build systems, not just apps.",
+    short:
+      "I build scalable systems, not just frontend screens.",
 
     summary:
-      "Second-year CSE student focused on solving real problems by building systems, not just apps.",
+      "Second-year CSE student focused on engineering performant, user-centric, and system-oriented digital products.",
 
-    full: `I'm a second-year Computer Science student who doesn't wait to "be ready" before building real things.
-Most people learn to code. I learn to solve...
+    full: `
+I'm a second-year Computer Science student deeply focused on building practical systems that solve meaningful real-world problems.
 
-[TRIMMED FOR UI — keep full text same in your file]`,
+Instead of limiting myself to tutorial-based development, I actively work on architecting interactive platforms, AI-assisted workflows, and scalable full stack applications.
+
+My primary interest lies at the intersection of:
+- system design
+- intelligent user experiences
+- backend architecture
+- AI integrations
+- high-performance frontend engineering
+
+I enjoy understanding how complete systems work internally — from APIs and databases to rendering pipelines, UX flows, optimization, and deployment structures.
+
+Currently, I am focused on:
+- advanced frontend engineering
+- scalable backend systems
+- AI-powered productivity platforms
+- developer tooling
+- system architecture thinking
+
+I believe strong engineering is not just about writing code — it's about designing systems that are efficient, maintainable, and genuinely useful.
+`,
 
     highlights: [
-      { label: "DSA Problems Solved", value: "400+" },
-      { label: "Projects Built", value: "Real-world" },
-      { label: "Current Year", value: "B.Tech 2nd Year" },
-      { label: "Status", value: "Open to Opportunities" },
+      {
+        label: "DSA Problems Solved",
+        value: "400+",
+      },
+      {
+        label: "Projects Engineered",
+        value: "Real-World Systems",
+      },
+      {
+        label: "Current Academic Year",
+        value: "B.Tech 2nd Year",
+      },
+      {
+        label: "Current Status",
+        value: "Open to Internships & Collaborations",
+      },
     ],
 
     interests: [
-      "Geopolitics",
-      "Spirituality",
-      "Cricket",
-      "Psychology",
-      "Philosophy",
-      "Esports",
-      "AI & Emerging Tech",
       "System Design",
+      "Artificial Intelligence",
+      "Human Psychology",
+      "Geopolitics",
+      "Frontend Architecture",
+      "Backend Engineering",
+      "Developer Experience",
+      "Cricket",
+      "Philosophy",
+      "Emerging Technologies",
     ],
   },
 
@@ -83,57 +135,92 @@ Most people learn to code. I learn to solve...
   // ============================================================
   skills: [
     {
-      label: "Core Stack",
+      label: "Frontend Engineering",
+
       items: [
         "JavaScript",
         "React",
-        "Node.js",
-        "Express.js",
-        "MongoDB",
-        "HTML",
-        "CSS",
-      ],
-    },
-    {
-      label: "Also Proficient",
-      items: [
-        "C",
-        "Python",
-        "MySQL",
-        "REST APIs",
+        "HTML5",
+        "CSS3",
         "Tailwind CSS",
         "Vanilla JS",
       ],
     },
+
     {
-      label: "Currently Learning",
-      items: ["TypeScript", "Next.js", "FastAPI", "Docker", "CI/CD"],
+      label: "Backend & APIs",
+
+      items: [
+        "Node.js",
+        "Express.js",
+        "MongoDB",
+        "REST APIs",
+        "MySQL",
+      ],
     },
+
     {
-      label: "AI & Integrations",
+      label: "Programming Languages",
+
+      items: [
+        "JavaScript",
+        "Python",
+        "C",
+      ],
+    },
+
+    {
+      label: "AI Integrations & Automation",
+
       items: [
         "Google Gemini API",
         "Grok API",
-        "YouTube API",
         "Prompt Engineering",
+        "Workflow Automation",
+        "YouTube API",
       ],
     },
+
     {
-      label: "Tools & DevOps",
-      items: ["Git", "GitHub", "VS Code", "Figma", "Postman", "Vite"],
-    },
-    {
-      label: "Problem Solving",
+      label: "Developer Tools & Workflow",
+
       items: [
-        "400+ LeetCode / GFG",
+        "Git",
+        "GitHub",
+        "VS Code",
+        "Postman",
+        "Figma",
+        "Vite",
+      ],
+    },
+
+    {
+      label: "Computer Science Fundamentals",
+
+      items: [
         "Data Structures",
         "Algorithms",
+        "Problem Solving",
+        "400+ DSA Problems",
+      ],
+    },
+
+    {
+      label: "Currently Exploring",
+
+      items: [
+        "TypeScript",
+        "Next.js",
+        "Docker",
+        "CI/CD",
+        "FastAPI",
+        "System Design",
       ],
     },
   ],
 
   // ============================================================
-  // 🚀 PROJECTS (ALL PRESERVED)
+  // 🚀 PROJECTS
   // ============================================================
   projects: [
     {
@@ -142,12 +229,25 @@ Most people learn to code. I learn to solve...
       order: 1,
 
       title: "FlowState AI",
-      tagline: "Study smarter. Burn out less.",
+
+      tagline:
+        "AI-assisted productivity and burnout management platform",
 
       description:
-        "AI-powered study planner with burnout detection, analytics, and focus tracking.",
+        "An intelligent study-management ecosystem integrating AI-driven scheduling, burnout analytics, focus tracking, and adaptive productivity workflows.",
 
-      fullDescription: `An adaptive study planning system with AI burnout detection...`,
+      fullDescription: `
+FlowState AI is a productivity-focused platform designed to optimize study workflows using intelligent scheduling and behavioral tracking.
+
+The system focuses on:
+- adaptive task planning
+- burnout detection
+- productivity analytics
+- focus monitoring
+- AI-assisted recommendations
+
+Built with scalability and modular architecture in mind, the platform combines responsive frontend engineering with intelligent backend logic to create a practical real-world productivity system.
+`,
 
       tech: [
         "React",
@@ -171,14 +271,23 @@ Most people learn to code. I learn to solve...
       order: 2,
 
       title: "MoodDJ",
-      tagline: "Mood-based music system",
+
+      tagline:
+        "Emotion-aware music discovery platform",
 
       description:
-        "Combines Spotify + YouTube for personalized mood-based listening.",
+        "A mood-driven music recommendation system integrating Spotify and YouTube APIs for adaptive listening experiences.",
 
-      tech: ["React", "API Integration"],
+      tech: [
+        "React",
+        "API Integration",
+      ],
 
-      links: { github: "", live: "" },
+      links: {
+        github: "",
+        live: "",
+      },
+
       featured: false,
       status: "in-progress",
     },
@@ -188,15 +297,25 @@ Most people learn to code. I learn to solve...
       slug: "chat-app",
       order: 3,
 
-      title: "Chat Application",
-      tagline: "Real-time messaging system",
+      title: "Realtime Chat Platform",
+
+      tagline:
+        "Low-latency communication system",
 
       description:
-        "Real-time chat app with private rooms and live updates.",
+        "A realtime messaging platform supporting private communication channels, socket-based event updates, and responsive UI interactions.",
 
-      tech: ["React", "Node.js", "Socket.io"],
+      tech: [
+        "React",
+        "Node.js",
+        "Socket.io",
+      ],
 
-      links: { github: "", live: "" },
+      links: {
+        github: "",
+        live: "",
+      },
+
       featured: false,
       status: "completed",
     },
@@ -208,14 +327,17 @@ Most people learn to code. I learn to solve...
   story: [
     {
       id: "phase1",
+
       date: "Aug 2024",
-      title: "Learning the Basics",
-      subtitle: "Where it all started",
+
+      title: "Foundation Phase",
+
+      subtitle: "Learning core web fundamentals",
 
       content: [
-        "Started with HTML, CSS, JS",
-        "Built frontend clones",
-        "Focused on learning fundamentals",
+        "Started with HTML, CSS, and JavaScript",
+        "Built frontend UI clones",
+        "Focused heavily on programming fundamentals",
       ],
 
       visual: "idle",
@@ -223,13 +345,15 @@ Most people learn to code. I learn to solve...
 
     {
       id: "phase2",
-      date: "Oct–Dec 2024",
-      title: "From Clones to Real Use",
+
+      date: "Oct – Dec 2024",
+
+      title: "Transition to Real Applications",
 
       content: [
-        "Shifted to React",
-        "Built real apps",
-        "Started solving real-life problems",
+        "Shifted into React ecosystem",
+        "Started building production-style applications",
+        "Focused on solving practical user problems",
       ],
 
       visual: "thinking",
@@ -237,13 +361,15 @@ Most people learn to code. I learn to solve...
 
     {
       id: "phase3",
+
       date: "2025",
-      title: "Building Systems",
+
+      title: "Systems Thinking",
 
       content: [
-        "Started system design thinking",
-        "Built FlowState & MoodDJ",
-        "Focus on real-world impact",
+        "Started exploring system design concepts",
+        "Built AI-integrated platforms",
+        "Focused on scalability and real-world usability",
       ],
 
       visual: "focused",
@@ -255,9 +381,14 @@ Most people learn to code. I learn to solve...
   // ============================================================
   contact: {
     email: "haitagniva@gmail.com",
+
     github: "https://github.com/Agniva-07",
-    linkedin: "https://www.linkedin.com/in/agniva-hait-49508630a/",
+
+    linkedin:
+      "https://www.linkedin.com/in/agniva-hait-49508630a/",
+
     twitter: "",
+
     resume: "",
   },
 
@@ -267,18 +398,25 @@ Most people learn to code. I learn to solve...
   terminal: {
     commands: {
       coffee:
-        "Tabs are a personal attack. Spaces always.",
+        "Tabs are a personal attack. Spaces win.",
+
       music:
-        "Kishore Kumar 🎧",
+        "Kishore Kumar running in the background 🎧",
+
       fun:
-        "Debugged for 3 hours. It was CORS.",
+        "Spent 3 hours debugging. Missing semicolon.",
+
       hire:
-        "Access granted. Let's build something great 🚀",
+        "Access granted. Let's engineer something impactful 🚀",
     },
 
     dsa: {
       count: "400+",
-      platforms: ["LeetCode", "GFG"],
+
+      platforms: [
+        "LeetCode",
+        "GeeksForGeeks",
+      ],
     },
   },
 
@@ -286,10 +424,14 @@ Most people learn to code. I learn to solve...
   // 🔍 META
   // ============================================================
   meta: {
-    siteTitle: "Agniva · Portfolio",
+    siteTitle:
+      "Agniva Hait • Full Stack Developer",
+
     description:
-      "Full Stack Developer. I build systems, not just apps.",
+      "Systems-focused full stack developer building scalable web applications, AI-powered workflows, and interactive digital experiences.",
+
     url: "",
+
     themeColor: "#0d0d0d",
   },
 };
