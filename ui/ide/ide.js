@@ -147,7 +147,7 @@ function setBreadcrumb(filename) {
 }
 
 function dotColor(ext) {
-  const map = { tsx:'#007acc', html:'#e34c26', json:'#cbcb41', js:'#e8c84d', ts:'#3178c6', css:'#563d7c', md:'rgba(255,255,255,0.65)', pdf:'#f14c4c' };
+  const map = { tsx:'#007acc', html:'#e34c26', json:'#cbcb41', js:'#e8c84d', ts:'#3178c6', css:'#563d7c', md:'rgba(var(--white-rgb),0.65)', pdf:'#f14c4c' };
   return map[ext] || '#8b949e';
 }
 
