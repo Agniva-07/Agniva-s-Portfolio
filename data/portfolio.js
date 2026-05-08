@@ -23,11 +23,11 @@ export const portfolio = {
     ],
 
     tagline:
-      "I engineer scalable digital systems with strong UI, intelligent workflows, and real-world usability.",
+      "I architect scalable systems, ship production-grade applications, and engineer intelligent workflows that solve real problems.",
 
     location: "Kolkata, India",
 
-    status: "Actively Building & Open to Opportunities",
+    status: "Actively Building · Open to Internships & Collaborations",
 
     avatar: "/assets/agniva.png",
   },
@@ -71,30 +71,28 @@ export const portfolio = {
       "I build scalable systems, not just frontend screens.",
 
     summary:
-      "Second-year CSE student focused on engineering performant, user-centric, and system-oriented digital products.",
+      "Second-year CSE student engineering performant, production-grade full stack systems — with a focus on AI integration, clean architecture, and real-world usability.",
 
     full: `
-I'm a second-year Computer Science student deeply focused on building practical systems that solve meaningful real-world problems.
+I'm a second-year Computer Science student at Kalyani Government Engineering College — but the real learning happens far outside the classroom.
 
-Instead of limiting myself to tutorial-based development, I actively work on architecting interactive platforms, AI-assisted workflows, and scalable full stack applications.
+I don't wait for assignments to tell me what to build. I identify problems, architect solutions, and ship projects that reflect genuine engineering decisions — not tutorial clones.
 
-My primary interest lies at the intersection of:
-- system design
-- intelligent user experiences
-- backend architecture
-- AI integrations
-- high-performance frontend engineering
+My core interest lies at the intersection of:
+→ system design and scalable backend architecture
+→ AI-integrated workflows and intelligent product experiences
+→ high-performance, component-driven frontend engineering
+→ developer tooling and deployment infrastructure
 
-I enjoy understanding how complete systems work internally — from APIs and databases to rendering pipelines, UX flows, optimization, and deployment structures.
+I approach every project as an architecture problem first. Before writing a line of code, I think about data flow, API contracts, failure modes, and long-term maintainability.
 
-Currently, I am focused on:
-- advanced frontend engineering
-- scalable backend systems
-- AI-powered productivity platforms
-- developer tooling
-- system architecture thinking
+Currently focused on:
+→ modular full stack system design
+→ AI-powered productivity platforms
+→ TypeScript, Next.js, and containerised deployment
+→ advanced DSA — graphs, DP, and system design patterns
 
-I believe strong engineering is not just about writing code — it's about designing systems that are efficient, maintainable, and genuinely useful.
+I believe strong engineering is about designing systems that are efficient, resilient, and genuinely useful — not just code that runs.
 `,
 
     highlights: [
@@ -104,11 +102,11 @@ I believe strong engineering is not just about writing code — it's about desig
       },
       {
         label: "Projects Engineered",
-        value: "Real-World Systems",
+        value: "Production-Grade Systems",
       },
       {
         label: "Current Academic Year",
-        value: "B.Tech 2nd Year",
+        value: "B.Tech CSE — 2nd Year",
       },
       {
         label: "Current Status",
@@ -136,32 +134,29 @@ I believe strong engineering is not just about writing code — it's about desig
   skills: [
     {
       label: "Frontend Engineering",
-
       items: [
-        "JavaScript",
-        "React",
+        "JavaScript (ES6+)",
+        "React.js",
         "HTML5",
         "CSS3",
         "Tailwind CSS",
-        "Vanilla JS",
+        "Vanilla JS / DOM",
       ],
     },
 
     {
       label: "Backend & APIs",
-
       items: [
         "Node.js",
         "Express.js",
         "MongoDB",
-        "REST APIs",
+        "REST API Design",
         "MySQL",
       ],
     },
 
     {
       label: "Programming Languages",
-
       items: [
         "JavaScript",
         "Python",
@@ -171,22 +166,19 @@ I believe strong engineering is not just about writing code — it's about desig
 
     {
       label: "AI Integrations & Automation",
-
       items: [
         "Google Gemini API",
         "Grok API",
+        "YouTube Data API v3",
         "Prompt Engineering",
         "Workflow Automation",
-        "YouTube API",
       ],
     },
 
     {
       label: "Developer Tools & Workflow",
-
       items: [
-        "Git",
-        "GitHub",
+        "Git & GitHub",
         "VS Code",
         "Postman",
         "Figma",
@@ -196,7 +188,6 @@ I believe strong engineering is not just about writing code — it's about desig
 
     {
       label: "Computer Science Fundamentals",
-
       items: [
         "Data Structures",
         "Algorithms",
@@ -207,12 +198,11 @@ I believe strong engineering is not just about writing code — it's about desig
 
     {
       label: "Currently Exploring",
-
       items: [
         "TypeScript",
         "Next.js",
         "Docker",
-        "CI/CD",
+        "CI/CD Pipelines",
         "FastAPI",
         "System Design",
       ],
@@ -231,22 +221,22 @@ I believe strong engineering is not just about writing code — it's about desig
       title: "FlowState AI",
 
       tagline:
-        "AI-assisted productivity and burnout management platform",
+        "AI-powered productivity and burnout management platform",
 
       description:
-        "An intelligent study-management ecosystem integrating AI-driven scheduling, burnout analytics, focus tracking, and adaptive productivity workflows.",
+        "A modular study-management ecosystem with AI-driven scheduling, burnout detection, focus analytics, and adaptive productivity workflows — built as a production-grade system with real infrastructure.",
 
       fullDescription: `
-FlowState AI is a productivity-focused platform designed to optimize study workflows using intelligent scheduling and behavioral tracking.
+FlowState AI is a productivity platform engineered to optimise study workflows through intelligent scheduling and behavioural tracking.
 
-The system focuses on:
-- adaptive task planning
-- burnout detection
-- productivity analytics
-- focus monitoring
-- AI-assisted recommendations
+Core systems built:
+→ Adaptive task scheduler with cognitive load estimation
+→ Burnout detection engine using session pattern analysis
+→ Gemini 2.5 Flash integration with exponential backoff and structured error recovery
+→ JWT authentication with refresh tokens and protected routes
+→ Deployed on Vercel (frontend) and Railway (backend) with environment-isolated pipelines
 
-Built with scalability and modular architecture in mind, the platform combines responsive frontend engineering with intelligent backend logic to create a practical real-world productivity system.
+Designed with a modular monolith architecture — decoupled services for auth, AI inference, scheduling, and analytics with clean internal interfaces.
 `,
 
       tech: [
@@ -254,6 +244,8 @@ Built with scalability and modular architecture in mind, the platform combines r
         "Node.js",
         "MongoDB",
         "Gemini API",
+        "Express.js",
+        "JWT",
       ],
 
       links: {
@@ -273,14 +265,26 @@ Built with scalability and modular architecture in mind, the platform combines r
       title: "MoodDJ",
 
       tagline:
-        "Emotion-aware music discovery platform",
+        "Emotion-aware music discovery engine",
 
       description:
-        "A mood-driven music recommendation system integrating Spotify and YouTube APIs for adaptive listening experiences.",
+        "A mood-driven music recommendation system using YouTube Data API v3 — featuring a custom mood-to-track scoring algorithm, artist mode with discography traversal, and session-based playlist management.",
+
+      fullDescription: `
+MoodDJ maps emotional input to curated music recommendations through a proprietary scoring system.
+
+Engineering highlights:
+→ Custom scoring algorithm with weighted vectors across energy, valence, and tempo
+→ Artist mode — full discography traversal filtered by mood-fit score
+→ YouTube API v3 quota management with pagination and fallback chains
+→ Session-based playlist state with lock, regenerate, and export functionality
+`,
 
       tech: [
         "React",
-        "API Integration",
+        "Node.js",
+        "YouTube Data API v3",
+        "Express.js",
       ],
 
       links: {
@@ -300,15 +304,28 @@ Built with scalability and modular architecture in mind, the platform combines r
       title: "Realtime Chat Platform",
 
       tagline:
-        "Low-latency communication system",
+        "Low-latency communication system with room-based architecture",
 
       description:
-        "A realtime messaging platform supporting private communication channels, socket-based event updates, and responsive UI interactions.",
+        "A realtime messaging platform built on Socket.io with isolated room channels, persistent message history via MongoDB, presence tracking, and a responsive React frontend.",
+
+      fullDescription: `
+A production-style chat system engineered for reliability and clean event architecture.
+
+Key engineering decisions:
+→ Named Socket.io event pipeline — clean separation between system and message events
+→ Room-based channel isolation with unique session tokens
+→ Persistent history indexed on roomId + timestamp for fast reconnect retrieval
+→ Typing indicators and presence tracking via configurable heartbeat pings
+→ Optimistic UI updates with server-side reconciliation
+`,
 
       tech: [
         "React",
         "Node.js",
         "Socket.io",
+        "Express.js",
+        "MongoDB",
       ],
 
       links: {
@@ -332,12 +349,12 @@ Built with scalability and modular architecture in mind, the platform combines r
 
       title: "Foundation Phase",
 
-      subtitle: "Learning core web fundamentals",
+      subtitle: "Web fundamentals from first principles",
 
       content: [
-        "Started with HTML, CSS, and JavaScript",
-        "Built frontend UI clones",
-        "Focused heavily on programming fundamentals",
+        "Rebuilt HTML, CSS, and JavaScript from scratch — no shortcuts",
+        "Reconstructed real-world UI clones to internalise layout and design systems",
+        "Started daily DSA practice and core programming fundamentals",
       ],
 
       visual: "idle",
@@ -350,10 +367,13 @@ Built with scalability and modular architecture in mind, the platform combines r
 
       title: "Transition to Real Applications",
 
+      subtitle: "Full stack engineering and live deployments",
+
       content: [
-        "Shifted into React ecosystem",
-        "Started building production-style applications",
-        "Focused on solving practical user problems",
+        "Adopted React deeply — components, hooks, context, and routing",
+        "Built first production-style CRUD app with Express.js + MongoDB",
+        "Deployed on Vercel and Railway — learned real infrastructure",
+        "Shipped Realtime Chat Platform with Socket.io event architecture",
       ],
 
       visual: "thinking",
@@ -362,14 +382,17 @@ Built with scalability and modular architecture in mind, the platform combines r
     {
       id: "phase3",
 
-      date: "2025",
+      date: "2025 — Present",
 
-      title: "Systems Thinking",
+      title: "Systems Thinking Era",
+
+      subtitle: "Architecture-first engineering and AI integration",
 
       content: [
-        "Started exploring system design concepts",
-        "Built AI-integrated platforms",
-        "Focused on scalability and real-world usability",
+        "Started approaching every project as a system design problem",
+        "Integrated Gemini API into production with error recovery and backoff",
+        "Built FlowState AI as a modular platform with decoupled service layers",
+        "Exploring TypeScript, Next.js, Docker, and CI/CD pipelines",
       ],
 
       visual: "focused",
@@ -384,8 +407,7 @@ Built with scalability and modular architecture in mind, the platform combines r
 
     github: "https://github.com/Agniva-07",
 
-    linkedin:
-      "https://www.linkedin.com/in/agniva-hait-49508630a/",
+    linkedin: "https://www.linkedin.com/in/agniva-hait-49508630a/",
 
     twitter: "",
 
@@ -398,16 +420,16 @@ Built with scalability and modular architecture in mind, the platform combines r
   terminal: {
     commands: {
       coffee:
-        "Tabs are a personal attack. Spaces win.",
+        "Tabs are a personal attack. Spaces win every time.",
 
       music:
         "Kishore Kumar running in the background 🎧",
 
       fun:
-        "Spent 3 hours debugging. Missing semicolon.",
+        "Spent 3 hours debugging a Gemini response parser. Stray backtick. Never again.",
 
       hire:
-        "Access granted. Let's engineer something impactful 🚀",
+        "Access granted. Let's build something that actually ships 🚀",
     },
 
     dsa: {
@@ -428,7 +450,7 @@ Built with scalability and modular architecture in mind, the platform combines r
       "Agniva Hait • Full Stack Developer",
 
     description:
-      "Systems-focused full stack developer building scalable web applications, AI-powered workflows, and interactive digital experiences.",
+      "Systems-focused full stack developer building scalable web applications, AI-powered platforms, and production-grade digital experiences.",
 
     url: "",
 
